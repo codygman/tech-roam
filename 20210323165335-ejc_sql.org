@@ -1,2 +1,4 @@
 #+title: ejc-sql
 
+A killer feature this has is it provides autocompletion in org babel source blocks. Not sure if it requires using =C-c '= to to into an external buffer or the autocompletion works from the normal org buffer using a virtual buffer.
+
