@@ -1,0 +1,5 @@
+#+title: macOS workspace management
+
+https://appleinsider.com/articles/18/10/12/how-to-use-spaces-apples-mostly-ignored-macos-mojave-productivity-feature
+
+https://apple.stackexchange.com/a/7508

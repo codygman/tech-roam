@@ -1,0 +1,5 @@
+#+title: emacs' prefix argument
+
+In emacs if you press =C-u= (control key followed by u) then by convention it modifies the behavior of the following command.
+
+* TODO give example

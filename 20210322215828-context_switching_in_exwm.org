@@ -1,0 +1,84 @@
+#+title: context switching in EXWM
+
+* Description
+
+
+Much like [[file:20210322215910-switching_applications_in_modern_operating_systems.org][switching applications in modern operating systems]] except [[file:20210322214027-emacs.org][emacs]] and exwm see what others call windows as something more general:
+
+buffers
+
+So anything you call a window in an OS, in exwm you should call it a buffer. Anything you call a desktop you should call a tab (or workspace depending on the package). 
+
+Window in emacs is used to describe how the buffers are laid out.
+
+In other OS's or window managers, by default you just alt-tab through the stack of applications. I think more recently some allow you to have firefox integration where you can also alt tab through the tabs within firefox.
+
+That's kind of close to how I use exwm, but I do so by (trying to) never use tabs and instead opening every link in a new window.
+
+The purpose for this is so I can take advantage of a [[file:20210322221637-narrowing_framework.org][narrowing framework]] like selectrum and switch buffers effectively.
+
+One thought is it might be nice to be able to keep the browsers tab functionality, but to me it seems incompatible with this idea of using a [[file:20210322221637-narrowing_framework.org][narrowing framework]] everywhere.
+* Why do this?
+The idea being that by getting so used to a method of selecting the thing on a computer you want that is applicable everywhere from application selection to selection options for emacs interfaces to narrowing down auto-completion results... and more... you'll eventually become very fast at it.
+
+* Complicating things the fuzzy find buffer list silver bullet with workspaces
+There's another dimension to add that complicates things here though:
+
+workspaces (my specific implementation uses emacs tabs at time of writing)
+
+If you have a keybinding to list all of your buffers upon pressing =s-b= (windows or super key, then b) then some questions arise assuming you have more than one workspaces:
+
+- Should =s-b= show buffers in other workspaces?
+- Should =s-b= show buffers in it's current workspace and a new =s-B= binding be created?
+- Should only =s-b= exist but show all buffers given [[file:20210322223456-emacs_prefix_argument.org][emacs' prefix argument]]?
+
+* How do others handle workspaces?
+I thought [[file:20210322223641-macos_workspace_management.org][macOS workspace management]] prescribed having two different keybindings but perhaps I was wrong.
+* Could a pure consult based solution be best?
+I find myself convinced that having two different bindings is the only sane answer here the more I think about it.
+
+Or, using the concept of split characters in consult to enter something like:
+
+!B other workspace buffer
+
+After having called =s-b=.
+
+But by default it would be narrowed to the current workspace.
+
+Is that much different than having two different keybindings or remembering to send the prefix argument?
+
+What is the common case? What is the ideal common case? Surely it'd be best to have your workspaces divided up, but is that realistic? Could it be realistic?
+
+If so I think that you could make the case switching buffers by workspace would be the default.
+* Case #1: switching to my teams workspace
+
+One example I have a lot though is:
+
+- I'm working on some code at work
+- I see a Microsoft Teams notification
+- I press =SPC t l=, type =team RET=, hit enter, then click the message
+
+I don't click the notification itself because it messes up whatever my window layout was... but perhaps that's just to make up for the bug (or behavior I misunderstand) where [[file:20210322224625-winner_mode.org][winner mode]] doesn't let me "undo" displaying teams... or does it?
+
+I'm not sure the last time I tried.
+
+But should I even have an entire workspace setup just for teams? Do I only do that because it seems to break exwm sometimes?
+* Case #2: temporarily switching to a different projects buffer 
+
+For other cases though... such as switching to a buffer you have open in a different project. Let's say:
+
+- you are in the workspace for =projecta=
+- you want to go to =projectb.readme=
+- you don't want to pollute =projecta= with =projectb.readme=
+
+It would again be nice to have =s-B= that would auto-switch you to the =projectb= workspace. Then you could switch back either with =s-B=. I currently use =C-o= or evil-jump-backward a lot but it doesn't switch workspaces at all.
+
+The idea I'm exploring is buffer switching while preserving workspaces.
+
+What if you don't currently have a workspace for =projectb=? Should opening a file in that workspace auto-create the workspace just for you to have to immediately close it?
+
+
+* Alternatives
+
+** Alt-tab based like [[file:20210322215910-switching_applications_in_modern_operating_systems.org][switching applications in modern operating systems]]
+

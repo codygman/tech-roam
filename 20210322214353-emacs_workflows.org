@@ -1,0 +1,33 @@
+#+title: Emacs workflows
+
+* Buffer/Tab/Window management in Emacs
+** *NOTE*: Everything I write is presuming [[file:20210322215828-context_switching_in_exwm.org][context switching in EXWM]]
+** description
+
+
+I'm currently trying to figure out the best way to handle workspaces and buffers in emacs. I'm already using a narrowing framework, selectrum.
+
+Aside: In the past I've used both helm and counsel.
+
+Actually... let's back up a bit and use a relatable example.
+
+Imagine replacing alt-tab with say... alt-s where s is search. And each time you want to switch to a different window (os) you can do one of the following:
+
+- use arrow keys (or some equivalent like C-n and C-p)
+- type some portion of its name
+- a combination of both
+
+Also keep in mind that it will remember your choices and optimize for that in the future.
+
+Without that last bit, it might be more obvious that this method is inferior to the omnipresent alt-tab default of switching to an application.
+
+Now imagine that not only do you switch to an application this way, but any browser tab, document, or other application (or it's internal tabs) you have open...
+
+Follows the same uniform interface.
+
+The problem is should tabs (colloquially workspaces) be listed by default 
+** an example
+** questions
+*** is the alt-tab model better than the alternative or stopping to think about buffer/application names?
+**** Maybe not for web-browsing... or is it? Isn't buffer order most recently used? 
+
