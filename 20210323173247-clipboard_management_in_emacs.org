@@ -1,0 +1,11 @@
+#+title: clipboard management in emacs
+
+Anything I copy from an X application should go into the emacs kill ring. In exwm I should be able to access anything copied from either within emacs or another x application to [[help:kill-ring-max][kill-ring-max]] (1000 at time of writing).
+
+The ability to have this everywhere at anytime is really a game-changer... even with the current limitation of not being able to paste back into some X applications text box.
+
+Currently though the implemenation I'm using is a little wonk and I need to finish [[https://github.com/minad/consult/issues/221][Allow consult-yank-pop to insert after point #221]] but there are some significant complexities and a knowledge gap I need to bridge about both [[file:20210323173642-elisp.org][elisp]] and [[file:20210323173650-consult.org][consult]] before I can do so.
+
+I should record some of the weirdnesses here:
+
+- The naive heuristic of "if it has a newline always paste on line after" doesn't always work. Sadly I can't remember the counter-example.

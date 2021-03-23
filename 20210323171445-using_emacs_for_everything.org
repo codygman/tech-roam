@@ -9,5 +9,6 @@ Here are some things I do want to pull into the unified, extensible, and heavily
 - [[file:20210323171657-universal_chat_in_emacs.org][universal chat in emacs]]
 - [[file:20210323172614-password_management_in_emacs.org][password management in emacs]]
 - [[file:20210323172848-screenshots_in_emacs.org][screenshots in emacs]]
+- [[file:20210323173247-clipboard_management_in_emacs.org][clipboard management in emacs]]
 
 I have many other things I want to do in emacs
