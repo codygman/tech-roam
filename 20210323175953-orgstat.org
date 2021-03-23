@@ -1,0 +1,39 @@
+#+title: orgstat
+
+* Trying out orgstat (soft-BLOCKED because it's broken on latest nixpkgs)
+
+** Is it working in [[file:20210323180422-nixpkgs.org][nixpkgs]]? 
+#+begin_src sh
+nix-shell -p haskellPackages.orgstat --run orgstat
+#+end_src
+
+#+RESULTS:
+
+** Nope, it's currently broken
+
+error: Package ‘orgstat-0.1.9’ in /nix/store/875bj53v8fsaqvvdgfy3pr7l7ws1svdw-source/pkgs/development/haskell-modules/hackage-packages.nix:192323 is marked as broken, refusing to evaluate.
+
+       a) To temporarily allow broken packages, you can use an environment variable
+          for a single invocation of the nix tools.
+
+            $ export NIXPKGS_ALLOW_BROKEN=1
+
+       b) For `nixos-rebuild` you can set
+         { nixpkgs.config.allowBroken = true; }
+       in configuration.nix to override this.
+
+       c) For `nix-env`, `nix-build`, `nix-shell` or any other Nix command you can add
+         { allowBroken = true; }
+       to ~/.config/nixpkgs/config.nix.
+(use '--show-trace' to show detailed location information)
+
+** Let's check [[file:20210323180441-hackage.org][hackage]] to find the latest [[file:20210323180454-nixos_distribution.org][NixOS distribution]]
+
+** That takes me to [[https://hydra.nixos.org/job/nixpkgs/trunk/haskellPackages.orgstat.x86_64-linux/][it's hydra job link]] but it only shows the most recent successes (cc: [[file:20210323180552-nixos_hydra.org][NixOS hydra]])
+
+** How do I see the latest failure in [[file:20210323180552-nixos_hydra.org][NixOS hydra]] ?
+
+I'm not sure so I asked in [[file:20210323180637-nixos.org][#nixos]], here's the [[https://logs.nix.samueldr.com/nixos/2021-03-23#4770480][link to my question]] in case I don't get an immediate answer or go do something else.
+
+* If I really want it though, I could add that entire [[file:20210323180422-nixpkgs.org][nixpkgs]] to my [[file:20210323180859-nix_flake.org][nix flake]] inputs just to build it :D
+

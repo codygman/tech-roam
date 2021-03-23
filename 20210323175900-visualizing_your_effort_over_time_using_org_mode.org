@@ -1,0 +1,9 @@
+#+title: Visualizing your effort over time using org mode
+
+
+One thing that makes video games addictive is how immediately you can see feedback. Life seems to be typically be about lots of small improvements accrued over a long period of time... and then occasionally all of those things coming together and you feeling like "I did it!".
+
+What if you could get some positive feedback on those small wins and see your improvements more immediately?
+
+One way to do this is using [[file:20210323175953-orgstat.org][orgstat]], a [[file:20210323175936-haskell.org][Haskell]] based statistics visualizer for org-mode
+

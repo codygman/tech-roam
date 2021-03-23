@@ -1,0 +1,7 @@
+#+title: life management in org-mode
+
+- https://blog.jethro.dev/posts/org_mode_workflow_preview/
+- https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
+- http://newartisans.com/2007/08/using-org-mode-as-a-day-planner/
+- http://doc.norang.ca/org-mode.html
+- https://www.reddit.com/r/orgmode/comments/2qb6ab/best_practices_for_using_orgmode_as_a/
