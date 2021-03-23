@@ -1,0 +1,13 @@
+#+title: universal chat in emacs
+
+This would be a lot easier if everything supported XMPP... but even slack abandoned it.
+
+The best path here seems to be setting up an local irc server and using [[https://github.com/42wim/matterbridge][matterbridge]] to relay messages from/to that irc server/chat service.
+
+I once tried [[https://github.com/42wim/matterircd/issues/291][using mattermostircd]] which I thought was for that purpose, but apparently [[https://github.com/42wim/matterircd/issues/291#issuecomment-673641418][matterircd isn't made for that use case]].
+
+The theory then is that if I setup what matterbridge considers to be a valid irc server then I can follow the other normal (and extensive) matterbridge documentation to connect microsoft Teams, Discord, and any other services they support.
+
+Then I can use any of the many Emacs irc clients to join that server and send/receive messages.
+
+Do note... that somewhere I heard matterbridge had some looping issue? Not sure where I saw that, but figured I'd give a warning here.

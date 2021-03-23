@@ -1,0 +1,3 @@
+#+title: git in emacs
+
+https://magit.vc/ :)

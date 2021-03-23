@@ -1,0 +1,9 @@
+#+title: emacs-edbi
+
+Takes advantage of Perl's cpan and it's database bindings:
+
+https://github.com/kiwanami/emacs-edbi
+
+Downside: The mongo bindings were [[https://www.mongodb.com/blog/post/the-mongodb-perl-driver-is-being-deprecated][deprecated Aug 27, 2019]] and this approach is less promising since Perl bindings aren't as maintained as Java bindings that [[file:20210323165335-ejc_sql.org][ejc-sql]] takes advantage of.
+
+I haven't looked yet, but it'd be annoying if the edbi interface was nicer than ejc-[[file:20210323165335-ejc_sql.org][ejc-sql]] though :)

@@ -1,0 +1,3 @@
+#+title: screenshots in emacs
+
+This is though because xclip interaction (even with unbuffer) is... tough

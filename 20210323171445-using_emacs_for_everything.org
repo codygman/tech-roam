@@ -1,0 +1,13 @@
+#+title: using emacs for everything
+
+Of course... not everything. You wouldn't want to try and replace photoshop with Emacs (as far as I know :D ).
+
+Here are some things I do want to pull into the unified, extensible, and heavily documented emacs ecosystem:
+
+- [[file:20210323172451-git_in_emacs.org][git in emacs]] (DONE: Magit!)
+- [[file:20210323165316-universal_database_access_in_emacs.org][universal database access in emacs]]
+- [[file:20210323171657-universal_chat_in_emacs.org][universal chat in emacs]]
+- [[file:20210323172614-password_management_in_emacs.org][password management in emacs]]
+- [[file:20210323172848-screenshots_in_emacs.org][screenshots in emacs]]
+
+I have many other things I want to do in emacs

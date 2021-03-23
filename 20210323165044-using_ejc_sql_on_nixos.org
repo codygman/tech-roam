@@ -1,0 +1,3 @@
+#+title: using ejc-sql on NixOS
+
+One of the most promising candiates for [[file:20210323165316-universal_database_access_in_emacs.org][universal database access in emacs]]
