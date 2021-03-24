@@ -1,0 +1,50 @@
+#+title: keybindings with general in emacs
+
+* Under evil
+
+** Questions
+*** Is this the correct way to use =my-leader-def= throughout =:general= sections in use-package?
+#+begin_src emacs-lisp
+  (use-package evil
+    :general
+    (my-leader-def
+      :keymaps 'override
+      :non-normal-prefix "s"
+      ;; TODO this one doesn't belong here really
+      "l" 'evil-window-right
+      )
+    )
+#+end_src
+
+** correctly overriding keybindings that other use-package modes add
+
+I'm not sure how to do this... I thought it was "just use the override keymap" but apparently not.
+
+Currently my "S-l" binding I bind in my config like:
+
+#+begin_src emacs-lisp
+(setq exwm-input-global-keys
+        `( ;; ... snip
+          ([?\s-l ] . evil-window-right)
+           ;; ... snip)
+#+end_src
+
+Actually I guess that wouldn't be enough, I should also do:
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :after general
+    :init
+    (setq evil-want-keybinding nil
+          evil-want-integration t)
+
+    :general
+    (my-leader-def
+      :keymaps 'override
+      :non-normal-prefix "s"
+      ;; TODO this one doesn't belong here really
+      "l" 'evil-window-right
+      )
+#+end_src
+
+*NOTE*: untested

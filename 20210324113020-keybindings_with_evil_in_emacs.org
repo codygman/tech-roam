@@ -1,0 +1,5 @@
+#+title: keybindings with evil in emacs
+
+Are a very complex topic... I can't decide if [[file:20210324113054-keybindings_with_general_in_emacs.org][keybindings with general in emacs]] makes the problem more or less complex.
+
+Is it better to just use evil's [[help:evil-define-key][evil-define-key]]? What are the pros/cons? I remember the general.el page addressing this... as well as a page by noctuid about the ins/outs of the complexity that is keybindings with evil in emacs.
