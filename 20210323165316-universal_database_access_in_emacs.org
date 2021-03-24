@@ -13,32 +13,35 @@ This is the bare-minimum, since I'll likely need to access one I haven't used be
 - Oracle
 - Microsoft SQL Server
 
+
 * Candidates
 
+** TODO see what lsp-mode's sql lsp server integration provides (it might be easiest)
+
 ** [[file:20210323165335-ejc_sql.org][ejc-sql]] (can access all [[*Databases I've had a reason to access in the past][required DBs]])
-*** pros 
-**** Access database the jvm can 
+*** pros
+**** Access database the jvm can
 *** cons
 **** complicated setup, especially [[file:20210323165044-using_ejc_sql_on_nixos.org][using ejc-sql on NixOS]]
 
 
 ** [[file:20210323165404-emacs_edbi.org][emacs-edbi]] (can access many [[*Databases I've had a reason to access in the past][required DBs]], notably excluding mongo)
 
-*** pros 
-**** not sure yet 
+*** pros
+**** not sure yet
 
 *** cons
 
 **** Perl seems to be a dieing language
 
-***** at the very least, it's mongo dbi interface was deprecated because no one was using it 
+***** at the very least, it's mongo dbi interface was deprecated because no one was using it
 
 
-** [[file:20210323165857-sql_mode.org][sql-mode]] (can access many [[*Databases I've had a reason to access in the past][required DBs]], notably excluding mongo) 
+** [[file:20210323165857-sql_mode.org][sql-mode]] (can access many [[*Databases I've had a reason to access in the past][required DBs]], notably excluding mongo)
 
 ** Access via org mode integrations
 
-*** PostgreSQL via [[file:20210323165857-sql_mode.org][sql-mode]]  
+*** PostgreSQL via [[file:20210323165857-sql_mode.org][sql-mode]]
 
 
 *** MongoDB via [[https://github.com/krisajenkins/ob-mongo][ob-mongo]]
@@ -73,4 +76,3 @@ This is the bare-minimum, since I'll likely need to access one I haven't used be
 *** pro: Queries in (what can be) lightweight org source blocks
 
 *** con: No autocompletion unless you get [[file:20210323165335-ejc_sql.org][ejc-sql]] working
-
