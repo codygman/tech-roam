@@ -50,4 +50,8 @@ lol:
 #+end_quote
 [[https://logs.nix.samueldr.com/nixos/2021-03-23#4770554][source]]
 
+Let's save this somewhere easily searchable like [[file:20210324121011-debugging_broken_haskell_packages_in_nixpkgs.org][debugging broken haskell packages in nixpkgs]]
+
+
+
 * If I really want it though, I could add that entire [[file:20210323180422-nixpkgs.org][nixpkgs]] to my [[file:20210323180859-nix_flake.org][nix flake]] inputs just to build it :D

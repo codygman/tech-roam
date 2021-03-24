@@ -1,0 +1,51 @@
+#+title: debugging broken haskell packages in nixpkgs
+
+* Find last hydra failure
+** how to
+
+#+begin_quote
+23:10 <rmcgibbo[m]> maybe nix-shell -p hydra-check --command 'hydra-check --url haskellPackages.orgstat --channel master'
+23:10 <rmcgibbo[m]> and then hit 'next' a bunch of times i guess, because it looks like it's been passing?
+#+end_quote
+** test it
+
+Just found out servant-serf was broken, so let's see what this process looks like:
+
+#+begin_src sh
+nix-shell -p hydra-check --command 'hydra-check --url haskellPackages.servant-serf --channel master'
+#+end_src
+
+#+RESULTS:
+: https://hydra.nixos.org/job/nixpkgs/trunk/haskellPackages.servant-serf.x86_64-linux
+
+Browsing to that link with [[file:20210324121345-eww.org][eww]] I see the first failure here:
+
+https://hydra.nixos.org/build/131057423
+
+then see =Logfile:  pretty raw tail= and eww doesn't like any of those links... opening tail in firefox shows:
+
+#+begin_src sh :eval no
+fgmf5gb2zbypgy8-ncurses-6.2/lib --extra-lib-dirs=/nix/store/dzwq4mnbaj5f30gkrc80618l6xlbzwdj-libffi-3.3/lib --extra-lib-dirs=/nix/store/vzf6rrb1rd9cjsjh98ixpkys5d6yc7bs-gmp-6.2.0/lib
+Using Parsec parser
+Configuring servant-serf-0.0.3...
+CallStack (from HasCallStack):
+  $, called at libraries/Cabal/Cabal/Distribution/Simple/Configure.hs:1024:20 in Cabal-3.2.0.0:Distribution.Simple.Configure
+  configureFinalizedPackage, called at libraries/Cabal/Cabal/Distribution/Simple/Configure.hs:477:12 in Cabal-3.2.0.0:Distribution.Simple.Configure
+  configure, called at libraries/Cabal/Cabal/Distribution/Simple.hs:625:20 in Cabal-3.2.0.0:Distribution.Simple
+  confHook, called at libraries/Cabal/Cabal/Distribution/Simple/UserHooks.hs:65:5 in Cabal-3.2.0.0:Distribution.Simple.UserHooks
+  configureAction, called at libraries/Cabal/Cabal/Distribution/Simple.hs:180:19 in Cabal-3.2.0.0:Distribution.Simple
+  defaultMainHelper, called at libraries/Cabal/Cabal/Distribution/Simple.hs:116:27 in Cabal-3.2.0.0:Distribution.Simple
+  defaultMain, called at /nix/store/4mdp8nhyfddh7bllbi7xszz7k9955n79-Setup.hs:2:8 in main:Main
+Setup: Encountered missing or private dependencies:
+text >=1.2.4.0
+
+builder for '/nix/store/ggqchsx6h3msq84bvc4knymazd4a03aa-servant-serf-0.0.3.drv' failed with exit code 1
+#+end_src
+
+
+
+* TODO start a nix shell with dependencies to build
+
+* TODO start a nix repl with dependencies to build
+
+* TODO start flake equivalent of nix repl for both above
