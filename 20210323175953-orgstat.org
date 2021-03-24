@@ -2,7 +2,7 @@
 
 * Trying out orgstat (soft-BLOCKED because it's broken on latest nixpkgs)
 
-** Is it working in [[file:20210323180422-nixpkgs.org][nixpkgs]]? 
+** Is it working in [[file:20210323180422-nixpkgs.org][nixpkgs]]?
 #+begin_src sh
 nix-shell -p haskellPackages.orgstat --run orgstat
 #+end_src
@@ -35,5 +35,19 @@ error: Package ‘orgstat-0.1.9’ in /nix/store/875bj53v8fsaqvvdgfy3pr7l7ws1svd
 
 I'm not sure so I asked in [[file:20210323180637-nixos.org][#nixos]], here's the [[https://logs.nix.samueldr.com/nixos/2021-03-23#4770480][link to my question]] in case I don't get an immediate answer or go do something else.
 
-* If I really want it though, I could add that entire [[file:20210323180422-nixpkgs.org][nixpkgs]] to my [[file:20210323180859-nix_flake.org][nix flake]] inputs just to build it :D
+lol:
 
+
+
+#+begin_quote
+23:10 <rmcgibbo[m]> maybe nix-shell -p hydra-check --command 'hydra-check --url haskellPackages.orgstat --channel master'
+23:10 <rmcgibbo[m]> and then hit 'next' a bunch of times i guess, because it looks like it's been passing?
+#+end_quote
+[[https://logs.nix.samueldr.com/nixos/2021-03-23#4770494][source]]
+
+#+begin_quote
+23:33 <sterni> codygman__: seems like orgstat doesn't compile with current base even if you try to make it https://paste.textboard.org/d7e97cd3
+#+end_quote
+[[https://logs.nix.samueldr.com/nixos/2021-03-23#4770554][source]]
+
+* If I really want it though, I could add that entire [[file:20210323180422-nixpkgs.org][nixpkgs]] to my [[file:20210323180859-nix_flake.org][nix flake]] inputs just to build it :D
