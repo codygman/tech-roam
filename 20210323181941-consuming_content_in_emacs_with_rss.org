@@ -1,0 +1,7 @@
+#+title: Consuming content in emacs with RSS
+
+I setup [[file:~/devos/profiles/develop/emacs/config/readme.org::*elfeed][elfeed]] in my config and I run it every once in a while... but it's actually kind of hard to adjust my habits to start using it.
+
+One reason I identified is I do a lot of my content consumption on my phone, so I'd need integration with [[file:20210323182113-elfeed.org][elfeed]] in Android.
+
+[[file:20210323182541-elfeed_on_android.org][elfeed on Android]] has proved to be difficult and unsucessfull at the time of writing but I'll leave the details for there.

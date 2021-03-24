@@ -1,5 +1,7 @@
 #+title: life management in org-mode
 
+If you actually want to do this and not hate yourself (hyperbole FYI), you should first figure out how to [[file:20210323192314-make_org_mode_less_surprising.org][make org-mode less surprising]]
+
 - https://blog.jethro.dev/posts/org_mode_workflow_preview/
 - https://emacs.cafe/emacs/orgmode/gtd/2017/06/30/orgmode-gtd.html
 - http://newartisans.com/2007/08/using-org-mode-as-a-day-planner/

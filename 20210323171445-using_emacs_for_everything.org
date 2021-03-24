@@ -11,5 +11,6 @@ Here are some things I do want to pull into the unified, extensible, and heavily
 - [[file:20210323172848-screenshots_in_emacs.org][screenshots in emacs]]
 - [[file:20210323173247-clipboard_management_in_emacs.org][clipboard management in emacs]]
 - [[file:20210323175034-life_management_in_org_mode.org][life management in org-mode]]
+- [[file:20210323181941-consuming_content_in_emacs_with_rss.org][Consuming content in emacs with RSS]]
 
 I have many other things I want to do in emacs

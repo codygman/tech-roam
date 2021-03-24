@@ -1,0 +1,18 @@
+#+title: daily issues experienced using exwm
+
+
+
+* My focus is sometimes stolen switching to either firefox or Microsoft teams after my latest updates between
+
+Had issue [2021-03-23 Tue 18:26]
+
+most recent: https://github.com/codygman/devos/commit/2bb415d952d6ce8a1e2889ef982f699e6e6a69b5
+
+suspect:
+
+https://github.com/codygman/devos/commit/fdf025796d6861f00380da4ad5b1a5946d87c411
+https://github.com/codygman/devos/commit/8679918d9da5d9913de7fea89c647d344623cf2f
+
+earliest I think caused it:
+
+https://github.com/codygman/devos/commit/eedf122338f560822b39d0104eb067f461518ba6

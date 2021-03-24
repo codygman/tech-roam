@@ -1,0 +1,9 @@
+#+title: make org-mode less surprising
+
+This necessarily has to be opinionated, but i'll try to keep in mind the essence of emacs and org mode is to make as few decisions for the user in advance. For instance in [[*set refile targets to be all files in =org-agenda-files=][set refile targets to be all files in =org-agenda-files=]] maybe it'd be a bad default to do that for all users because some users put a ton of things in their agenda files but only want to refile to the current buffer... maybe...
+
+* set refile targets to be all files in =org-agenda-files=
+
+#+begin_src emacs-lisp
+(setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
+#+end_src
