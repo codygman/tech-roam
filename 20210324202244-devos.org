@@ -2,3 +2,9 @@
 
 https://devos.divnix.com/
 
+* Managing Secrets
+
+One yet to be solved problem is [[file:20210325164544-secrets_management_in_nixos.org][secrets management in nixos]], but there are some options. 
+
+Specifically I'm concerned with [[file:20210325165324-secrets_management_in_devos.org][secrets management in devos]]
+

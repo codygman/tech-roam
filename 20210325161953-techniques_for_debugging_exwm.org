@@ -1363,3 +1363,7 @@ Maybe it showed up at first, but it for sure showed up after opening firefox.
 
 ** Well... I can't make sense of that log :D 
 
+** I'll keep debug on for a bit and do things normally in firefox
+
+** hopefully that triggers it
+

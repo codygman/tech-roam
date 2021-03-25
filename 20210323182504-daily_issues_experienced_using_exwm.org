@@ -1,7 +1,5 @@
 #+title: daily issues experienced using exwm
 
-
-
 * My focus is sometimes stolen switching to either firefox or Microsoft teams after my latest updates between
 
 Had issue [2021-03-23 Tue 18:26]
@@ -16,3 +14,14 @@ https://github.com/codygman/devos/commit/8679918d9da5d9913de7fea89c647d344623cf2
 earliest I think caused it:
 
 https://github.com/codygman/devos/commit/eedf122338f560822b39d0104eb067f461518ba6
+
+* If I spend too long in an [[https://github.com/agzam/exwm-edit][exwm-edit]] buffer the "connection" is lost between that text input box and exwm-edit
+
+It might be related to https://github.com/agzam/exwm-edit/issues/5#issue-349768256
+
+https://github.com/ch11ng/exwm/issues/465
+
+Possible workaround:
+https://github.com/ch11ng/exwm/issues/465#issuecomment-418633531
+
+I might actually just have an older version of exwm-edit, lol

@@ -1,0 +1,3 @@
+#+title: Golang
+
+The better is better of worse is better. (TODO pull in that worse is better network of pages!)
