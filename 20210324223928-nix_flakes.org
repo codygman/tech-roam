@@ -1,0 +1,16 @@
+#+title: nix flakes
+
+* Weird issue with nix flakes
+
+#+begin_quote
+03:34 <codygman__> I notice that changing my flake.nix input from `override.url = "nixpkgs/master"` to `override.url = "nixpkgs"` gives me a newer version and that confuses me.
+03:35 <codygman__> because `nix flake list-inputs github:NixOS/nixpkgs` and `nix flake list-inputs github:NixOS/nixpkgs/master` give the same commit of nixpkgs. 
+#+end_quote
+
+https://logs.nix.samueldr.com/nixos/2021-03-25#4775494
+
+https://logs.nix.samueldr.com/nixos/2021-03-25#4775509
+
+Here's a diff showing it:
+
+https://github.com/codygman/devos/commit/18f063b42e613e53634f519781a69d1f11629b79

@@ -1,0 +1,3 @@
+#+title: static haskell binaries
+
+Static binaries that depend on as little as possible from the underlying system. The best way I know of to do this is with [[file:20210324195558-haskell_nix.org][haskell.nix]] or [[https://github.com/NixOS/nixpkgs/issues/43795][Fully static Haskell executables - overview issue #43795]]

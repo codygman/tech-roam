@@ -1,0 +1,7 @@
+#+title: literate debugging
+
+Debugging with literate tools to take rich notes along the way.
+
+A challenge is it adds some overhead, so you have to make very ergonomic tooling to overcome that overhead.
+
+It's very nice to look back at and can significantly speed up similar tasks however.

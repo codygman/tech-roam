@@ -31,7 +31,6 @@ error: Package ‘orgstat-0.1.9’ in /nix/store/875bj53v8fsaqvvdgfy3pr7l7ws1svd
 (use '--show-trace' to show detailed location information)
 
 ** Let's check [[file:20210323180441-hackage.org][hackage]] to find the latest [[file:20210323180454-nixos_distribution.org][NixOS distribution]]
-
 ** That takes me to [[https://hydra.nixos.org/job/nixpkgs/trunk/haskellPackages.orgstat.x86_64-linux/][it's hydra job link]] but it only shows the most recent successes (cc: [[file:20210323180552-nixos_hydra.org][NixOS hydra]])
 
 ** How do I see the latest failure in [[file:20210323180552-nixos_hydra.org][NixOS hydra]] ?
@@ -39,8 +38,6 @@ error: Package ‘orgstat-0.1.9’ in /nix/store/875bj53v8fsaqvvdgfy3pr7l7ws1svd
 I'm not sure so I asked in [[file:20210323180637-nixos.org][#nixos]], here's the [[https://logs.nix.samueldr.com/nixos/2021-03-23#4770480][link to my question]] in case I don't get an immediate answer or go do something else.
 
 lol:
-
-
 
 #+begin_quote
 23:10 <rmcgibbo[m]> maybe nix-shell -p hydra-check --command 'hydra-check --url haskellPackages.orgstat --channel master'

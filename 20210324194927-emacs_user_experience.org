@@ -1,0 +1,11 @@
+#+title: emacs user experience
+
+The user experience of [[file:20210322214027-emacs.org][emacs]] and discussions and arguments around it.
+
+* "Emacs should use more modern keybindings"
+
+Random thoughts:
+
+Emacs predates modern keybindings such as C-n new file
+
+What should C-n do in a dired buffer? New folder maybe? Most modern keybindings are based on popular applications that aren't as generic or abstact as emacs.

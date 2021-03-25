@@ -1,0 +1,27 @@
+#+title: NixOS as a daily driver
+
+* Common tasks (These assume using [[file:20210324202244-devos.org][DevOS]] but *could* be generally applicable)
+
+** "Discord updated and nixpkgs master hasn't been updated yet but I want to chat with people what do"
+
+- Go to the discord website and click download to see what version is in the download.
+
+It's 0.14.
+
+What is nixpkgs?
+
+#+begin_src sh
+  nix-env -f '<nixpkgs>' -qaP -A discord
+#+end_src
+
+#+RESULTS:
+: discord  discord-0.0.13
+
+What is nixpkgs master?
+
+#+begin_src sh
+  nix-env -f https://github.com/NixOS/nixpkgs/archive/master.tar.gz -qaP -A discord
+#+end_src
+
+#+RESULTS:
+: discord  discord-0.0.14

@@ -1,2 +1,16 @@
 #+title: elisp
 
+* problems I need more knowledge for
+** conditionally add item to list
+
+I just had an issue where I want to conditionally add org-agenda-files to =org-refile-targets=, but only if it doesn't already exist.
+
+I don't immediatley know how to do that
+
+Doesn't assq do something like that? I was thinking of assoc. I did this:
+
+#+begin_src emacs-lisp :noweb-ref org-agenda-config :tangle no
+  (unless
+      (seq-some (lambda (x) (eq (car x) 'org-agenda-files)) org-refile-targets)
+    (add-to-list 'org-refile-targets '(org-agenda-files :maxlevel . 5)))
+#+end_src
