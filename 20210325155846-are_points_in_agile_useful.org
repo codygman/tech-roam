@@ -4,7 +4,7 @@ We discussed this in retro today, specifically we discussed [[file:2021032515303
 
 I think they are useful as a very lossy qualitative measure.
 
-A characterization I've heard used before was they can/are used to appease higher ups. I agree this can happen, but in more trusting and functional organizations (usually these are smaller), they're more a jumping off point that can be used for collaboration.
+A characterization I've heard in the past was that they can be, or are even primarily used to appease higher ups. I agree this can happen, but in more trusting and functional organizations (usually these are smaller), they're more a jumping off point that can be used for collaboration.
 
 Or in the unavoidable times of conflict that arise across different teams with different goals, they can be used as an authoratitive number to support cutting scope to hit business critical deadlines.
 
