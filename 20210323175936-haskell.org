@@ -1,2 +1,11 @@
 #+title: Haskell
 
+* Arguments in the haskell community
+
+** big stuff
+
+*** [[file:20210325152238-haskell_arguments_mtl_vs_effects_systems.org][haskell arguments: mtl vs effects systems]]
+
+** small stuff
+
+*** [[file:20210325151912-haskell_arguments_when_vs_unless.org][haskell arguments: when vs unless]]

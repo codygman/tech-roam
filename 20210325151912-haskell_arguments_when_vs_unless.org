@@ -1,0 +1,11 @@
+#+title: haskell arguments: when vs unless
+
+https://twitter.com/taylorfausak/status/1374812081854242817
+
+hlint has a rule to prefer unless to when, contrary to the poll results above. I was curious about why so I asked Neil Mitchell here:
+
+* TODO track down that conversation
+
+I couldn't find it in:
+
+https://github.com/ndmitchell/hlint/search?q=unless&type=issues

@@ -4,7 +4,7 @@
 
 ** "Discord updated and nixpkgs master hasn't been updated yet but I want to chat with people what do"
 
-- Go to the discord website and click download to see what version is in the download.
+- Go to the discord website and click download to see w[[file:20210325151912-haskell_arguments_when_vs_unless.org][haskell arguments: when vs unless]]hat version is in the download.
 
 It's 0.14.
 
