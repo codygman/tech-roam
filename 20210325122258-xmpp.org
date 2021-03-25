@@ -1,0 +1,13 @@
+#+title: XMPP
+
+#+begin_quote
+Extensible Messaging and Presence Protocol is an open communication protocol designed for instant messaging, presence information, and contact list maintenance. Based on XML, it enables the near-real-time exchange of structured data between any two or more network entities.
+#+end_quote
+
+- Wikipedia
+
+Sadly I think it may be dead since even the seemingly developer friendly Slack stopped supporting XMPP.
+
+People asked [[file:20210325121810-microsoft_teams.org][microsoft teams]] to support it in [[https://microsoftteams.uservoice.com/forums/555103-public/suggestions/31354453-xmpp-interface-is-sorely-needed][Uservoice: XMPP interface is sorely needed]] but realistically they probably never will.
+
+That means huge developer efforts like [[file:20210325122646-matterbridge.org][matterbridge]] will be necessary to get the benefits of XMPP through an unsupported and community created shim.

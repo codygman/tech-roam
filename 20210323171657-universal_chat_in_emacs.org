@@ -1,8 +1,8 @@
 #+title: universal chat in emacs
 
-This would be a lot easier if everything supported XMPP... but even slack abandoned it.
+This would be a lot easier if everything supported [[file:20210325122258-xmpp.org][XMPP]]... but even slack abandoned it.
 
-The best path here seems to be setting up an local irc server and using [[https://github.com/42wim/matterbridge][matterbridge]] to relay messages from/to that irc server/chat service.
+The best path here seems to be setting up an local irc server and using [[file:20210325122646-matterbridge.org][matterbridge]] to relay messages from/to that irc server/chat service.
 
 I once tried [[https://github.com/42wim/matterircd/issues/291][using mattermostircd]] which I thought was for that purpose, but apparently [[https://github.com/42wim/matterircd/issues/291#issuecomment-673641418][matterircd isn't made for that use case]].
 

@@ -1,0 +1,14 @@
+#+title: microsoft teams
+
+Gives me lots of trouble in [[file:20210323182419-exwm.org][exwm]] because it steals focus :S
+
+Also I'm not sure if it's the fault of [[file:20210325122031-sound_issues_in_linux.org][sound issues in linux]] or Microsoft treating Linux as a second-class platform but I have various issues from time to time:
+
+- Teams switches my output for reasons
+- Teams switches my input for reasons
+- Both my input/output are correct, but I cannot hear anything
+- Both my input/output are correct, but no one can hear me
+
+The two former are fixed by restarting teams, but beware... by default teams just goes to the tray so you'll have to really kill it to fix the issue.
+
+If only teams would support [[file:20210325122258-xmpp.org][XMPP]] it would at least solve the window manager issues I encounter and mean I only need teams for calls/video calls.
