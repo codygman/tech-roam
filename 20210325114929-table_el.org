@@ -1,0 +1,21 @@
+#+title: table.el
+
+https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode-table
+
+* supports very wide values in vertical tables unlike org tables
+
++--------------------+--------------------+--------------------+--------------------+
+|name                    |                    |                    |                    |
++--------------------+--------------------+--------------------+--------------------+
+|   age                 |                    |                    |                    |
++--------------------+--------------------+--------------------+--------------------+
+|    favorite food             |                    |                    |                    |
++--------------------+--------------------+--------------------+--------------------+
+
+WIP... uhh... how in the world do you fix the table after entering contents?
+
+
+| name          | Sally                                                                             | Joe        |
+| age           | 22                                                                                | 22         |
+| favorite food | PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza | Brocollini |
+| empty         |                                                                                   |            |

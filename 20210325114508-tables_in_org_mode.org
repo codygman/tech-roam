@@ -1,0 +1,42 @@
+#+title: tables in org mode
+
+* multiline tables
+
+* converting tables from vertical to horizontal with =org-table-transpose-table-at-point=
+** simple example
+
+| 1 | 2 | 4 | 5 |
+|---+---+---+---|
+| a | b | c | d |
+| e | f | g | h |
+
+becomes:
+
+| 1 | a | e |
+| 2 | b | f |
+| 4 | c | g |
+| 5 | d | h |
+** realistic example where you want vertical tables (esp if you wrap your org content width)
+
+*** simple table
+| name  | age | favorite food                                                 | empty |
+|-------+-----+---------------------------------------------------------------+-------|
+| Sally |  22 | PizzaPizzaPizzaPizzaPizzaPizza PizzaPizzaPizzaPizzaPizzaPizza |       |
+| Joe   |  22 | Brocollini                                                    |       |
+
+*** simple table vertical
+
+| name          | Sally                          | Joe        |
+| age           | 22                             | 22         |
+| favorite food | PizzaPizzaPizzaPizzaPizzaPizza | Brocollini |
+| empty         |                                |            |
+
+*** problematic table where values per row need to wrap to next line
+
+
+| name          | Sally                                                                             | Joe        |
+| age           | 22                                                                                | 22         |
+| favorite food | PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza | Brocollini |
+| empty         |                                                                                   |            |
+
+Yuck... so broken. This is where you need to use [[file:20210325114929-table_el.org][table.el]]
