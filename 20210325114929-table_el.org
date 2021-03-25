@@ -4,6 +4,19 @@ https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode
 
 * supports very wide values in vertical tables unlike org tables
 
+** TODO example
+
+
++--------------------------------------------------+--------------------+--------------------+
+|PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza|                    |                    |
+|PizzaPizza                                        |                    |                    |
++--------------------------------------------------+--------------------+--------------------+
+|                                                  |                    |                    |
++--------------------------------------------------+--------------------+--------------------+
+|                                                  |                    |                    |
++--------------------------------------------------+--------------------+--------------------+
+
+
 +--------------------+--------------------+--------------------+--------------------+
 |name                    |                    |                    |                    |
 +--------------------+--------------------+--------------------+--------------------+
@@ -19,3 +32,7 @@ WIP... uhh... how in the world do you fix the table after entering contents?
 | age           | 22                                                                                | 22         |
 | favorite food | PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza | Brocollini |
 | empty         |                                                                                   |            |
+
+** Note that there are issues
+
+*** It doesn't seem to wrap things automatically, you have to hard return
