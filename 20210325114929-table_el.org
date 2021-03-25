@@ -4,6 +4,26 @@ https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode
 
 * supports very wide values in vertical tables unlike org tables
 
+** Motivating example from the real world
+
+I originally had some table like:
+
+| id              | 1                            |
+| task            | {"tag":"SomeTaskName"} |
+| schedule        | 0 10 8 * *                   |
+| next_occurrence | 2000-01-01 07:00:00          |
+| deleted_at      |                              |
+
+Then I needed to represent nesting the task piece above in more json:
+
+| id              | 1                                                                        |
+| task            | {"at":"2000-01-01T07:00:00.000000000000Z","task":{"tag":"SomeTaskName"}} |
+| schedule        | 0 10 8 * *                                                               |
+| next_occurrence | 2000-01-01 07:00:00                                                      |
+| deleted_at      |                                                                          |
+
+The problem is that new task line was long enough to break the org table because it doesn't support cell wrapping. [[file:20210325114929-table_el.org][table.el]] does however, but at first blush it's not very ergonomic to use or something about my setup is hostile to it.
+
 ** TODO example
 
 
