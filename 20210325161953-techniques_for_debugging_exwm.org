@@ -1,0 +1,1365 @@
+#+title: techniques for debugging exwm
+
+* General information 
+
+https://github.com/ch11ng/exwm/wiki
+
+* Turn on the logs
+** turn it on
+#+begin_src elisp
+(setq exwm-debug t)
+#+end_src
+
+#+RESULTS:
+: t
+** You won't notice anything at first most likely
+** Soon though, a buffer called =*XELB-DEBUG*= will show up
+
+Maybe it showed up at first, but it for sure showed up after opening firefox.
+
+* A real world example
+
+** I have a weird bug, where [[file:20210323182504-daily_issues_experienced_using_exwm.org::*My focus is sometimes stolen switching to either firefox or Microsoft teams after my latest updates between][My focus is sometimes stolen switching to either firefox or Microsoft teams after my latest updates between]] 
+
+** it also seems to happen with discord a lot
+
+** I think it's something about the initial load screen thing
+
+** let's start it and record what happens
+
+*** full logs (624 lines)
+#+begin_example
+[00:11:44] exwm-input--on-echo-area-dirty:	
+[00:11:45] exwm-input--on-buffer-list-update:	current-buffer=#<buffer  *Minibuf-1*> selected-window=#<window 4 on  *Minibuf-1*>
+[00:11:45] exwm-input--on-minibuffer-setup:	
+[00:11:45] exwm-layout--on-minibuffer-setup:	
+[00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:45] exwm-layout--set-state:	id=#x1400030
+[00:11:45] exwm-layout--set-client-list-stacking:	
+[00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:45] exwm-layout--set-state:	id=#x1400030
+[00:11:45] exwm-layout--set-client-list-stacking:	
+[00:11:45] exwm-input--update-focus:	focus-window=#<window 4 on  *Minibuf-1*> focus-buffer= *Minibuf-1*
+[00:11:45] exwm-input--update-focus:	Focus on #<window 4 on  *Minibuf-1*>
+[00:11:45] exwm-input--set-active-window:	
+[00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:45] exwm-layout--set-state:	id=#x1400030
+[00:11:45] exwm-layout--set-client-list-stacking:	
+[00:11:45] exwm-input--on-echo-area-dirty:	
+[00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:45] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm-input--on-echo-area-dirty:	
+[00:11:46] exwm-input--on-echo-area-dirty:	
+[00:11:46] exwm-input--on-echo-area-dirty:	
+[00:11:46] exwm-input--on-echo-area-dirty:	
+[00:11:46] exwm-input--on-minibuffer-exit:	
+[00:11:46] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:46] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:46] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:46] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:46] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:46] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:46] exwm-layout--set-state:	id=#x1400030
+[00:11:46] exwm-layout--set-client-list-stacking:	
+[00:11:46] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:46] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:46] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:46] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:46] exwm-layout--set-state:	id=#x1400030
+[00:11:46] exwm-layout--set-client-list-stacking:	
+[00:11:46] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[00:11:46] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+[00:11:46] exwm-input--set-active-window:	
+[00:11:46] exwm-input--on-echo-area-dirty:	
+[00:11:46] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:46] exwm-input--on-PropertyNotify:	
+[00:11:46] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:46] exwm-manage--on-ConfigureRequest:	
+[00:11:46] exwm-manage--on-ConfigureRequest:	#x2000001 (#x3) @301x351+810+365; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:46] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:46] exwm-manage--on-ConfigureRequest:	
+[00:11:46] exwm-manage--on-ConfigureRequest:	#x2000001 (#xf) @303x352+809+364; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:46] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-manage--on-MapRequest:	id=#x2000001 parent=#x7f1
+[00:11:47] exwm-manage--on-MapRequest:	#x2000001
+[00:11:47] exwm-manage--manage-window:	Try to manage #x2000001
+[00:11:47] exwm--update-window-type:	#x2000001
+[00:11:47] exwm--update-class:	#x2000001
+[00:11:47] exwm--update-transient-for:	#x2000001
+[00:11:47] exwm--update-normal-hints:	#x2000001
+[00:11:47] exwm--update-hints:	#x2000001
+[00:11:47] exwm-manage--update-geometry:	id=#x2000001
+[00:11:47] exwm-manage--update-mwm-hints:	id=#x2000001
+[00:11:47] exwm--update-title:	#x2000001
+[00:11:47] exwm--update-utf8-title:	#x2000001
+[00:11:47] exwm--update-ctext-title:	#x2000001
+[00:11:47] exwm--update-protocols:	#x2000001
+[00:11:47] exwm-manage--get-configurations:	
+[00:11:47] exwm-manage--manage-window:	No need to manage #x2000001
+[00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:47] exwm-manage--on-ConfigureRequest:	
+[00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#x3) @961x502+480+289; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-manage--on-ConfigureRequest:	
+[00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#xf) @963x503+0+541; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-manage--on-ConfigureRequest:	
+[00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#xc) @961x502+0+541; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-systemtray--on-ClientMessage:	opcode: 0
+[00:11:47] exwm-systemtray--embed:	Try to embed #x2200007
+[00:11:47] exwm-manage--on-ConfigureRequest:	
+[00:11:47] exwm-manage--on-ConfigureRequest:	#x2200007 (#xc) @16x16+0+0; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-manage--on-UnmapNotify:	id=#x2200007
+[00:11:47] exwm-manage--unmanage-window:	Unmanage #x2200007 (buffer: nil, widthdraw: t)
+[00:11:47] exwm-manage--on-ConfigureRequest:	
+[00:11:47] exwm-manage--on-ConfigureRequest:	#x220000b (#xc) @16x16+0+0; border-width: 0; sibling: #x0; stack-mode: 0
+[00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+[00:11:47] exwm-systemtray--on-ClientMessage:	opcode: 0
+[00:11:47] exwm-systemtray--embed:	Try to embed #x220000b
+[00:11:47] exwm-systemtray--embed:	Embed #x220000b
+[00:11:47] exwm-systemtray--embed:	Resize from 16x16 to 25x25
+[00:11:47] exwm-systemtray--embed:	Map the window
+[00:11:47] exwm-systemtray--refresh:	
+[00:11:47] exwm-systemtray--on-ReparentNotify:	
+[00:11:47] exwm-systemtray--on-PropertyNotify:	
+[00:11:47] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:47] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[00:11:47] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+[00:11:47] exwm-input--set-active-window:	
+[00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:49] exwm--on-ClientMessage:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm-manage--on-MapRequest:	id=#x2000008 parent=#x7f1
+[00:11:49] exwm-manage--on-MapRequest:	#x2000008
+[00:11:49] exwm-manage--manage-window:	Try to manage #x2000008
+[00:11:49] exwm--update-window-type:	#x2000008
+[00:11:49] exwm--update-class:	#x2000008
+[00:11:49] exwm--update-transient-for:	#x2000008
+[00:11:49] exwm--update-normal-hints:	#x2000008
+[00:11:49] exwm--update-hints:	#x2000008
+[00:11:49] exwm-manage--update-geometry:	id=#x2000008
+[00:11:49] exwm-manage--update-mwm-hints:	id=#x2000008
+[00:11:49] exwm--update-title:	#x2000008
+[00:11:49] exwm--update-utf8-title:	#x2000008
+[00:11:49] exwm--update-ctext-title:	#x2000008
+[00:11:49] exwm--update-protocols:	#x2000008
+[00:11:49] exwm-manage--get-configurations:	
+[00:11:49] exwm-manage--manage-window:	Manage #x2000008
+[00:11:49] exwm-manage--set-client-list:	
+[00:11:49] exwm-floating--unset-floating:	#x2000008
+[00:11:49] exwm-floating--set-allowed-actions:	#x2000008
+[00:11:49] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:49] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+[00:11:49] exwm-input-grab-keyboard:	id=#x2000008
+[00:11:49] exwm-input--grab-keyboard:	id=#x2000008
+[00:11:49] exwm-input--update-mode-line:	#x2000008
+[00:11:49] exwm--update-desktop:	#x2000008
+[00:11:49] exwm-workspace--set-desktop:	#x2000008
+[00:11:49] exwm-manage--update-ewmh-state:	id=#x2000008
+[00:11:49] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:49] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:49] exwm--on-ClientMessage:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_ALLOWED_ACTIONS(493)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_ALLOWED_ACTIONS(493)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_DESKTOP(360)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_DESKTOP(360)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:49] exwm-layout--set-state:	id=#x1400030
+[00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+[00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x478+0+542
+[00:11:49] exwm-layout--set-state:	id=#x2000008
+[00:11:49] exwm-layout--set-client-list-stacking:	
+[00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:49] exwm-layout--set-state:	id=#x1400030
+[00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+[00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x478+0+542
+[00:11:49] exwm-layout--set-state:	id=#x2000008
+[00:11:49] exwm-layout--set-client-list-stacking:	
+[00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:49] exwm-layout--set-state:	id=#x1400030
+[00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+[00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x475+0+542
+[00:11:49] exwm-layout--set-state:	id=#x2000008
+[00:11:49] exwm-layout--set-client-list-stacking:	
+[00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+[00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:49] exwm-layout--set-state:	id=#x1400030
+[00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+[00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x475+0+542
+[00:11:49] exwm-layout--set-state:	id=#x2000008
+[00:11:49] exwm-layout--set-client-list-stacking:	
+[00:11:49] exwm-input--update-focus:	focus-window=#<window 27 on discord: Discord> focus-buffer=discord: Discord
+[00:11:49] exwm-input--update-focus:	Set focus on #x2000008
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm-manage--on-MapNotify:	id=#x2000008
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm-input--set-focus:	#xe0001c (corrected) => #x2000008
+[00:11:49] exwm-input--update-timestamp:	
+[00:11:49] exwm--on-PropertyNotify:	atom=_TIME(516)
+[00:11:49] exwm-input--on-PropertyNotify:	
+[00:11:49] exwm-input--set-active-window:	
+[00:11:49] exwm-manage--on-UnmapNotify:	id=#x2000001
+[00:11:49] exwm-manage--unmanage-window:	Unmanage #x2000001 (buffer: nil, widthdraw: t)
+[00:11:54] exwm-input--on-KeyPress:	major-mode=exwm-mode buffer=discord: Discord
+[00:11:54] exwm-input--on-KeyPress-line-mode:	(65515 . 0)
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_USER_TIME(389)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm-input--on-KeyPress:	major-mode=exwm-mode buffer=discord: Discord
+[00:11:54] exwm-input--on-KeyPress-line-mode:	(98 . 3)
+[00:11:54] exwm-input--mimic-read-event:	
+[00:11:54] exwm-input--cache-event:	8388706
+[00:11:54] exwm-input--on-buffer-list-update:	current-buffer=#<buffer  *Minibuf-1*> selected-window=#<window 4 on  *Minibuf-1*>
+[00:11:54] exwm-input--on-minibuffer-setup:	
+[00:11:54] exwm-layout--on-minibuffer-setup:	
+[00:11:54] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+[00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:54] exwm-layout--set-state:	id=#x1400030
+[00:11:54] exwm-layout--hide:	Hide #x2000008
+[00:11:54] exwm-layout--set-state:	id=#x2000008
+[00:11:54] exwm-layout--set-client-list-stacking:	
+[00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:54] exwm-layout--set-state:	id=#x1400030
+[00:11:54] exwm-layout--set-client-list-stacking:	
+[00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:54] exwm-layout--set-state:	id=#x1400030
+[00:11:54] exwm-layout--set-client-list-stacking:	
+[00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:54] exwm-layout--set-state:	id=#x1400030
+[00:11:54] exwm-layout--set-client-list-stacking:	
+[00:11:54] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:54] exwm-layout--set-state:	id=#x1400030
+[00:11:54] exwm-layout--set-client-list-stacking:	
+[00:11:54] exwm-input--on-echo-area-dirty:	
+[00:11:54] exwm-input--on-echo-area-dirty:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:54] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm-input--on-echo-area-dirty:	
+[00:11:55] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-input--update-focus:	focus-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org> focus-buffer=20210323182504-daily_issues_experienced_using_exwm.org
+[00:11:55] exwm-input--on-echo-area-dirty:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm-input--on-buffer-list-update:	current-buffer=#<buffer 20210323182504-daily_issues_experienced_using_exwm.org> selected-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org>
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:55] exwm-layout--set-state:	id=#x1400030
+[00:11:55] exwm-layout--set-client-list-stacking:	
+[00:11:55] exwm-input--update-focus:	focus-window=#<window 27 on *Disabled Command*> focus-buffer=*Disabled Command*
+[00:11:55] exwm-input--on-echo-area-dirty:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:55] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Disabled Command*> selected-window=#<window 27 on *Disabled Command*>
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-input--update-focus:	focus-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org> focus-buffer=20210323182504-daily_issues_experienced_using_exwm.org
+[00:11:57] exwm-input--on-echo-area-dirty:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm-input--on-buffer-list-update:	current-buffer=#<buffer 20210323182504-daily_issues_experienced_using_exwm.org> selected-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org>
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+[00:11:57] exwm-layout--set-state:	id=#x1400030
+[00:11:57] exwm-layout--set-client-list-stacking:	
+[00:11:57] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[00:11:57] exwm-input--on-echo-area-dirty:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:57] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm-input--on-minibuffer-exit:	
+[00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+[00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+[00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+[00:11:58] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:58] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:58] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:58] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:58] exwm-layout--set-state:	id=#x1400030
+[00:11:58] exwm-layout--set-client-list-stacking:	
+[00:11:58] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:58] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[00:11:58] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+[00:11:58] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+[00:11:58] exwm-layout--set-state:	id=#x1400030
+[00:11:58] exwm-layout--set-client-list-stacking:	
+[00:11:58] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[00:11:58] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+[00:11:58] exwm-input--set-active-window:	
+[00:11:58] exwm-input--on-echo-area-dirty:	
+[00:11:58] exwm-input--on-echo-area-dirty:	
+[00:11:58] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[00:11:58] exwm-input--on-PropertyNotify:	
+[00:11:58] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[00:11:59] exwm-input--on-echo-area-dirty:	
+[00:11:59] exwm-input--on-echo-area-dirty:	
+[00:12:00] exwm-input--on-echo-area-dirty:	
+[00:12:01] exwm-input--on-echo-area-clear:	
+[00:12:01] exwm-input--on-echo-area-dirty:	
+#+end_example
+
+*** trying to filter out things I *think* are unimportant
+#+begin_example
+  [00:11:45] exwm-input--on-buffer-list-update:	current-buffer=#<buffer  *Minibuf-1*> selected-window=#<window 4 on  *Minibuf-1*>
+  [00:11:45] exwm-input--on-minibuffer-setup:	
+  [00:11:45] exwm-layout--on-minibuffer-setup:	
+  [00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:45] exwm-layout--set-state:	id=#x1400030
+  [00:11:45] exwm-layout--set-client-list-stacking:	
+  [00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:45] exwm-layout--set-state:	id=#x1400030
+  [00:11:45] exwm-layout--set-client-list-stacking:	
+  [00:11:45] exwm-input--update-focus:	focus-window=#<window 4 on  *Minibuf-1*> focus-buffer= *Minibuf-1*
+  [00:11:45] exwm-input--update-focus:	Focus on #<window 4 on  *Minibuf-1*>
+  [00:11:45] exwm-input--set-active-window:	
+  [00:11:45] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:45] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:45] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:45] exwm-layout--set-state:	id=#x1400030
+  [00:11:45] exwm-layout--set-client-list-stacking:		
+  [00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:45] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm-input--on-PropertyNotify:	
+  [00:11:45] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:45] exwm-input--on-PropertyNotify:					
+  [00:11:46] exwm-input--on-minibuffer-exit:	
+  [00:11:46] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:46] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:46] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:46] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:46] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:46] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:46] exwm-layout--set-state:	id=#x1400030
+  [00:11:46] exwm-layout--set-client-list-stacking:	
+  [00:11:46] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:46] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:46] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:46] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:46] exwm-layout--set-state:	id=#x1400030
+  [00:11:46] exwm-layout--set-client-list-stacking:	
+  [00:11:46] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [00:11:46] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+  [00:11:46] exwm-input--set-active-window:		
+  [00:11:46] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm-input--on-PropertyNotify:	
+  [00:11:46] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:46] exwm-manage--on-ConfigureRequest:	
+  [00:11:46] exwm-manage--on-ConfigureRequest:	#x2000001 (#x3) @301x351+810+365; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:46] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:46] exwm-manage--on-ConfigureRequest:	
+  [00:11:46] exwm-manage--on-ConfigureRequest:	#x2000001 (#xf) @303x352+809+364; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:46] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-manage--on-MapRequest:	id=#x2000001 parent=#x7f1
+  [00:11:47] exwm-manage--on-MapRequest:	#x2000001
+  [00:11:47] exwm-manage--manage-window:	Try to manage #x2000001
+  [00:11:47] exwm--update-window-type:	#x2000001
+  [00:11:47] exwm--update-class:	#x2000001
+  [00:11:47] exwm--update-transient-for:	#x2000001
+  [00:11:47] exwm--update-normal-hints:	#x2000001
+  [00:11:47] exwm--update-hints:	#x2000001
+  [00:11:47] exwm-manage--update-geometry:	id=#x2000001
+  [00:11:47] exwm-manage--update-mwm-hints:	id=#x2000001
+  [00:11:47] exwm--update-title:	#x2000001
+  [00:11:47] exwm--update-utf8-title:	#x2000001
+  [00:11:47] exwm--update-ctext-title:	#x2000001
+  [00:11:47] exwm--update-protocols:	#x2000001
+  [00:11:47] exwm-manage--get-configurations:	
+  [00:11:47] exwm-manage--manage-window:	No need to manage #x2000001
+  [00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:47] exwm-manage--on-ConfigureRequest:	
+  [00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#x3) @961x502+480+289; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-manage--on-ConfigureRequest:	
+  [00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#xf) @963x503+0+541; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-manage--on-ConfigureRequest:	
+  [00:11:47] exwm-manage--on-ConfigureRequest:	#x2000008 (#xc) @961x502+0+541; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-systemtray--on-ClientMessage:	opcode: 0
+  [00:11:47] exwm-systemtray--embed:	Try to embed #x2200007
+  [00:11:47] exwm-manage--on-ConfigureRequest:	
+  [00:11:47] exwm-manage--on-ConfigureRequest:	#x2200007 (#xc) @16x16+0+0; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-manage--on-UnmapNotify:	id=#x2200007
+  [00:11:47] exwm-manage--unmanage-window:	Unmanage #x2200007 (buffer: nil, widthdraw: t)
+  [00:11:47] exwm-manage--on-ConfigureRequest:	
+  [00:11:47] exwm-manage--on-ConfigureRequest:	#x220000b (#xc) @16x16+0+0; border-width: 0; sibling: #x0; stack-mode: 0
+  [00:11:47] exwm-manage--on-ConfigureRequest:	ConfigureWindow (preserve geometry)
+  [00:11:47] exwm-systemtray--on-ClientMessage:	opcode: 0
+  [00:11:47] exwm-systemtray--embed:	Try to embed #x220000b
+  [00:11:47] exwm-systemtray--embed:	Embed #x220000b
+  [00:11:47] exwm-systemtray--embed:	Resize from 16x16 to 25x25
+  [00:11:47] exwm-systemtray--embed:	Map the window
+  [00:11:47] exwm-systemtray--refresh:	
+  [00:11:47] exwm-systemtray--on-ReparentNotify:	
+  [00:11:47] exwm-systemtray--on-PropertyNotify:	
+  [00:11:47] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:47] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [00:11:47] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+  [00:11:47] exwm-input--set-active-window:	
+  [00:11:47] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:49] exwm--on-ClientMessage:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm-manage--on-MapRequest:	id=#x2000008 parent=#x7f1
+  [00:11:49] exwm-manage--on-MapRequest:	#x2000008
+  [00:11:49] exwm-manage--manage-window:	Try to manage #x2000008
+  [00:11:49] exwm--update-window-type:	#x2000008
+  [00:11:49] exwm--update-class:	#x2000008
+  [00:11:49] exwm--update-transient-for:	#x2000008
+  [00:11:49] exwm--update-normal-hints:	#x2000008
+  [00:11:49] exwm--update-hints:	#x2000008
+  [00:11:49] exwm-manage--update-geometry:	id=#x2000008
+  [00:11:49] exwm-manage--update-mwm-hints:	id=#x2000008
+  [00:11:49] exwm--update-title:	#x2000008
+  [00:11:49] exwm--update-utf8-title:	#x2000008
+  [00:11:49] exwm--update-ctext-title:	#x2000008
+  [00:11:49] exwm--update-protocols:	#x2000008
+  [00:11:49] exwm-manage--get-configurations:	
+  [00:11:49] exwm-manage--manage-window:	Manage #x2000008
+  [00:11:49] exwm-manage--set-client-list:	
+  [00:11:49] exwm-floating--unset-floating:	#x2000008
+  [00:11:49] exwm-floating--set-allowed-actions:	#x2000008
+  [00:11:49] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:49] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+  [00:11:49] exwm-input-grab-keyboard:	id=#x2000008
+  [00:11:49] exwm-input--grab-keyboard:	id=#x2000008
+  [00:11:49] exwm-input--update-mode-line:	#x2000008
+  [00:11:49] exwm--update-desktop:	#x2000008
+  [00:11:49] exwm-workspace--set-desktop:	#x2000008
+  [00:11:49] exwm-manage--update-ewmh-state:	id=#x2000008
+  [00:11:49] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:49] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [00:11:49] exwm--on-ClientMessage:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_ALLOWED_ACTIONS(493)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_ALLOWED_ACTIONS(493)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_DESKTOP(360)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_DESKTOP(360)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:49] exwm-layout--set-state:	id=#x1400030
+  [00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+  [00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x478+0+542
+  [00:11:49] exwm-layout--set-state:	id=#x2000008
+  [00:11:49] exwm-layout--set-client-list-stacking:	
+  [00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:49] exwm-layout--set-state:	id=#x1400030
+  [00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+  [00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x478+0+542
+  [00:11:49] exwm-layout--set-state:	id=#x2000008
+  [00:11:49] exwm-layout--set-client-list-stacking:	
+  [00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:49] exwm-layout--set-state:	id=#x1400030
+  [00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+  [00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x475+0+542
+  [00:11:49] exwm-layout--set-state:	id=#x2000008
+  [00:11:49] exwm-layout--set-client-list-stacking:	
+  [00:11:49] exwm-layout--refresh:	frame=#<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--refresh-workspace:	Refresh workspace #<frame discord: Discord - GNU Emacs at razer 0x1e9d198>
+  [00:11:49] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:49] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:49] exwm-layout--set-state:	id=#x1400030
+  [00:11:49] exwm-layout--show:	Show #x2000008 in #<window 27 on discord: Discord>
+  [00:11:49] exwm--set-geometry:	Setting #x2000008 to 960x475+0+542
+  [00:11:49] exwm-layout--set-state:	id=#x2000008
+  [00:11:49] exwm-layout--set-client-list-stacking:	
+  [00:11:49] exwm-input--update-focus:	focus-window=#<window 27 on discord: Discord> focus-buffer=discord: Discord
+  [00:11:49] exwm-input--update-focus:	Set focus on #x2000008
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm-manage--on-MapNotify:	id=#x2000008
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm-input--set-focus:	#xe0001c (corrected) => #x2000008
+  [00:11:49] exwm-input--update-timestamp:	
+  [00:11:49] exwm--on-PropertyNotify:	atom=_TIME(516)
+  [00:11:49] exwm-input--on-PropertyNotify:	
+  [00:11:49] exwm-input--set-active-window:	
+  [00:11:49] exwm-manage--on-UnmapNotify:	id=#x2000001
+  [00:11:49] exwm-manage--unmanage-window:	Unmanage #x2000001 (buffer: nil, widthdraw: t)
+  [00:11:54] exwm-input--on-KeyPress:	major-mode=exwm-mode buffer=discord: Discord
+  [00:11:54] exwm-input--on-KeyPress-line-mode:	(65515 . 0)
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_USER_TIME(389)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm-input--on-KeyPress:	major-mode=exwm-mode buffer=discord: Discord
+  [00:11:54] exwm-input--on-KeyPress-line-mode:	(98 . 3)
+  [00:11:54] exwm-input--mimic-read-event:	
+  [00:11:54] exwm-input--cache-event:	8388706
+  [00:11:54] exwm-input--on-buffer-list-update:	current-buffer=#<buffer  *Minibuf-1*> selected-window=#<window 4 on  *Minibuf-1*>
+  [00:11:54] exwm-input--on-minibuffer-setup:	
+  [00:11:54] exwm-layout--on-minibuffer-setup:	
+  [00:11:54] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+  [00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:54] exwm-layout--set-state:	id=#x1400030
+  [00:11:54] exwm-layout--hide:	Hide #x2000008
+  [00:11:54] exwm-layout--set-state:	id=#x2000008
+  [00:11:54] exwm-layout--set-client-list-stacking:	
+  [00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:54] exwm-layout--set-state:	id=#x1400030
+  [00:11:54] exwm-layout--set-client-list-stacking:	
+  [00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:54] exwm-layout--set-state:	id=#x1400030
+  [00:11:54] exwm-layout--set-client-list-stacking:	
+  [00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:54] exwm-layout--set-state:	id=#x1400030
+  [00:11:54] exwm-layout--set-client-list-stacking:	
+  [00:11:54] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [00:11:54] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:54] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:54] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:54] exwm-layout--set-state:	id=#x1400030
+  [00:11:54] exwm-layout--set-client-list-stacking:			
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm-input--on-PropertyNotify:	
+  [00:11:54] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm-input--on-PropertyNotify:		
+  [00:11:55] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-input--update-focus:	focus-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org> focus-buffer=20210323182504-daily_issues_experienced_using_exwm.org	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm-input--on-buffer-list-update:	current-buffer=#<buffer 20210323182504-daily_issues_experienced_using_exwm.org> selected-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org>
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:55] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:55] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:55] exwm-layout--set-state:	id=#x1400030
+  [00:11:55] exwm-layout--set-client-list-stacking:	
+  [00:11:55] exwm-input--update-focus:	focus-window=#<window 27 on *Disabled Command*> focus-buffer=*Disabled Command*	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:55] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Disabled Command*> selected-window=#<window 27 on *Disabled Command*>
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-input--update-focus:	focus-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org> focus-buffer=20210323182504-daily_issues_experienced_using_exwm.org	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm-input--on-buffer-list-update:	current-buffer=#<buffer 20210323182504-daily_issues_experienced_using_exwm.org> selected-window=#<window 27 on 20210323182504-daily_issues_experienced_using_exwm.org>
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [00:11:57] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:57] exwm--set-geometry:	Setting #x1400030 to 960x738+960+29
+  [00:11:57] exwm-layout--set-state:	id=#x1400030
+  [00:11:57] exwm-layout--set-client-list-stacking:	
+  [00:11:57] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:57] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm-input--on-minibuffer-exit:	
+  [00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+  [00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer discord: Discord> selected-window=#<window 27 on discord: Discord>
+  [00:11:58] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 27 on *XELB-DEBUG*>
+  [00:11:58] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:58] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:58] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:58] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:58] exwm-layout--set-state:	id=#x1400030
+  [00:11:58] exwm-layout--set-client-list-stacking:	
+  [00:11:58] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:58] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [00:11:58] exwm-layout--show:	Show #x1400030 in #<window 23 on Firefox: Home · ch11ng/exwm Wiki — Mozilla Firefox>
+  [00:11:58] exwm--set-geometry:	Setting #x1400030 to 960x988+960+29
+  [00:11:58] exwm-layout--set-state:	id=#x1400030
+  [00:11:58] exwm-layout--set-client-list-stacking:	
+  [00:11:58] exwm-input--update-focus:	focus-window=#<window 27 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [00:11:58] exwm-input--update-focus:	Focus on #<window 27 on *XELB-DEBUG*>
+  [00:11:58] exwm-input--set-active-window:			
+  [00:11:58] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm-input--on-PropertyNotify:	
+  [00:11:58] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)			
+  [00:12:01] exwm-input--on-echo-area-clear:		
+#+end_example
+
+*** focusing on the unhandled things with ordered preserved
+#+begin_example
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:45] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:46] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_ALLOWED_ACTIONS(493)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_DESKTOP(360)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:49] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:54] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:55] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:57] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [00:11:58] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+#+end_example
+
+
+** Well... I can't make sense of that log :D 
+

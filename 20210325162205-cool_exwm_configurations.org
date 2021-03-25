@@ -1,0 +1,3 @@
+#+title: cool exwm configurations
+
+https://doc.rix.si/cce/cce-exwm.html

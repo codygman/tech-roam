@@ -1,0 +1,8 @@
+#+title: sane defaults
+
+* Good examples
+** Programming
+*** [[file:20210325162650-python.org][Python]]
+
+* TODO Bad examples
+

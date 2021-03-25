@@ -2,4 +2,8 @@
 
 Emacs X11 Window Manager
 
-[[file:20210323182504-daily_issues_experienced_using_exwm.org][daily issues experienced using exwm]]
+It seems a large part of it is built on [[file:20210325162335-xelb.org][XELB]], maybe that's like xcb which is another [[file:20210325162350-x11.org][X11]] thing I've heard of in the past... maybe a communication protocol.
+
+* [[file:20210323182504-daily_issues_experienced_using_exwm.org][daily issues experienced using exwm]]
+* Sometimes you might get annoyed with exwm, so you'll want to know [[file:20210325161953-techniques_for_debugging_exwm.org][techniques for debugging exwm]]
+* For ideas, see [[file:20210325162205-cool_exwm_configurations.org][cool exwm configurations]].
