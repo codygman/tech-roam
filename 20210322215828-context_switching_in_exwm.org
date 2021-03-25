@@ -7,7 +7,7 @@ Much like [[file:20210322215910-switching_applications_in_modern_operating_syste
 
 buffers
 
-So anything you call a window in an OS, in exwm you should call it a buffer. Anything you call a desktop you should call a tab (or workspace depending on the package). 
+So anything you call a window in an OS, in exwm you should call it a buffer. Anything you call a desktop you should call a tab (or workspace depending on the package).
 
 Window in emacs is used to describe how the buffers are laid out.
 
@@ -63,7 +63,7 @@ I don't click the notification itself because it messes up whatever my window la
 I'm not sure the last time I tried.
 
 But should I even have an entire workspace setup just for teams? Do I only do that because it seems to break exwm sometimes?
-* Case #2: temporarily switching to a different projects buffer 
+* Case #2: temporarily switching to a different projects buffer
 
 For other cases though... such as switching to a buffer you have open in a different project. Let's say:
 
@@ -82,3 +82,4 @@ What if you don't currently have a workspace for =projectb=? Should opening a fi
 
 ** Alt-tab based like [[file:20210322215910-switching_applications_in_modern_operating_systems.org][switching applications in modern operating systems]]
 
+* Also see [[file:20210324124733-window_management_in_emacs.org][window management in emacs]] and [[file:20210324124754-buffer_management_in_emacs.org][buffer management in emacs]]

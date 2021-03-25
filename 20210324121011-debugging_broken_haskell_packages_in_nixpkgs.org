@@ -44,6 +44,8 @@ builder for '/nix/store/ggqchsx6h3msq84bvc4knymazd4a03aa-servant-serf-0.0.3.drv'
 
 
 
+* TODO probably answer most of these questions with videos from [[https://www.twitch.tv/peti343/videos][Peti on TTV]]
+
 * TODO start a nix shell with dependencies to build
 
 * TODO start a nix repl with dependencies to build

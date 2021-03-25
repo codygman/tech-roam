@@ -1,0 +1,3 @@
+#+title: window management in emacs
+
+https://old.reddit.com/r/emacs/comments/7au3hj/how_do_you_manage_your_emacs_windows_and_stay_sane/
