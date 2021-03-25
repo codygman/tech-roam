@@ -1,0 +1,3 @@
+#+title: Figuring out useful things with qualitative data
+
+I'll probably come back here too soon. Consider brushing up more on [[file:20210325160337-statistics.org][statistics]] and [[file:20210325160351-qualitative_data.org][qualitative data]] first :)

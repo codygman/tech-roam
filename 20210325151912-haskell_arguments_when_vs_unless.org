@@ -9,3 +9,4 @@ hlint has a rule to prefer unless to when, contrary to the poll results above. I
 I couldn't find it in:
 
 https://github.com/ndmitchell/hlint/search?q=unless&type=issues
+[[file:20210325155846-are_points_in_agile_useful.org][are points in agile useful]]

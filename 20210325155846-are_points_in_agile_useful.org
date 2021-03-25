@@ -1,0 +1,17 @@
+#+title: are points in agile useful
+
+We discussed this in retro today, specifically we discussed [[file:20210325153030-planning_poker_in_agile.org][planning poker in agile]] and our variant of it. Not sure if that page will ever get filled in, but we'll see ;)
+
+I think they are useful as a very lossy qualitative measure.
+
+A characterization I've heard used before was they can/are used to appease higher ups. I agree this can happen, but in more trusting and functional organizations (usually these are smaller), they're more a jumping off point that can be used for collaboration.
+
+Or in the unavoidable times of conflict that arise across different teams with different goals, they can be used as an authoratitive number to support cutting scope to hit business critical deadlines.
+
+Truth be told, I need to brush up on my [[file:20210325160337-statistics.org][statistics]], [[file:20210325160351-qualitative_data.org][qualitative data]], and maybe one day if I'm lucky:
+
+[[file:20210325160414-figuring_out_useful_things_with_qualitative_data.org][Figuring out useful things with qualitative data]]
+
+Also here's a random whitepaper which may or may not contribute to the discussion.
+
+https://www.sciencedirect.com/topics/computer-science/planning-poker
