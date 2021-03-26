@@ -139,6 +139,7 @@ https://gist.github.com/codygman/d38a049092301ade8e8e1bb362cac778
 
 It turns out that by default GHC doesn't install an uncaught exception handler. See [[file:20210326123600-handling_uncaught_exceptions_in_haskell.org][handling uncaught exceptions in Haskell]]
 
+
 ** What's left
 
 Go through the rest of the issue, you stopped [[https://github.com/yesodweb/persistent/issues/1199#issuecomment-791817694][here]].
