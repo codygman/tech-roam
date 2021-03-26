@@ -5,7 +5,7 @@
 Feel free to submit a PR to discuss any inaccuracies or to alert me of biases I'll almost certainly exhibit :)
 
 * Two kinds of "Real world programmers"
-** Real world programmers
+** Real world programmers (exclusionary)
 
 Usually they'll let you know with phrases like "I'm a real world programmer".
 
@@ -15,7 +15,7 @@ People who aren't very fond of academics and question whether things like [[file
 
 They typically tend towards "[[file:20210326115802-worse_is_better.org][worse is better]]" approaches, but keep in mind that's a continuum and we don't want to mischaracterize the situation with [[file:20210326115020-fallacy_black_and_white_thinking.org][black and white thinking]].
 
-** Real world programmers
+** Real world programmers (results-focused)
 
 You'll usually hear them talk about business value or question whether fancier approaches are worth the effort.
 
