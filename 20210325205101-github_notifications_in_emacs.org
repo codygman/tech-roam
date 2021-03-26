@@ -1,0 +1,26 @@
+#+title: Github notifications in emacs
+
+[[https://github.com/magit/forge][forge]] is awesome, but it's not really scalable if you have a lot of github notifications. I wonder if maybe github notifications are redundant because [[file:20210325205245-rss.org][RSS]] serves the same purpose.
+
+* Does github provide an [[file:20210325205245-rss.org][RSS]] feed for their notifications?
+
+I don't see any official support, but I see a random repo:
+
+https://github.com/webmastak/rss-feed-notifications
+
+It looks like zapier provides something too:
+
+https://zapier.com/apps/github/integrations/rss/10417/post-new-github-notifications-to-an-rss-feed
+
+Anywho... back to the immediate topic.
+
+* incremental github notifications with gh-notify
+
+Status: Blocked by [[file:20210325213600-github_issue_gh_notify_github_api_error.org][github issue: ghnotify github api error]]
+
+The package provides incremental updates to forge's github notifications so I should give it a try.
+
+https://github.com/anticomputer/gh-notify
+
+
+

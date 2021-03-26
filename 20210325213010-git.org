@@ -1,0 +1,3 @@
+#+title: git
+
+[[file:20210325213024-merge_conflicts_in_git.org][merge conflicts in git]]

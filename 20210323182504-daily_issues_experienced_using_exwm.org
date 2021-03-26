@@ -1,8 +1,7 @@
 #+title: daily issues experienced using exwm
 
-
-
 * My focus is sometimes stolen switching to either firefox or Microsoft teams after my latest updates between
+** overview
 
 Had issue [2021-03-23 Tue 18:26]
 
@@ -16,3 +15,872 @@ https://github.com/codygman/devos/commit/8679918d9da5d9913de7fea89c647d344623cf2
 earliest I think caused it:
 
 https://github.com/codygman/devos/commit/eedf122338f560822b39d0104eb067f461518ba6
+** logs from a reproduction
+*** overview 
+It took 3 hours of using my laptop and creating new firefox windows/capturing things but I finally got it.
+*** Somewhere in this huge log of X lines potentially lies a clue the bug
+#+begin_example
+[05:54:17] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+[05:54:17] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:17] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:17] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:17] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:17] exwm-layout--set-state:	id=#x14001ab
+[05:54:17] exwm-layout--set-client-list-stacking:	
+[05:54:17] exwm-input--on-echo-area-dirty:	
+[05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:17] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm-input--on-echo-area-dirty:	
+[05:54:18] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+[05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:18] exwm-layout--set-state:	id=#x14001ab
+[05:54:18] exwm-layout--set-client-list-stacking:	
+[05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:18] exwm-layout--set-state:	id=#x14001ab
+[05:54:18] exwm-layout--set-client-list-stacking:	
+[05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:18] exwm-layout--set-state:	id=#x14001ab
+[05:54:18] exwm-layout--set-client-list-stacking:	
+[05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:18] exwm-layout--set-state:	id=#x14001ab
+[05:54:18] exwm-layout--set-client-list-stacking:	
+[05:54:18] exwm-input--update-focus:	focus-window=#<window 230 on *Messages*> focus-buffer=*Messages*
+[05:54:18] exwm-input--on-echo-area-dirty:	
+[05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:18] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+[05:54:19] exwm-input--on-echo-area-dirty:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on *elfeed-search*> focus-buffer=*elfeed-search*
+[05:54:19] exwm-input--on-echo-area-dirty:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *elfeed-search*> selected-window=#<window 230 on *elfeed-search*>
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:19] exwm-layout--set-state:	id=#x14001ab
+[05:54:19] exwm-layout--set-client-list-stacking:	
+[05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+[05:54:19] exwm-input--on-echo-area-dirty:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:19] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm-input--on-echo-area-dirty:	
+[05:54:20] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-input--update-focus:	focus-window=#<window 230 on *Messages*> focus-buffer=*Messages*
+[05:54:20] exwm-input--on-echo-area-dirty:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+[05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+[05:54:20] exwm-layout--set-state:	id=#x14001ab
+[05:54:20] exwm-layout--set-client-list-stacking:	
+[05:54:20] exwm-input--update-focus:	focus-window=#<window 230 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[05:54:20] exwm-input--on-echo-area-dirty:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:20] exwm-input--on-PropertyNotify:	
+[05:54:20] exwm-input--on-echo-area-dirty:	
+[05:54:21] exwm-input--on-minibuffer-exit:	
+[05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+[05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+[05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+[05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+[05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+[05:54:21] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[05:54:21] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[05:54:21] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
+[05:54:21] exwm-layout--set-state:	id=#x14001ab
+[05:54:21] exwm-layout--set-client-list-stacking:	
+[05:54:21] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[05:54:21] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+[05:54:21] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+[05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
+[05:54:21] exwm-layout--set-state:	id=#x14001ab
+[05:54:21] exwm-layout--set-client-list-stacking:	
+[05:54:21] exwm-input--update-focus:	focus-window=#<window 230 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+[05:54:21] exwm-input--update-focus:	Focus on #<window 230 on *XELB-DEBUG*>
+[05:54:21] exwm-input--set-active-window:	
+[05:54:21] exwm-input--on-echo-area-dirty:	
+[05:54:21] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+[05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+[05:54:21] exwm-input--on-PropertyNotify:	
+#+end_example
+
+*** Somewhere in this huge log of X lines potentially lies a clue the bug
+#+begin_example
+  [05:54:17] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+  [05:54:17] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:17] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:17] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:17] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:17] exwm-layout--set-state:	id=#x14001ab
+  [05:54:17] exwm-layout--set-client-list-stacking:	
+  [05:54:17] exwm-input--on-echo-area-dirty:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:17] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:17] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:17] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm-input--on-echo-area-dirty:	
+  [05:54:18] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+  [05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:18] exwm-layout--set-state:	id=#x14001ab
+  [05:54:18] exwm-layout--set-client-list-stacking:	
+  [05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:18] exwm-layout--set-state:	id=#x14001ab
+  [05:54:18] exwm-layout--set-client-list-stacking:	
+  [05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:18] exwm-layout--set-state:	id=#x14001ab
+  [05:54:18] exwm-layout--set-client-list-stacking:	
+  [05:54:18] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:18] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:18] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:18] exwm-layout--set-state:	id=#x14001ab
+  [05:54:18] exwm-layout--set-client-list-stacking:	
+  [05:54:18] exwm-input--update-focus:	focus-window=#<window 230 on *Messages*> focus-buffer=*Messages*
+  [05:54:18] exwm-input--on-echo-area-dirty:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:18] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:18] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:18] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+  [05:54:19] exwm-input--on-echo-area-dirty:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on *elfeed-search*> focus-buffer=*elfeed-search*
+  [05:54:19] exwm-input--on-echo-area-dirty:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *elfeed-search*> selected-window=#<window 230 on *elfeed-search*>
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:19] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:19] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:19] exwm-layout--set-state:	id=#x14001ab
+  [05:54:19] exwm-layout--set-client-list-stacking:	
+  [05:54:19] exwm-input--update-focus:	focus-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org> focus-buffer=CAPTURE-20210325221237-your_code_as_a_crime_scene.org
+  [05:54:19] exwm-input--on-echo-area-dirty:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:19] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:19] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:19] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm-input--on-echo-area-dirty:	
+  [05:54:20] exwm-input--on-buffer-list-update:	current-buffer=#<buffer CAPTURE-20210325221237-your_code_as_a_crime_scene.org> selected-window=#<window 230 on CAPTURE-20210325221237-your_code_as_a_crime_scene.org>
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-input--update-focus:	focus-window=#<window 230 on *Messages*> focus-buffer=*Messages*
+  [05:54:20] exwm-input--on-echo-area-dirty:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* - GNU Emacs at razer 0x1e9d198>
+  [05:54:20] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:20] exwm--set-geometry:	Setting #x14001ab to 960x738+0+29
+  [05:54:20] exwm-layout--set-state:	id=#x14001ab
+  [05:54:20] exwm-layout--set-client-list-stacking:	
+  [05:54:20] exwm-input--update-focus:	focus-window=#<window 230 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [05:54:20] exwm-input--on-echo-area-dirty:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:20] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:20] exwm-input--on-PropertyNotify:	
+  [05:54:20] exwm-input--on-echo-area-dirty:	
+  [05:54:21] exwm-input--on-minibuffer-exit:	
+  [05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+  [05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+  [05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+  [05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Messages*> selected-window=#<window 230 on *Messages*>
+  [05:54:21] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *XELB-DEBUG*> selected-window=#<window 230 on *XELB-DEBUG*>
+  [05:54:21] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [05:54:21] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [05:54:21] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
+  [05:54:21] exwm-layout--set-state:	id=#x14001ab
+  [05:54:21] exwm-layout--set-client-list-stacking:	
+  [05:54:21] exwm-layout--refresh:	frame=#<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [05:54:21] exwm-layout--refresh-workspace:	Refresh workspace #<frame *XELB-DEBUG* - GNU Emacs at razer 0x1e9d198>
+  [05:54:21] exwm-layout--show:	Show #x14001ab in #<window 228 on Firefox: adamtornhill/code-maat: A command line tool to mine and analyze data from version-control systems — Mozilla Firefox>
+  [05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
+  [05:54:21] exwm-layout--set-state:	id=#x14001ab
+  [05:54:21] exwm-layout--set-client-list-stacking:	
+  [05:54:21] exwm-input--update-focus:	focus-window=#<window 230 on *XELB-DEBUG*> focus-buffer=*XELB-DEBUG*
+  [05:54:21] exwm-input--update-focus:	Focus on #<window 230 on *XELB-DEBUG*>
+  [05:54:21] exwm-input--set-active-window:	
+  [05:54:21] exwm-input--on-echo-area-dirty:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-ClientMessage:	atom=_NET_ACTIVE_WINDOW(355)
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+  [05:54:21] exwm--on-PropertyNotify:	atom=_NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm--on-PropertyNotify:	Unhandled: _NET_WM_OPAQUE_REGION(466)
+  [05:54:21] exwm-input--on-PropertyNotify:	
+#+end_example
+
+*** shot in the dark analysis
+**** why is it changing geometry?
+[05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
+**** lot of =unhandled: WM_STATE= and =unhandled: _NET_WM_STATE= from exwm--on-PropertyNotify
+
+** These related issues might help
+*** https://github.com/ch11ng/exwm/issues/732
+*** https://github.com/ch11ng/exwm/issues/759
+*** https://github.com/ch11ng/exwm/issues/688
+*** https://github.com/ch11ng/exwm/pull/737
+*** https://github.com/ch11ng/exwm/issues/670
+
+* If I spend too long in an [[https://github.com/agzam/exwm-edit][exwm-edit]] buffer the "connection" is lost between that text input box and exwm-edit
+
+It might be related to https://github.com/agzam/exwm-edit/issues/5#issue-349768256
+
+https://github.com/ch11ng/exwm/issues/465
+
+Possible workaround:
+https://github.com/ch11ng/exwm/issues/465#issuecomment-418633531
+
+I might actually just have an older version of exwm-edit, lol

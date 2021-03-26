@@ -1,0 +1,50 @@
+#+title: github issue: gh-notify github api error
+
+
+* Let's try out the logging version recommended
+#+begin_src emacs-lisp
+(defun github-review-start-internal (pr-alist)                                                                                                     
+  "Start review given PR URL given PR-ALIST."
+  (message "0")
+  (deferred:$
+    (deferred:parallel
+      (lambda () (github-review-get-diff-deferred pr-alist))
+      (lambda () (github-review-get-pr-info-deferred pr-alist)))
+    (deferred:nextc it
+      (lambda (x)
+        (message "1")
+        (let-alist (-second-item x)
+          (message "2")
+          (let* ((prdata (a-assoc pr-alist 'sha .data.repository.pullRequest.headRef.target.oid))
+                 (_ (message "3"))
+                 (formatted-diff (github-review-format-diff (-first-item x) .data.repository.pullRequest))
+                 (_ (message "4")))
+          (github-review-save-diff prdata formatted-diff)))))
+    (deferred:error it
+      (lambda (err)
+        (message "Got an error from the GitHub API %S!" err)))))
+#+end_src
+
+#+RESULTS:
+: github-review-start-internal
+
+* That gave me
+#+begin_example
+Mark saved where search started [2 times]
+0
+1
+2
+3
+Got an error from the GitHub API (wrong-type-argument stringp nil)!
+#+end_example
+
+* Then I had the idea of seeing if edebug would work, so did this
+
+Copy/paste from my [[https://github.com/charignon/github-review/issues/77#issuecomment-807903195][advice to someone here]]:
+
+- Call M-x edebug-set-breakpoint on the line with (_ (message "3"))
+- Call M-x github-review-start again
+- It'll bring up the file at that breakpoint
+- Since your in doom you should be able to hit s to step through each line.
+- Then check your messages buffer for that output and redact anything necessary before posting
+

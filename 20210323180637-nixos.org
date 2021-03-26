@@ -1,2 +1,12 @@
 #+title: #nixos
-nixos freenode channel
+
+Not to be confused with [[file:20210325211804-nix.org][nix]] the language.
+
+
+* Nix packages can get really large, here are ways to fix that problem
+** garbage collection 
+** https://github.com/craigmbooth/nix-visualize
+** https://github.com/symphorien/nix-du                               :rust:
+* cool things 
+** https://github.com/maralorn/nix-output-monitor 
+

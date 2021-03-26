@@ -14,3 +14,8 @@ https://logs.nix.samueldr.com/nixos/2021-03-25#4775509
 Here's a diff showing it:
 
 https://github.com/codygman/devos/commit/18f063b42e613e53634f519781a69d1f11629b79
+
+* resources
+
+** https://nixos.wiki/wiki/Flakes 
+
