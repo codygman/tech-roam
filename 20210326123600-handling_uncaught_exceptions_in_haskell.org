@@ -1,0 +1,37 @@
+#+title: handling uncaught exceptions in Haskell
+
+The default in [[file:20210323175936-haskell.org][Haskell]] makes handling [[file:20210326120948-asynchronous_exceptions_in_haskell.org][asynchronous exceptions in Haskell]] even harder...
+
+But a good point is made of why you might not want one by default:
+
+#+begin_quote
+[–]kuleshevich
+
+3 points 4 months ago*
+
+I personally think global exception handling is one big wart in Haskell. A lot of people don't even know it is there and why. And it doesn't help that it is implemented in such a convoluted way.
+
+For example if I ever want to deadlock almost any concurrent code I just can use setUncaughtExceptionHandler to set a global handler which itself throws an error and then every forkIO in my code or any of the dependencies that my program uses will deadlock forever upon almost any exception:
+
+```haskell import GHC.Conc.Sync (setUncaughtExceptionHandler) import Control.Exception import Control.Concurrent
+
+main :: IO () main = do setUncaughtExceptionHandler $ \exc -> do putStrLn "Running global exception handler" threadDelay 100000 error "boo" forkIO $ throwIO DivideByZero threadDelay 1000000 ```
+
+Above snippet will result in deadlocked thread until the program exists: haskell λ> :main Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler Running global exception handler
+
+The only reason it is there is to print debugging info to the unaware programmer that they have a bug and forgot to catch an exception in the spawned thread. All it really does in practice is adds a bit of overhead for all calls to forkIO. This could have been solved in a much nicer way with a proper fork definition:
+
+haskell forkCatch :: IO () -> (SomeException -> IO ()) -> IO ThreadId forkCatch action handler = mask $ \restore -> forkIO $ catch (restore action) handler
+
+However I don't worry about it too much since async is even better and is the right way to go anyways. Not only it helps preventing thread leakage, but it also handles all exceptions for you and it does not use this global exception handler business!
+#+end_quote
+
+https://old.reddit.com/r/haskell/comments/jjnsle/handling_of_uncaught_exceptions_in_haskell/gaev4ex/
+
+Big ooof
+
+* links
+
+** https://old.reddit.com/r/haskell/comments/jjnsle/handling_of_uncaught_exceptions_in_haskell/
+
+** https://serokell.io/blog/uncaught-exception-handling

@@ -71,7 +71,7 @@ simulateFailedLongRunningPostgresCall pool = do
   putStrLn "killed thread"
 #+end_src
 
-** It could have been more minimal with a larger time investment
+** That repro could have been more minimal with a larger time investment
 
 But this accurately represented the semantics of what was happening in production:
 
@@ -83,13 +83,14 @@ But this accurately represented the semantics of what was happening in productio
 
 
 
-** Posting an issue quickly was a priority
+** But posting an issue quickly was a priority
 
 Just getting more eyes on the problem, especially eyes familiar with the persistent codebase was very much desired.
 
 Another plus of this is if they could rule out this being a persistent problem so I didn't waste time on what my gut told me was going to be a realtively complex [[file:20210326120948-asynchronous_exceptions_in_haskell.org][asynchronous exception]] issue.
 
-** Ruling out the library underlying [[file:20210326110802-persistent.org][Persistent]] ( [[file:20210326121125-postgresql_simple.org][postgresql-simple]]) had the same issue
+
+** Next was ruling out the library underlying [[file:20210326110802-persistent.org][Persistent]] ( [[file:20210326121125-postgresql_simple.org][postgresql-simple]]) had the same issue
 
 #+begin_src haskell
 main :: IO ()
@@ -124,3 +125,13 @@ https://github.com/yesodweb/persistent/issues/1199#issuecomment-791817694
 ** Then I talked to myself for a while in the comments while debugging
 
 This was mostly me trying to talk aloud and try solving the issue.
+
+I had downloaded the source already and started making changes.
+
+I ended up using source dependencies of pool for persistent, which [[file:20210326123150-haskell_stack.org][stack]] makes pretty easy. I also found you can replace transitive dependencies which came in handy for using [[file:20210326123232-print_line_debugging.org][print line debugging]] in [[file:20210326123243-postgresql_libpq.org][postgresql-libpq]].
+
+** Initially I thought forkIO was a cure-all, but it just hid the error
+
+https://gist.github.com/codygman/d38a049092301ade8e8e1bb362cac778
+
+It turns out that by default GHC doesn't install an uncaught exception handler. See [[file:20210326123600-handling_uncaught_exceptions_in_haskell.org][handling uncaught exceptions in Haskell]]

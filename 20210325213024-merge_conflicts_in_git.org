@@ -2,14 +2,14 @@
 
 These can suck, but something like [[file:20210325213040-magit.org][magit]] can make life easier.
 
-* TODO see if git-imerge makes merge conflicts easier
+* TODO see if [[file:20210326122331-git_imerge.org][git-imerge]] makes merge conflicts easier
 
 I also found something called [[https://github.com/mhagger/git-imerge][git-imerge]] which seems like it lets you choose between commits in case of a merge conflict and maybe more features that are helpful?
 
 That github page has a video demonstration too:
 
 #+begin_quote
-I think that it is easiest to understand the concept of incremental merging visually, and therefore I recommend the video of my git-imerge presentation from the GitMerge 2013 conference (20 min) as a good place to start. 
+I think that it is easiest to understand the concept of incremental merging visually, and therefore I recommend the video of my git-imerge presentation from the GitMerge 2013 conference (20 min) as a good place to start.
 #+end_quote
 
 I could test it out on a tricky merge conflict I had at to do before at work in the past, though it might be a better test to try it with one I've never done before.
