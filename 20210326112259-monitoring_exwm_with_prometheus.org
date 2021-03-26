@@ -1,0 +1,9 @@
+#+title: monitoring exwm with prometheus
+
+I first heard this mentioned by chris done I think... basically the idea is having prometheus wired into not only the operating system but also into what is shown by [[help:list-processes]]
+
+* TODO find the thread mentioning this
+
+No results here:
+
+https://old.reddit.com/r/emacs/search?q=prometheus&restrict_sr=on&sort=relevance&t=all

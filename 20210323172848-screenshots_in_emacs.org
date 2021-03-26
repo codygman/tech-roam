@@ -1,3 +1,13 @@
 #+title: screenshots in emacs
 
 This is though because xclip interaction (even with unbuffer) is... tough
+
+David from [[file:20210326113432-system_crafters.org][System Crafters]] said:
+
+#+begin_quote
+I use a program called flameshot for that
+
+And I hook it up to the desktop-environment package which has a screenshot key bound, you can set the program it runs with desktop-environment-screenshot-command
+#+end_quote
+
+https://discord.com/channels/767406463265538068/776503423393726494/825039284205518890

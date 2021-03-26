@@ -1,0 +1,6 @@
+#+title: precising term (technology)
+#+roam_tags: "precising terms"
+
+A term that is very precise without much room for ambiguity.
+
+A lot of times [[file:20210326111431-real_world_programmers.org][real world programmers]] dislike these and question their value.

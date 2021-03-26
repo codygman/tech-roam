@@ -1,0 +1,5 @@
+#+title: System Crafters
+super cool understandable and in-depth emacs vids:
+
+
+https://www.youtube.com/channel/UCAiiOTio8Yu69c3XnR7nQBQ

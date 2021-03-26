@@ -1,0 +1,24 @@
+#+title: daily issues using codygman/devos
+
+Performance issues could be found easily with the pie-in-the-sky [[file:20210326112259-monitoring_exwm_with_prometheus.org][monitoring exwm with prometheus]]
+
+* My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call
+
+#+begin_example
+Debugger entered--entering a function:
+* substitute-command-keys("Quit")
+  call-process-shell-command("/run/current-system/sw/bin/find -L \"/home/cody\" -t..." nil t)
+  #<subr shell-command>("/run/current-system/sw/bin/find -L \"/home/cody\" -t..." t nil)
+  shell-command--shell-command-with-editor-mode(#<subr shell-command> "/run/current-system/sw/bin/find -L \"/home/cody\" -t..." t nil)
+  apply(shell-command--shell-command-with-editor-mode #<subr shell-command> ("/run/current-system/sw/bin/find -L \"/home/cody\" -t..." t))
+  shell-command("/run/current-system/sw/bin/find -L \"/home/cody\" -t..." t)
+  shell-command-to-string("/run/current-system/sw/bin/find -L \"/home/cody\" -t...")
+  org-roam--shell-command-files("/run/current-system/sw/bin/find -L \"/home/cody\" -t...")
+  org-roam--list-files-find("/run/current-system/sw/bin/find" "\"/home/cody\"")
+  org-roam--list-files("/home/cody")
+  org-roam--list-all-files()
+  org-roam-db-build-cache()
+  org-roam-db-update-cache-on-timer()
+  apply(org-roam-db-update-cache-on-timer nil)
+  timer-event-handler([t 0 2 0 t org-roam-db-update-cache-on-timer nil idle 0])
+#+end_example

@@ -1,0 +1,5 @@
+#+title: real world programmers
+
+People who aren't very fond of academics and question whether things like [[file:20210326111346-precising_term_technology.org][precising terms]] have any value. Some go as far as claiming the existence of those terms is a form of [[file:20210326115449-gatekeeping_in_programming.org][gatekeeping in programming]] or [[file:20210326115620-ivory_tower_academia.org][ivory tower academia]]. While I don't believe that's untrue, it's difficult because there is value in discussions using precising terms because of their reduced ambiguity.
+
+They typically tend towards "[[file:20210326115802-worse_is_better.org][worse is better]]" approaches, but keep in mind that's a continuum and we don't want to mischaracterize the situation with [[file:20210326115020-fallacy_black_and_white_thinking.org][black and white thinking]].

@@ -2,6 +2,8 @@
 
 Of course... not everything. You wouldn't want to try and replace photoshop with Emacs (as far as I know :D ).
 
+A very important consideration if you want a bespoke setup as complex as this to be reliable is some sort of runtime monitoring. See [[file:20210326112259-monitoring_exwm_with_prometheus.org][monitoring exwm with prometheus]] for a [[file:20210326112730-better_is_better.org][better is better]] approach to this.
+
 Here are some things I do want to pull into the unified, extensible, and heavily documented emacs ecosystem:
 
 - [[file:20210323172451-git_in_emacs.org][git in emacs]] (DONE: Magit!)
