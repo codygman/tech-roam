@@ -71,6 +71,7 @@ simulateFailedLongRunningPostgresCall pool = do
   putStrLn "killed thread"
 #+end_src
 
+
 ** That repro could have been more minimal with a larger time investment
 
 But this accurately represented the semantics of what was happening in production:
@@ -122,6 +123,7 @@ main = do
 
 https://github.com/yesodweb/persistent/issues/1199#issuecomment-791817694
 
+
 ** Then I talked to myself for a while in the comments while debugging
 
 This was mostly me trying to talk aloud and try solving the issue.
@@ -130,8 +132,15 @@ I had downloaded the source already and started making changes.
 
 I ended up using source dependencies of pool for persistent, which [[file:20210326123150-haskell_stack.org][stack]] makes pretty easy. I also found you can replace transitive dependencies which came in handy for using [[file:20210326123232-print_line_debugging.org][print line debugging]] in [[file:20210326123243-postgresql_libpq.org][postgresql-libpq]].
 
+
 ** Initially I thought forkIO was a cure-all, but it just hid the error
 
 https://gist.github.com/codygman/d38a049092301ade8e8e1bb362cac778
 
 It turns out that by default GHC doesn't install an uncaught exception handler. See [[file:20210326123600-handling_uncaught_exceptions_in_haskell.org][handling uncaught exceptions in Haskell]]
+
+* Resources
+
+** TODO link to [[file:20210326140812-haskell_weekly_podcast.org][Haskell Weekly Podcast]] episode
+
+** I was interviewed about this in [[file:20210326140953-haskell_weekly_podcast_episode_42.org][Haskell Weekly Podcast Episode 42]]

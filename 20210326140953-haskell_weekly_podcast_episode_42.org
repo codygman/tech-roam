@@ -1,0 +1,7 @@
+#+title: Haskell Weekly Podcast Episode 42
+
+I joined Cameron Gera and Taylor Fausak to talk about [[file:20210326113249-haskell_persistent_issues_postgres_connections_are_returned_to_pool_too_quickly.org][haskell persistent issues: postgres connections are returned to pool too quickly]].
+
+I think it went pretty well and is an approachable introduction to a recent real world issue caused by [[file:20210326120948-asynchronous_exceptions_in_haskell.org][asynchronous exceptions in Haskell]] that should be appreciated by [[file:20210326111431-real_world_programmers.org][real world programmers]].
+
+I had a lot of fun and hope others find it valuable :)

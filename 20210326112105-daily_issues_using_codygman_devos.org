@@ -54,3 +54,5 @@ Saving file /home/cody/tech-roam/.git/COMMIT_EDITMSG...
 Wrote /home/cody/tech-roam/.git/COMMIT_EDITMSG
 Git finished
 #+end_example
+
+*** ~NOTE~ I think this only happens on merge commits
