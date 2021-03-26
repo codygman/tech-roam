@@ -2,9 +2,9 @@
 
 ~Also see~ [[*NOTE][NOTE]], but I think separating them into two groups below will be best.
 
-Feel free to submit a PR to discuss any inaccuracies or to alert me of biases I'll almost certainly exhibit :)
+~NOTE2~: Feel free to submit a PR to discuss any inaccuracies or to alert me of biases I'll almost certainly exhibit :)
 
-* Two kinds of "Real world programmers"
+* Two kinds of "Real world programmers" in my experience
 ** Real world programmers (exclusionary)
 
 Usually they'll let you know with phrases like "I'm a real world programmer".
