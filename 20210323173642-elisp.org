@@ -14,3 +14,7 @@ Doesn't assq do something like that? I was thinking of assoc. I did this:
       (seq-some (lambda (x) (eq (car x) 'org-agenda-files)) org-refile-targets)
     (add-to-list 'org-refile-targets '(org-agenda-files :maxlevel . 5)))
 #+end_src
+
+* debugging broken elisp packages
+
+See [[file:20210325213600-github_issue_gh_notify_github_api_error.org::*Then I had the idea of seeing if edebug would work, so did this][Then I had the idea of seeing if edebug would work, so did this]]
