@@ -7,3 +7,120 @@ https://github.com/yesodweb/persistent/issues/1199
 #+begin_example
 libpq: failed (another command is already in progress
 #+end_example
+
+* The first obvious step in [[file:20210326120348-fixing_software_bugs.org][fixing software bugs]] for me was [[file:20210326120409-creating_a_minimal_reproduction.org][creating a minimal reproduction]]
+
+** first minimal reproduction
+#+begin_src haskell
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeApplications #-}
+module Main where
+
+import  qualified Control.Monad as Monad
+import qualified Control.Concurrent as Concurrent
+import qualified Control.Exception as Exception
+import qualified Database.Persist as Persist
+import qualified Database.Persist.Sql as Persist
+import qualified Database.Persist.Postgresql as Persist
+import qualified Control.Monad.Logger as Logger
+import qualified Data.ByteString as BS
+import qualified Data.Pool as Pool
+import Data.Time
+
+main :: IO ()
+main = do
+
+  -- I started a postgres server with:
+  -- docker run --rm --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret postgres
+  pool <- Logger.runNoLoggingT $ Persist.createPostgresqlPool "postgresql://postgres:secret@localhost/postgres" 1
+
+  Monad.void $ createTableFoo pool
+
+  getCurrentTime >>= \now ->
+    simulateFailedLongRunningPostgresCall pool
+
+  Pool.destroyAllResources pool
+
+  result :: Either Exception.SomeException [Persist.Single String] <-
+    Exception.try . ((flip Persist.runSqlPersistMPool) pool) $ do
+        Persist.rawSql @(Persist.Single String) "select pg_sleep(5)" []
+
+  -- when we try the above we get back:
+  -- 'result: Left libpq: failed (another command is already in progress'
+  -- this is because the connection went back into the pool before it was ready
+  -- or perhaps it should have been destroyed and a new connection created and put into the pool?
+  putStrLn $ "result: " <> show result
+
+createTableFoo :: Pool.Pool Persist.SqlBackend -> IO ()
+createTableFoo pool = (flip Persist.runSqlPersistMPool) pool $ do
+  Persist.rawExecute "CREATE table if not exists foo(id int);" []
+
+simulateFailedLongRunningPostgresCall :: Pool.Pool Persist.SqlBackend -> IO ()
+simulateFailedLongRunningPostgresCall pool = do
+  threadId <- Concurrent.forkIO
+    $ (do
+        let numThings :: Int = 100000000
+        putStrLn $ "start inserting " <> show numThings <> " things"
+        Monad.forM_ [1 .. numThings] $ \_ -> do
+          (flip Persist.runSqlPersistMPool) pool $
+            Persist.rawExecute "insert into foo values(1);" []
+      )
+  Concurrent.threadDelay 5000000
+  Monad.void $ Concurrent.killThread threadId
+  putStrLn "killed thread"
+#+end_src
+
+** It could have been more minimal with a larger time investment
+
+But this accurately represented the semantics of what was happening in production:
+
+- A batch process somewhere was doing a ton of inserts to postgres in a loop (not ideal, but it happens)
+- Other web-requests reading from the Pool of postgres connections were constantly trying to acquire a pool
+- Sometimes that batch process failed or crashed
+- It's now *tainted* connection was put back into the pool
+- If anything else had the bad luck to get the tainted connection and tried running a query, it failed until postgres did cleanup
+
+
+
+** Posting an issue quickly was a priority
+
+Just getting more eyes on the problem, especially eyes familiar with the persistent codebase was very much desired.
+
+Another plus of this is if they could rule out this being a persistent problem so I didn't waste time on what my gut told me was going to be a realtively complex [[file:20210326120948-asynchronous_exceptions_in_haskell.org][asynchronous exception]] issue.
+
+** Ruling out the library underlying [[file:20210326110802-persistent.org][Persistent]] ( [[file:20210326121125-postgresql_simple.org][postgresql-simple]]) had the same issue
+
+#+begin_src haskell
+main :: IO ()
+main = do
+
+  -- I started a postgres server with:
+  -- docker run --rm --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret postgres
+
+  pool <- Pool.createPool (PGS.connect PGS.defaultConnectInfo { PGS.connectPassword = "secret" } ) PGS.close 1 10 1
+
+  threadId <- Concurrent.forkIO $ do
+      Pool.withResource pool $ \conn -> do
+        let numThings :: Int = 100000000
+        putStrLn $ "start inserting " <> show numThings <> " things"
+        Monad.forM_ [1 .. numThings] $ \_ ->  do
+          PGS.execute_ conn "insert into foo values(1);"
+
+
+  putStrLn "waiting for insert thread to make progress"
+  Concurrent.threadDelay 5000000
+  Monad.void $ Concurrent.killThread threadId
+  putStrLn "killing insert thread"
+
+  Pool.withResource pool $ \conn -> do
+    PGS.execute_ conn "insert into foo values(1);"
+
+  putStrLn "done"
+#+end_src
+
+https://github.com/yesodweb/persistent/issues/1199#issuecomment-791817694
+
+** Then I talked to myself for a while in the comments while debugging
+
+This was mostly me trying to talk aloud and try solving the issue.
