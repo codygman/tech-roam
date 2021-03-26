@@ -8,7 +8,7 @@ https://github.com/yesodweb/persistent/issues/1199
 libpq: failed (another command is already in progress
 #+end_example
 
-* The first obvious step in [[file:20210326120348-fixing_software_bugs.org][fixing software bugs]] for me was [[file:20210326120409-creating_a_minimal_reproduction.org][creating a minimal reproduction]]
+* TODO The first obvious step in [[file:20210326120348-fixing_software_bugs.org][fixing software bugs]] for me was [[file:20210326120409-creating_a_minimal_reproduction.org][creating a minimal reproduction]]
 
 ** first minimal reproduction
 #+begin_src haskell
@@ -138,6 +138,10 @@ I ended up using source dependencies of pool for persistent, which [[file:202103
 https://gist.github.com/codygman/d38a049092301ade8e8e1bb362cac778
 
 It turns out that by default GHC doesn't install an uncaught exception handler. See [[file:20210326123600-handling_uncaught_exceptions_in_haskell.org][handling uncaught exceptions in Haskell]]
+
+** What's left
+
+Go through the rest of the issue, you stopped [[https://github.com/yesodweb/persistent/issues/1199#issuecomment-791817694][here]].
 
 * Resources
 
