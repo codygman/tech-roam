@@ -26,7 +26,6 @@ The problem is that new task line was long enough to break the org table because
 
 ** TODO example
 
-
 +--------------------------------------------------+--------------------+--------------------+
 |PizzaPizzaPizzaPizzaPizzaPizzaPizzaPizzaPizzaPizza|                    |                    |
 |PizzaPizza                                        |                    |                    |
