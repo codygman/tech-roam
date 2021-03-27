@@ -1,0 +1,34 @@
+#+title: sharing org-roam notes
+
+[[file:20210326144748-org_roam.org][org-roam]] is amazing, but usually you'll want to share thoughts from your second-brain with others.
+
+One easy way of doing that is using Github and simply uploading your [[file:20210325162552-org_mode.org][org-mode]] files to take advantage of their automatic org-mode preview.
+
+That has some downsides:
+
+- Hierarchy is not nearly as apparent
+- complicating the above, not many different fonts are used so emphasis isn't as obvious
+
+Another way to share them is to generate html and end up with something like:
+
+https://notes.andymatuschak.org/About_these_notes
+
+This is powered by (I think) the same as in this blog:
+
+https://commonplace.doubleloop.net/20200821142536-how_i_publish_my_wiki_with_org_publish
+
+It's not showing atm... but a cool feature of the above was [[https://commonplace.doubleloop.net/the-map]["The map"]] which presented a graph where you could click results. However there was an even cooler animated version [[https://hugocisneros.com/notes/][here]].
+
+* resources
+
+** https://notes.alexkehayias.com/org-roam/
+
+** https://github.com/org-roam/org-roam/issues/156
+
+** https://github.com/org-roam/org-roam-server
+
+** https://github.com/hugcis/natrium-custom
+
+used in https://hugocisneros.com/notes/
+
+** https://www.ereslibre.es/blog/2019/09/building-a-personal-website-with-org-mode.html

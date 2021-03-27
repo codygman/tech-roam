@@ -1,0 +1,16 @@
+#+title: git-imerge
+
+This is actually really cool, I'll quote myself:
+
+#+begin_quote
+[7:35 AM] Cody Goodman
+    Yesterday I found out about git-imerge which as far as I can tell lets you resolve merge conflicts by choosing a commit, but that could be wrong. Here's a video about it I've been meaning to watch to see how it makes git merges easier:
+
+    https://www.youtube.com/watch?v=FMZ2_-Ny_zc
+
+​[10:35 AM] Cody Goodman
+    I have a suspicion this is the only way I'll be doing merges in the future. instead of merging master commits 1-11 and feature branches A-G all at once you take the smallest first possible step and do a merge between master commit 1 and feature branch A, resolve if necessary (probably not), then move on to resolving feature branch commit B with the previous merge of master 1 and feature branch A.
+
+    Also no history is lost. I guess the biggest downside would be N (master commits) * M (feature branch) merge commits? Not sure, I'll have to try it sometime or watch more than 5m of the video
+    [Screenshot from 2021-03-26 10.31.45.png] (https://lqtraining.sharepoint.com/sites/team.engineering/Shared Documents/General/Screenshot from 2021-03-26 10.31.45.png)<https://teams.microsoft.com/l/message/19:b0f8ef0d1c7246a2a94fbf148aa030c2@thread.tacv2/1616762130902?tenantId=1996b808-7c2b-4c87-98ca-5ae09c29d310&amp;groupId=0cd80c66-4f16-4797-b482-fee483ff62be&amp;parentMessageId=1616762130902&amp;teamName=Engineering&amp;channelName=General&amp;createdTime=1616762130902>
+#+end_quote

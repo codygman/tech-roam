@@ -1,0 +1,5 @@
+#+title: asynchronous exceptions in Haskell
+
+They can be hard :S
+
+https://www.fpcomplete.com/blog/2018/04/async-exception-handling-haskell/

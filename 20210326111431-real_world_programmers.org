@@ -1,0 +1,41 @@
+#+title: real world programmers
+
+~Also see~ [[*NOTE][NOTE]], but I think separating them into two groups below will be best.
+
+~NOTE2~: Feel free to submit a PR to discuss any inaccuracies or to alert me of biases I'll almost certainly exhibit :)
+
+* Two kinds of "Real world programmers" in my experience
+** Real world programmers (exclusionary)
+
+Usually they'll let you know with phrases like "I'm a real world programmer".
+
+Sadly I find this one to be the case more often than not.
+
+People who aren't very fond of academics and question whether things like [[file:20210326111346-precising_term_technology.org][precising terms]] have any value. Some go as far as claiming the existence of those terms is a form of [[file:20210326115449-gatekeeping_in_programming.org][gatekeeping in programming]] or [[file:20210326115620-ivory_tower_academia.org][ivory tower academia]]. While I don't believe that's untrue, it's difficult because there is value in discussions using precising terms because of their reduced ambiguity.
+
+They typically tend towards "[[file:20210326115802-worse_is_better.org][worse is better]]" approaches, but keep in mind that's a continuum and we don't want to mischaracterize the situation with [[file:20210326115020-fallacy_black_and_white_thinking.org][black and white thinking]].
+
+** Real world programmers (results-focused)
+
+You'll usually hear them talk about business value or question whether fancier approaches are worth the effort.
+
+Programmers who prefer to only focus on immediate concerns to deliver business value but do not deliberately try to separate themselves from those that do the hard work of compiler research, langauge research, etc that frees them of having to spend time on those concerns.
+
+* NOTE
+In case I don't get time to come back here... This isn't necessarily a bad title, though I'm critical of those who use it as a term to describe themselves as such. In practice (haha) I've found it to be a largely exclusionary term.
+
+Examples include excluding the ideas, views, and experiences of those who contribute more along academic lines.
+
+One good explanation I've read before by [[file:20210326141316-lexi_lambda.org][Lexi Lambda]] is here, but here's a very relevant snippet.
+
+** quote critical of the so-called "Ivory tower"
+
+#+begin_quote
+We all need to learn from the mainstream, we need to adopt methodologies, ideas and practices to show the industry that Haskell is not a toy but rather a tool able to solve real tasks and lead businesses to success. We all should be more open-minded and should not stay in our Ivory Tower.
+#+end_quote
+
+** Lexi's response
+
+#+begin_quote
+Overall, I think the tone of both your original article and this gist is arrogant, combative, and unempathetic. Yes, Haskell is flawed. Yes, Haskell tends to be idealistic, sometimes to its detriment. Yes, Haskell is a research language. But that research is not nearly as irrelevant to practice as I think you seem to think. I write Haskell professionally full-time, and we work on a problem where a lot of the recent GHC extensions are enormously helpful. You seem to be saying “most people don’t have these problems, so Haskell is wasting its time trying to offer solutions.”
+#+end_quote

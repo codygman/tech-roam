@@ -1,0 +1,12 @@
+#+title: Persistent
+
+
+A [[file:20210323175936-haskell.org][Haskell]] [[file:20210326111036-database_interaction_library.org][database interaction library]] that enables following the [[file:20210326111115-active_record_pattern.org][active record pattern]].
+
+* real world experience with persistent
+** Good
+*** Helps reduce tons of runtime query errors
+** Bad
+* Bugs experienced using persistent
+** [[file:20210326113249-haskell_persistent_issues_postgres_connections_are_returned_to_pool_too_quickly.org][haskell persistent issues: postgres connections are returned to pool too quickly]]
+https://github.com/yesodweb/persistent/issues/1199
