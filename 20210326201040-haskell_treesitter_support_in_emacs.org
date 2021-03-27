@@ -1,0 +1,8 @@
+#+title: haskell treesitter support in emacs
+
+It'd be nice to have [[file:20210326201227-treesitter.org][treesitter]]/[[file:20210326201235-treesitter_haskell.org][treesitter-haskell]] support in [[file:20210322214027-emacs.org][emacs]]
+
+
+Here's a thread on doing it with neovim, maybe that could give a head-start:
+
+https://old.reddit.com/r/haskell/comments/m7ro6r/neovim_native_lsp_treesitter_setup/

@@ -1,0 +1,49 @@
+#+title: ediff
+
+* ediff has always worked well for me, but recently I get an error:
+
+#+begin_example
+ediff-prepare-error-list: Errors in diff output.  Diff output is in #<buffer *ediff-diff*>
+#+end_example
+
+* For the trivial files a and b
+
+** a 
+#+begin_example
+test
+#+end_example
+
+** b
+#+begin_example
+#+end_example
+
+* I get this output
+
+** ediff-errors
+
+#+begin_src diff
++++ /tmp/bSIVdc0
+@@ -1 +0,0 @@
+-test
+#+end_src
+
+** ediff-diff
+
+#+begin_src diff
+--- /tmp/a7Ny3Pq
++++ /tmp/bSIVdc0
+@@ -1 +0,0 @@
+-test
+\ No newline at end of file
+#+end_src
+
+* I found a variable called [[help:ediff-diff-ok-lines-regexp]]
+
+** its value is 
+
+"^\\([0-9,]+[acd][0-9,]+?$\\|[<>] \\|---\\|.*Warning *:\\|.*No +newline\\|.*missing +newline\\|^?$\\)"
+
+* guesses
+
+** Is it a [[https://stackoverflow.com/a/9246184][localization issue]] even though I'm not using a different language?
+

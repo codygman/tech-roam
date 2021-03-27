@@ -1,0 +1,43 @@
+#+title: nvidia graphics in NixOS
+
+Notes on tips and debugging nvidia graphics in [[file:20210323180637-nixos.org][#nixos]]
+
+* Steam issue: 
+
+
+** error
+glXChooseVisual failedsrc/steamUI/Main.cpp (401) : Assertion Failed: Fatal Error: glXChooseVisual failed
+
+** 
+https://github.com/NixOS/nixpkgs/issues/47932
+
+** per 
+https://github.com/NixOS/nixpkgs/issues/47932#issuecomment-622420050
+
+ I can just use programs.steam.enable to get the workarounds? Hmm... I already have these things:
+
+ #+begin_src sh :dir ~/devos
+rg steam
+ #+end_src
+
+ #+RESULTS:
+
+** hmm [[https://github.com/NixOS/nixpkgs/issues/47932#issuecomment-447508411][this]] says I just need driSupport32Bit
+
+Let's try it
+
+#+begin_src nix
+  hardware.opengl.driSupport32Bit = true;
+#+end_src
+
+Hmm.. then I got
+
+WARNING: Steam is not set up. Add the following options to /etc/nixos/configuration.nix
+and then run `sudo nixos-rebuild switch`:
+{
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+}
+
+But that's weird since:
+

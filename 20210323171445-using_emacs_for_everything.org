@@ -13,5 +13,6 @@ Here are some things I do want to pull into the unified, extensible, and heavily
 - [[file:20210323175034-life_management_in_org_mode.org][life management in org-mode]]
 - [[file:20210323181941-consuming_content_in_emacs_with_rss.org][Consuming content in emacs with RSS]]
 - [[file:20210325205101-github_notifications_in_emacs.org][Github notifications in emacs]]
+- Diff in emacs using [[file:20210327113738-ediff.org][ediff]]
 
 I have many other things I want to do in emacs

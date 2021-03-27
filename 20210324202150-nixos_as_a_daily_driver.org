@@ -25,3 +25,5 @@ What is nixpkgs master?
 
 #+RESULTS:
 : discord  discord-0.0.14
+
+** [[file:20210326184713-nvidia_graphics_in_nixos.org][nvidia graphics in NixOS]]
