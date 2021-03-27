@@ -3,7 +3,7 @@
 * Issues
 
 ** Using dir-locals with org-roam somehow results in =org-roam-directory= being set globally to =.=
-
+*** description
 NOTE: This also results in org-roam trying to index my gpg files 
 
 Ever since I added a new folder with a .dir-locals.el like:
@@ -46,3 +46,4 @@ Basically every folder I've been in recently has a `org-roam.db` file. And the o
 2099-           (org-roam-db-location . "./org-roam.db"))))
 2100-#+end_src
 #+end_src
+*** I asked for help in the [[https://orgroam.slack.com/archives/CV160S8EL/p1616868250029400][org-roam slack here]]
