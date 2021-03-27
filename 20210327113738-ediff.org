@@ -6,7 +6,7 @@
 ediff-prepare-error-list: Errors in diff output.  Diff output is in #<buffer *ediff-diff*>
 #+end_example
 
-* For the trivial files a and b
+** For the trivial files a and b
 
 ** a 
 #+begin_example
@@ -17,9 +17,9 @@ test
 #+begin_example
 #+end_example
 
-* I get this output
+** I get this output
 
-** ediff-errors
+*** ediff-errors
 
 #+begin_src diff
 +++ /tmp/bSIVdc0
@@ -27,7 +27,7 @@ test
 -test
 #+end_src
 
-** ediff-diff
+*** ediff-diff
 
 #+begin_src diff
 --- /tmp/a7Ny3Pq
@@ -37,13 +37,13 @@ test
 \ No newline at end of file
 #+end_src
 
-* I found a variable called [[help:ediff-diff-ok-lines-regexp]]
+** I found a variable called [[help:ediff-diff-ok-lines-regexp]]
 
-** its value is 
+*** its value is 
 
 "^\\([0-9,]+[acd][0-9,]+?$\\|[<>] \\|---\\|.*Warning *:\\|.*No +newline\\|.*missing +newline\\|^?$\\)"
 
-* guesses
+** guesses
 
-** Is it a [[https://stackoverflow.com/a/9246184][localization issue]] even though I'm not using a different language?
+*** Is it a [[https://stackoverflow.com/a/9246184][localization issue]] even though I'm not using a different language?
 
