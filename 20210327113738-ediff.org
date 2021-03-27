@@ -47,3 +47,6 @@ test
 
 *** Is it a [[https://stackoverflow.com/a/9246184][localization issue]] even though I'm not using a different language?
 
+** I wasn't sure so I asked for some help on the system crafters #emacs in Discord
+https://discord.com/channels/767406463265538068/767410250608934932/825425148441657354
+
