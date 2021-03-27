@@ -3,6 +3,21 @@
 * Issues
 
 ** Using dir-locals with org-roam somehow results in =org-roam-directory= being set globally to =.=
+
+*** NOTE: I just rebooted and verified on startup that =org-roam-directory= is =~/org-roam=
+
+Interestingly the org-roam value is wrong in this buffer that resides in =~/tech-roam=
+
+
+#+begin_example
+Its value is "."
+Original value was 
+"/home/cody/org-roam/"
+Local in buffer 20210326144748-org_roam.org; global value is 
+"/home/cody/org-roam/"
+#+end_example
+
+
 *** description
 NOTE: This also results in org-roam trying to index my gpg files 
 
@@ -46,4 +61,242 @@ Basically every folder I've been in recently has a `org-roam.db` file. And the o
 2099-           (org-roam-db-location . "./org-roam.db"))))
 2100-#+end_src
 #+end_src
+
+
 *** I asked for help in the [[https://orgroam.slack.com/archives/CV160S8EL/p1616868250029400][org-roam slack here]]
+
+
+*** I just removed all of the =org-roam.db= files on my filesystem
+
+I *think* that is okay because the source of truth is my org files... but uhh lol we'll see.
+
+So now that I've been in this roam file for a bit I think my filesystem should have one:
+
+#+name: look-for-org-roam-dbs
+#+begin_src sh
+fd -F org-roam.db
+#+end_src
+
+#+call: look-for-org-roam-dbs()
+
+#+RESULTS:
+
+Huh... okay let's call update ourselves:
+
+#+begin_src emacs-lisp
+(org-roam-buffer-update)
+#+end_src
+
+That errored with:
+
+#+begin_example
+progn: No buffer named *org-roam*
+#+end_example
+
+Hmm let's try the build db command:
+
+#+begin_src emacs-lisp
+(org-roam-db-build-cache)
+#+end_src
+
+#+RESULTS:
+: (org-roam) total: Δ117, files-modified: Δ1, ids: Δ0, links: Δ2, tags: Δ0, titles: Δ1, refs: Δ0, deleted: Δ0
+
+Look for roam dbs:
+
+#+name: foo
+#+begin_src sh
+echo 1
+#+end_src
+
+#+call: look-for-org-roam-dbs()
+
+#+RESULTS:
+
+So then I shouldn't be able to autocomplete right? Nope.. sure cant. I just saved this file, does that trigger it?
+
+#+call: look-for-org-roam-dbs()
+
+#+RESULTS:
+
+I'm not sure what the difference was but I called org-roam-db-build-cache interactively in this buffer and got different output:
+
+: (org-roam) total: Δ117, files-modified: Δ117, ids: Δ0, links: Δ256, tags: Δ1, titles: Δ117, refs: Δ0, deleted: Δ0
+
+Does autocomplete work now? I know I have a page about.. hmm that didn't work let's close the file and reopen.
+
+[[file:20210326144748-org_roam.org][org-roam]] 
+
+Yep... that worked. Okay so I should see the db on the file system:
+
+#+call: look-for-org-roam-dbs()
+
+#+RESULTS:
+
+Whaaa...
+
+#+begin_src sh :results verbatim
+ls -h $(pwd) | grep org-roam
+#+end_src
+
+#+RESULTS:
+: org-roam.db
+
+Apparently I just can't use [[file:20210327135602-fd.org][fd]] correctly which is kinda funny since it's supposed to be a more user friendly [[file:20210327135633-find_unix.org][find]] replacement.
+
+Anywho:
+
+#+name: working-find
+#+begin_src sh :results verbatim
+find /home/cody -iname org-roam.db
+#+end_src
+
+#+RESULTS: working-find
+| /home/cody/tech-roam/org-roam.db                                             |
+| /home/cody/devos/profiles/develop/emacs/config/org-roam.db                   |
+| /home/cody/bak/hci/.worktree/wip-flakes-niv-update-misc/testdata/org-roam.db |
+| /home/cody/bak/hci/.worktree/wip-flakes-niv-update-misc/org-roam.db          |
+
+Let's delete all of those again
+
+#+call: working-find()
+
+#+RESULTS:
+
+interactively ran org-roam-db-build-cache again from within tech-roam:
+
+#+call: working-find()
+
+#+RESULTS:
+: /home/cody/tech-roam/org-roam.db
+
+Value of org-roam-directory in home is:
+
+#+name: org-roam-directory-value-from-home
+#+begin_src emacs-lisp
+(let ((default-directory "/home/cody")) (princ org-roam-directory))
+#+end_src
+
+#+RESULTS: org-roam-directory-value-from-home
+: .
+
+
+*** Let's log out again and ensure that value is the same
+
+**** value on login
+***** value from =C-h v org-roam-directory RET= on login
+
+#+begin_example
+org-roam-directory is a variable defined in ‘org-roam.el’.
+
+Its value is "/home/cody/org-roam/"
+
+  You can customize this variable.
+
+Default path to Org-roam files.
+All Org files, at any level of nesting, are considered part of the Org-roam.
+#+end_example
+***** value from this file
+#+call: org-roam-directory-value-from-home()
+
+#+RESULTS:
+: .
+***** so as soon as I load that .dir-locals it gets messed up?
+
+Looks like running =C-h v org-roam-directory RET= in this buffer confirms it:
+
+#+begin_example
+org-roam-directory is a variable defined in ‘org-roam.el’.
+
+Its value is "."
+Original value was 
+"/home/cody/org-roam/"
+Local in buffer 20210326144748-org_roam.org; global value is 
+"/home/cody/org-roam/"
+
+  This variable’s value is directory-local, set by the file
+  ‘/home/cody/tech-roam/.dir-locals.el’.
+  You can customize this variable.
+
+Default path to Org-roam files.
+All Org files, at any level of nesting, are considered part of the Org-roam.
+#+end_example
+
+Contrast with [[*value from =C-h v org-roam-directory RET= on login][value on login]]
+
+**** go to tech-roam, value from home is:
+
+
+*** ~NOTE~: I think this is because I add lexical binding to all tangled elisp files
+
+**** documentation recommends
+#+begin_src emacs-lisp
+((nil . ((org-roam-directory . ".")
+
+         (org-roam-db-location . "./org-roam.db"))))
+#+end_src
+
+**** I had
+
+#+begin_src emacs-lisp
+;;; -*- lexical-binding: t -*-
+  ((nil . ((org-roam-directory . ".")
+
+           (org-roam-db-location . "./org-roam.db"))))
+#+end_src
+
+**** I removed the lexical binding bit just in case
+
+**** Let's log out and see if my new .dir-locals without it reproduces
+
+***** proof I took out lexical binding before logging out 
+
+#+begin_src sh :results verbatim
+cat ~/tech-roam/.dir-locals.el
+#+end_src
+
+#+RESULTS:
+: ((nil . ((org-roam-directory . ".")
+: 
+:          (org-roam-db-location . "./org-roam.db"))))
+
+***** C-h v login value of org-roam-directory
+
+org-roam-directory is a variable defined in ‘org-roam.el’.
+
+Its value is "/home/cody/org-roam/"
+
+  You can customize this variable.
+
+Default path to Org-roam files.
+All Org files, at any level of nesting, are considered part of the Org-roam.
+
+***** value from C-h v within this buffer
+
+org-roam-directory is a variable defined in ‘org-roam.el’.
+
+Its value is "."
+Original value was 
+"/home/cody/org-roam/"
+Local in buffer 20210326144748-org_roam.org; global value is 
+"/home/cody/org-roam/"
+
+***** Nope... that wasn't it... let's double check
+#+call: org-roam-directory-value-from-home
+
+#+RESULTS:
+: .
+
+***** make sure
+
+#+begin_src sh :results verbatim
+cat ~/tech-roam/.dir-locals.el
+#+end_src
+
+#+RESULTS:
+: ((nil . ((org-roam-directory . ".")
+: 
+:          (org-roam-db-location . "./org-roam.db"))))
+
+
+*** I created an issue: https://github.com/org-roam/org-roam/issues/1459
