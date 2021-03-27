@@ -2,7 +2,9 @@
 
 * Issues
 
-** org-roam update tries to index my gpg files 
+** Using dir-locals with org-roam somehow results in =org-roam-directory= being set globally to =.=
+
+NOTE: This also results in org-roam trying to index my gpg files 
 
 Ever since I added a new folder with a .dir-locals.el like:
 
