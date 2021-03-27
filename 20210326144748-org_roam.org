@@ -1,1 +1,46 @@
 #+title: org-roam
+
+* Issues
+
+** org-roam update tries to index my gpg files 
+
+Ever since I added a new folder with a .dir-locals.el like:
+
+#+begin_src elisp
+;;; -*- lexical-binding: t -*-
+((nil . ((org-roam-directory . ".")
+
+         (org-roam-db-location . "./org-roam.db"))))
+#+end_src
+
+Sometimes after =org-roam-update= updates I get a [[file:20210326112105-daily_issues_using_codygman_devos.org::*My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call][system hang]] I thought was the fault of my setup. However I noticed that the value of =org-roam-directory= is:
+
+#+begin_example
+org-roam-directory is a variable defined in ‘org-roam.el’.
+
+Its value is "."
+Original value was 
+"/home/cody/org-roam/"
+#+end_example
+
+So I think everytime org-roam-update comes around, it generates an org-roam-db for that working directory.
+
+And indeed there is evidence of that on my filesystem:
+
+#+begin_src sh
+  ~ $ fd org-roam.db | grep -v doom-emacs | wc -l
+  19
+#+end_src
+
+Basically every folder I've been in recently has a `org-roam.db` file. And the only mention of org-roam-directory in my config is:
+
+#+begin_src sh
+~/devos/profiles/develop/emacs/config $ rg -C3 org-roam-directory readme.org
+2094-*** TODO setup public tech org-roam
+2095-**** tangle the .dir-locals.el that makes the magic happen
+2096-#+begin_src emacs-lisp :tangle ~/tech-roam/.dir-locals.el :mkdirp t
+2097:  ((nil . ((org-roam-directory . ".")
+2098-
+2099-           (org-roam-db-location . "./org-roam.db"))))
+2100-#+end_src
+#+end_src
