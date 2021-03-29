@@ -270,12 +270,13 @@ LSP :: default addr for network  unknown
  :database "dbname"
  :password "mysql")
  #+end_src
+
 *** which the docstring for that function explicitly says not to do
 * packaging a go program not in nixpkgs
 
 ** sqls
 
-  mysqls = prev.buildGoModule rec {
+  sqls = prev.buildGoModule rec {
     pname = "sqls";
     version = "0.3.4";
 
