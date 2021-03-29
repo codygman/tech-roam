@@ -263,7 +263,7 @@ LSP :: default addr for network  unknown
 
 #+begin_src emacs-lisp
 (sql-add-postgress-db
- your-db-name
+ "your-db-name" ;; docstring recommends not quoting here, but that doesn't work for me using sql.el/C-c C-c
  :port 1234
  :user "username"
  :host "dbhost"
