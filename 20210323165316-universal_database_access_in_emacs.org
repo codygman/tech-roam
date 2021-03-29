@@ -18,6 +18,10 @@ This is the bare-minimum, since I'll likely need to access one I haven't used be
 
 ** TODO see what lsp-mode's sql lsp server integration provides (it might be easiest)
 
+*** [[file:20210329094954-universal_database_access_with_org_babel_and_lsp_mode.org][universal database access with org babel and lsp-mode]]
+
+[[file:20210329110637-some_new_page.org][some new page]]
+
 ** [[file:20210323165335-ejc_sql.org][ejc-sql]] (can access all [[*Databases I've had a reason to access in the past][required DBs]])
 *** pros
 **** Access database the jvm can
