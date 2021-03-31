@@ -1,0 +1,55 @@
+#+title: productive literate programming in org-mode
+
+* When you first see literate programming in org-mode it's cool
+
+You think... cool! Then you try it and get annoyed at the overhead of having to type not only your code, but also:
+
+#+begin_src org
+  ,#+begin_src haskell
+  -- your code here
+  ,#+end_src
+#+end_src
+
+
+* You get annoyed with overhead, but learn about snippets
+
+** builtin
+
+*** You reduce the overhead using =<s= or defining your own =<hs=
+
+At least, you did in pre-emacs 27... but if you're on 27 or newer you'll need to enable org-tempo:
+
+#+begin_src emacs-lisp
+ (when (version<= "9.2" (org-version))
+    (require 'org-tempo))
+#+end_src
+
+** yasnippet
+
+*** then maybe you find out about yasnippet and install it 
+
+*** maybe you go so far as to customize company-mode to tab complete snippets (I haven't yet)
+
+
+* You use yasnippet with tab-complete and never wish for anything else, DONE
+
+* Well.. not really... there are still things that could be nicer in practice
+
+* Things I argue are more important than snippets
+
+** Observation: most of what I do is [[file:20210325121403-literate_debugging.org][literate debugging]]  
+
+*** that consists of
+
+**** see if something is true or false
+
+**** do something
+
+**** see if something is true or false
+
+*** this means: Most [[file:20210325121403-literate_debugging.org][literate debugging]] is executing the last code snippet
+
+*** For code snippets that don't change, perhaps you should have named your code snippet (or better; had it given an automatic name for you to reference)
+
+*** For code snippets that are almost the same but a little different, it'd be nice to have [[file:20210330223845-org_mode_babel_source_block_history.org][org-mode babel source block history]]
+

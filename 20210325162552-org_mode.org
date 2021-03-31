@@ -1,2 +1,7 @@
 #+title: org-mode
 
+It's built on [[file:20210322214027-emacs.org][emacs]] and I use it for programming, [[file:20210330222449-personal_information_management.org][personal information management]], [[file:20210330222622-literate_programming.org][literate programming]], [[file:20210325121403-literate_debugging.org][literate debugging]]
+and more (I'll add that later).
+
+
+random gripe: It'd be nice if something put spacing between org mode notes at the font/layout level rather than hacks to preserve newlines that don't always work.

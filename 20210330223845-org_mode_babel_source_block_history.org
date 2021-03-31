@@ -1,0 +1,64 @@
+#+title: org-mode babel source block history
+
+* TODO implement this
+
+** TODO tryout org-ql for this on this document 
+
+*** examples
+
+**** example block 1
+#+begin_src haskell
+print 1
+#+end_src
+
+
+**** example block 2
+#+begin_src haskell
+print 1
+#+end_src
+
+*** reading the current file with org-ql and seeing what it looks like
+
+**** TODO read more thorougly through [[https://orgmode.org/worg/dev/org-element-api.html][org element api]]
+
+**** using org-ql-select
+
+***** on it's own
+#+begin_src emacs-lisp
+(org-ql-select (buffer-file-name) '(todo "TODO"))
+#+end_src
+
+#+RESULTS:
+| headline | (:raw-value implement this :begin 47 :end 68 :pre-blank 0 :contents-begin 69 :contents-end 69 :level 1 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 47 :title (implement this))                                                      |
+| headline | (:raw-value tryout org-ql for this on this document :begin 70 :end 118 :pre-blank 0 :contents-begin 119 :contents-end 119 :level 2 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 70 :title (tryout org-ql for this on this document)) |
+| headline | (:raw-value using org-ql-query :begin 434 :end 462 :pre-blank 0 :contents-begin 463 :contents-end 463 :level 4 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 434 :title (using org-ql-query))                                         |
+
+***** using the =:action 'element= params
+
+#+begin_src emacs-lisp
+(org-ql-select (buffer-file-name) '(todo "TODO") :action 'element)
+#+end_src
+
+#+RESULTS:
+| headline | (:raw-value implement this :begin 47 :end 68 :pre-blank 0 :contents-begin 69 :contents-end 69 :level 1 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 47 :title (implement this))                                                      |
+| headline | (:raw-value tryout org-ql for this on this document :begin 70 :end 118 :pre-blank 0 :contents-begin 119 :contents-end 119 :level 2 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 70 :title (tryout org-ql for this on this document)) |
+| headline | (:raw-value using org-ql-query :begin 1641 :end 1669 :pre-blank 0 :contents-begin 1670 :contents-end 1670 :level 4 :priority nil :tags nil :todo-keyword TODO :todo-type todo :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 1641 :title (using org-ql-query))                                    |
+
+**** MAYBE using org-ql-query
+
+*** TODO reading the source blocks in the current file looks like
+
+**** try 1... maybe ='element-with-markers= would work
+
+And then I could get the contents with the markers as I browsed each source block by name in consult?
+
+#+begin_src emacs-lisp
+(org-ql-select (buffer-file-name) '(src) :action 'element-with-markers)
+#+end_src
+
+#+RESULTS:
+| headline | (:raw-value example block 1 :begin 134 :end 154 :pre-blank 0 :contents-begin 155 :contents-end 155 :level 4 :priority nil :tags nil :todo-keyword nil :todo-type nil :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 134 :title (example block 1) :org-marker #<marker at 134 in 20210330223845-org_mode_babel_source_block_history.org> :org-hd-marker #<marker at 134 in 20210330223845-org_mode_babel_source_block_history.org>)                                                                                                                                                         |
+| headline | (:raw-value example block 2 :begin 195 :end 215 :pre-blank 0 :contents-begin 216 :contents-end 216 :level 4 :priority nil :tags nil :todo-keyword nil :todo-type nil :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 195 :title (example block 2) :org-marker #<marker at 195 in 20210330223845-org_mode_babel_source_block_history.org> :org-hd-marker #<marker at 195 in 20210330223845-org_mode_babel_source_block_history.org>)                                                                                                                                                         |
+| headline | (:raw-value on it's own :begin 351 :end 368 :pre-blank 0 :contents-begin 369 :contents-end 369 :level 5 :priority nil :tags nil :todo-keyword nil :todo-type nil :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 351 :title (on it's own) :org-marker #<marker at 351 in 20210330223845-org_mode_babel_source_block_history.org> :org-hd-marker #<marker at 351 in 20210330223845-org_mode_babel_source_block_history.org>)                                                                                                                                                                 |
+| headline | (:raw-value using the =:action 'element= params :begin 1497 :end 1538 :pre-blank 0 :contents-begin 1539 :contents-end 1539 :level 5 :priority nil :tags nil :todo-keyword nil :todo-type nil :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 1497 :title (using the  (verbatim (:value :action 'element :begin 1513 :end 1532 :post-blank 1 :parent (headline #0))) params) :org-marker #<marker at 1497 in 20210330223845-org_mode_babel_source_block_history.org> :org-hd-marker #<marker at 1497 in 20210330223845-org_mode_babel_source_block_history.org>)                             |
+| headline | (:raw-value try 1... maybe ='element-with-markers= would work :begin 2784 :end 2838 :pre-blank 0 :contents-begin 2839 :contents-end 2839 :level 4 :priority nil :tags nil :todo-keyword nil :todo-type nil :post-blank 1 :footnote-section-p nil :archivedp nil :commentedp nil :post-affiliated 2784 :title (try 1... maybe  (verbatim (:value 'element-with-markers :begin 2804 :end 2828 :post-blank 1 :parent (headline #0))) would work) :org-marker #<marker at 2784 in 20210330223845-org_mode_babel_source_block_history.org> :org-hd-marker #<marker at 2784 in 20210330223845-org_mode_babel_source_block_history.org>) |
