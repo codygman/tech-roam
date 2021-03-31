@@ -8,6 +8,7 @@ That has some downsides:
 
 - Hierarchy is not nearly as apparent
 - complicating the above, not many different fonts are used so emphasis isn't as obvious
+- Empty pages are confusing because github doesn't show =pages linking here=
 
 Another way to share them is to generate html and end up with something like:
 
