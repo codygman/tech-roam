@@ -1,0 +1,17 @@
+#+title: rough design up front
+
+I gravitate towards this quote quite a bit:
+
+#+begin_quote
+"I'm saying that we need high design quality for stuff that is critical to our products and less design quality for stuff that isn't critical."
+#+end_quote
+
+https://en.wikipedia.org/wiki/Big_Design_Up_Front#Alternatives
+
+Lower on that page emergent software design is mentioned as advocated by scrum:
+
+#+begin_quote
+"The difference on a Scrum project is not that intentional design is thrown out, but that it is done (like everything else on a Scrum project) incrementally."
+#+end_quote
+
+There is a natural tension built up because of the [[file:20210330214231-sunk_cost_logical_fallacy.org][sunk-cost logical fallacy]] that tends to make this harder than it sounds [[file:20210330214302-in_practice.org][in practice]].

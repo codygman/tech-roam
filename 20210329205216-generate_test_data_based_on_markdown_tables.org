@@ -1,0 +1,9 @@
+#+title: generate test data based on markdown tables
+
+I'll use [[file:20210329205400-cabal.org][Cabal]] instead of [[file:20210326123150-haskell_stack.org][haskell stack]] for this one since it has better [[file:20210323180637-nixos.org][#nixos]] integration and my laptop already has too little hard-drive space.
+
+
+* TODO parse some markdown into a table
+
+** TODO figure out markdown library that supports tables 
+

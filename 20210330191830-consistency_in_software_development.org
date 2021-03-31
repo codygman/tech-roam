@@ -1,0 +1,126 @@
+#+title: consistency in software development
+
+* quotes
+
+** "Being consistent means never improving"
+#+begin_quote
+Being consistent means never improving. This is acceptable for people who think that their coding practice is perfect, but not for people that crave continuous improvement.
+#+end_quote
+
+
+** Quote about inconsistency trump card
+ #+begin_quote
+I’m uncomfortable with change in general and this change in particular, but I don’t want to admit that I don’t like/understand this just because it wasn’t invented by me. If I try to argue against this change on its merits, I’ll reveal that I don’t really understand the issues and I take the chance that I won’t prevail on the merits, so I’ll play the “consistency” trump card to shutdown discussion now.
+ #+end_quote
+ http://slashslash.info/2018/02/a-foolish-consistency/
+
+ 
+** "People win a lot of design arguments just by saying “We can’t do that. It wouldn’t be consistent.”"
+
+#+begin_quote
+    And finally, a word about consistency.
+
+    You often hear consistency cited as an absolute good. People win a lot of design arguments just by saying “We can’t do that. It wouldn’t be consistent.”
+
+    Consistency is always a good thing to strive for within your site or app. If your navigation is always in the same place, for instance, I don’t have to think about it or waste time looking for it. But there will be cases where things will be clearer if you make them slightly inconsistent.
+#+end_quote
+
+https://deanondelivery.com/when-consistency-becomes-tyranny-42e3a9938eb8
+
+
+** "Current knowledge is a much better way to think about the problem"
+
+Consistency in Design is the Wrong Approach
+
+https://medium.com/@jmspool/consistency-in-design-is-the-wrong-approach-3cfbc87a327
+
+
+** "Rank making things useful above making them consistent."
+
+https://scottberkun.com/essays/5-how-to-avoid-foolish-consistency/
+
+** "Fixing a severe local problem may be worth creating a minor global problem. "
+
+https://scottberkun.com/essays/5-how-to-avoid-foolish-consistency/
+
+** "what point do we draw the line between doing something by convention because there is a benefit and mindlessly doing something by convention"
+
+https://daedtech.com/606/
+
+** "is the idea of convention — that a lot of people do it the other way — a valid argument against improvement?"
+
+https://daedtech.com/606/
+
+** TODO consider linking these to their notes below instead of their hyperlinks
+
+* resources
+
+** http://slashslash.info/2018/02/a-foolish-consistency/ 
+
+*** I like how this one gives the verbiage of =Wise Constency= vs =Foolish Consistency= 
+
+Foolish consistency is basically consistency for consistencies sake.
+
+Wise consistency or accidental inconsistencies 
+
+
+*** Oh wow... that's a quote... embracing improvement is inconsistency called growth
+
+#+begin_quote
+Accidental inconsistencies are, of course, foolish and unproductive. Leave gratuitous  inconsistencies for creative writing. In technical work, figure out the best way to express something and always express it the same way.
+
+Until you learn a better way. Then embrace the improvement. This inconsistency is called growth.
+#+end_quote
+
+
+*** Improvements from previous practice are by their very nature inconsistent with that practice
+
+*** full paste of =Street Signs= example
+
+#+begin_example
+Street Signs
+
+Imagine driving through a unfamiliar city that had mismatched street signs at every corner. It would be hard to navigate because it would be hard to pick out the street signs amid the visual noise of all the business signage and billboards. That kind of inconsistency could lead to traffic snarls and accidents and should be avoided.
+
+But suppose a city with uniform street signs adopts a new, more readable,  standard for signs. The city might not have the budget to replace all the signs overnight. It might start replacing the signs on the busiest streets and using the new signs on newly constructed streets. Over time, less traveled streets would get new signs, but perhaps some residential streets where traffic is slow moving and there is no competing signage, might never be updated.
+
+How hard would it be navigate a city that had two signage styles? This isn’t the challenge of a mismatched signs at every corner, it is simply dealing with the change that is inevitable with improvement.
+#+end_example
+
+
+*** comments
+
+**** https://www.reddit.com/r/cpp/comments/80k8hc/a_blog_rant_on_east_const/ 
+
+
+** https://deanondelivery.com/when-consistency-becomes-tyranny-42e3a9938eb8
+
+*** "You often hear consistency cited as an absolute good.." 
+
+
+** https://scottberkun.com/essays/5-how-to-avoid-foolish-consistency/
+
+*** 
+
+** 
+https://scottberkun.com/essays/5-how-to-avoid-foolish-consistency/
+
+** https://daedtech.com/606/
+
+*** This one is interesting and very thorough
+
+*** "Worrying about some hypothetical maintenance programmer when deciding what to name and how to case my field variables is fruitless to a degree because that hypothetical person’s readability preferences are strictly unknowable."
+
+*** "That’s because the larger issue with the consistency/convention argument is facilitating efficiency in communication — not finding The One Try Way To Do Things."
+
+*** It goes a little far imo though and I disagree about "foolish consistency" becoming an asset (at least overall or in a global sense)
+#+begin_quote
+ I think in these situations, the “foolish consistency” becomes an asset to practical developers rather than a “hobgoblin of little minds.”
+#+end_quote
+
+** TODO http://www.cs.ox.ac.uk/jeremy.gibbons/publications/beauty.pdf
+
+** TODO https://www.rosettatg.com/blogtoon/2018/1/23/the-myth-of-consistency
+
+** https://www.joelonsoftware.com/2000/04/22/consistency-and-other-hobgoblins/
+

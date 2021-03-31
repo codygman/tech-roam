@@ -1,0 +1,12 @@
+#+title: ssh config
+
+
+* Most people start using ssh like
+
+* Then maybe they learn about ssh config
+
+* Then maybe they go corporate and learn about jump servers
+
+* Then maybe they get security audited and learn jump servers can be chained
+
+* TODO how to use ssh jumpserver for databases like postgres at port 5432

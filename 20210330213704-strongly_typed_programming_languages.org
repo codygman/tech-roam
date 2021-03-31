@@ -1,0 +1,6 @@
+#+title: strongly typed programming languages
+
+
+- [[file:20210323175936-haskell.org][Haskell]]
+- [[file:20210330213720-idris.org][Idris]]
+- [[file:20210330213724-ocaml.org][Ocaml]]

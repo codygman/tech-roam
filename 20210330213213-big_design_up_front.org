@@ -1,0 +1,16 @@
+#+title: big design up front
+
+I think languages like [[file:20210323175936-haskell.org][Haskell]] with strong type systems amplify the typical arguments for big design up front.
+
+Consequently, this also means that some of the advantages of [[file:20210330213423-agile_software_development.org][agile software development]] push you in a direction that keeps you from using very strongly typed languages to their full potential.
+
+https://en.wikipedia.org/wiki/Big_Design_Up_Front
+
+I wonder though if the optimal approach with [[file:20210330213704-strongly_typed_programming_languages.org][strongly typed programming languages]] might be [[file:20210330213753-rough_design_up_front.org][rough design up front]]. Though without further justification the implication the truth might be in the middle raises my hackles and reminds me of the [[file:20210330213908-argument_to_moderation.org][argument to moderation]] [[file:20210330213912-logical_fallacy.org][logical fallacy]].
+
+
+#+begin_quote
+"Many times, thinking things out in advance saved us serious development headaches later on. ... [on making a particular specification change] ... Making this change in the spec took an hour or two. If we had made this change in code, it would have added weeks to the schedule. I can’t tell you how strongly I believe in Big Design Up Front, which the proponents of Extreme Programming consider anathema. I have consistently saved time and made better products by using BDUF and I’m proud to use it, no matter what the XP fanatics claim. They’re just wrong on this point and I can’t be any clearer than that."
+#+end_quote
+
+https://en.wikipedia.org/wiki/Big_Design_Up_Front#Arguments_for

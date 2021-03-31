@@ -1,5 +1,10 @@
 #+title: emacs
 
+
 Emacs is... a lot
 
 [[file:20210322214353-emacs_workflows.org][Emacs workflows]]
+
+
+I use it for Emacs
+

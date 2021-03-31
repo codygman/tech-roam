@@ -1,0 +1,10 @@
+#+title: migrating from nosql full text search to lucene full text search
+
+
+#+begin_quote
+A customer demanding that results provided by a new Lucene-based full-text search
+ infrastructure are 100% identical with those returned from the outgoing NoSQL
+ database implementation.
+#+end_quote
+
+https://deanondelivery.com/when-consistency-becomes-tyranny-42e3a9938eb8

@@ -1,0 +1,7 @@
+#+title: cool project idea
+
+* [[file:20210329205216-generate_test_data_based_on_markdown_tables.org][generate test data based on markdown tables]]
+
+* [[file:20210330212502-migrating_from_nosql_full_text_search_to_lucene_full_text_search.org][migrating from nosql full text search to lucene full text search]]
+
+Like, a blog post exploring the solutions and pitting them against one another

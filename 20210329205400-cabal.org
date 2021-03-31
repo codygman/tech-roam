@@ -1,0 +1,3 @@
+#+title: Cabal
+
+* Using cabal on nixos for to start a project

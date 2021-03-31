@@ -1,0 +1,8 @@
+#+title: agile software development
+
+- [[file:20210325155846-are_points_in_agile_useful.org][are points in agile useful]]
+
+- [[file:20210325153030-planning_poker_in_agile.org][planning poker in agile]]
+  
+
+
