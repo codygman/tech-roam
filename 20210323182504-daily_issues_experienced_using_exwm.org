@@ -884,3 +884,20 @@ Possible workaround:
 https://github.com/ch11ng/exwm/issues/465#issuecomment-418633531
 
 I might actually just have an older version of exwm-edit, lol
+
+* with-editor weird issue where it sets up my workspace
+
+** I setup my workspaces like
+
+*** end of file
+(add-hook 'server-after-make-frame-hook 'maybe-setup-tab-workspaces)
+
+*** the maybe-setup-tab-workspaces function
+(defun maybe-setup-tab-workspaces ()
+  (interactive)
+(remove-hook 'server-after-make-frame-hook 'maybe-setup-tab-workspaces)
+(setup-tab-workspaces))
+
+** I think with-editor does not like this
+
+* TODO post issue to with-editor asking for advice

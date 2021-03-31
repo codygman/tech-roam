@@ -1,0 +1,334 @@
+#+title: universal database access with org babel and lsp-mode
+
+This has some tricky pieces, let me just paste in what I did so far that also has some other pages mixed in that need separated:
+
+* stuff that needs separated
+
+** using autossh to autostart tunnels
+
+** nix go packaging stuff
+
+* setup sql connections with autossh/sql.el               :autossh:sql:setup:
+** setup tunnels
+*** outline
+#+begin_src nix
+  services.autossh = {
+    sessions = [
+     # { ... }
+     # { ... }
+    ];
+  };
+#+end_src
+*** setup prod tunnel 1 using autossh nix expression
+#+begin_src nix
+{
+  extraArguments = "-i /home/cody/.ssh/somekey.pem -4 -N -o StrictHostKeyChecking=no -L 15432:mycooldbhost:5432 ec2-user@mycooltunnel";
+  name = "db-con1-tunnel";
+  user = "cody";
+}
+#+end_src
+
+*** setup prod tunnel 2 using autossh nix expression
+#+begin_src nix
+{
+  extraArguments = "-i /home/cody/.ssh/somekey.pem -4 -N -o StrictHostKeyChecking=no -L 15433:mycooldbhost2.com:5432 ec2-user@mycooltunnel";
+  name = "db-con2-tunnel";
+  user = "cody";
+}
+#+end_src
+** setup connection
+*** make sure required postgres params nil so we can just use connection string in db param for postgres
+#+begin_src emacs-lisp
+  (setq sql-postgres-login-params nil)
+#+end_src
+*** setup connection alist
+#+begin_src emacs-lisp
+    (setq sql-postgres-login-params nil)
+    (setq sql-connection-alist
+          '((db-con1
+             (sql-product 'postgres)
+             (sql-database "postgres://readonly:hunter2@localhost:15432/dbcon1_prod"))
+  (db-con2
+           (sql-product 'postgres)
+           (sql-database "postgres://dbcon2_prod:hunter2@localhost:15433/dbcon2_prod"))))
+#+end_src
+
+
+* experiment with connection blocks with org
+** direct
+#+begin_src sql :engine postgresql :dbhost localhost :dbport 15432 :dbuser readonly :dbpassword hunter2 :database dbcon1_prod
+\dt
+#+end_src
+
+** obsfucating details
+*** the best I could find is using properties to set them on a per buffer basis
+*** I could have a db1.org.gpg, db2.org.gpg, etc in my home directory
+*** something else that could improve on this
+**** https://emacs.stackexchange.com/a/28683
+**** https://www.gnu.org/software/emacs/manual/html_node/auth/Help-for-developers.html
+
+* experiment with lsp integration in org blocks
+** set conn info
+#+begin_src elisp
+(setq lsp-sqls-connections
+    '(((driver . "mysql") (dataSourceName . "yyoncho:local@tcp(localhost:3306)/foo"))
+      ((driver . "postgresql") (dataSourceName . "host=127.0.0.1 port=5432 user=yyoncho password=local dbname=sammy sslmode=disable"))))
+#+end_src
+** of course... thanks Go!
+
+Debugger entered--Lisp error: (error "unexpected panic: runtime error: invalid memory ad...")
+  error("unexpected panic: runtime error: invalid memory address or nil pointer dereference")
+
+** ohh.. hmm weird you need at least two things.. that's a bug report :bug:reportThis:
+
+** I got it working [[file:~/test-sql-lsp/foo.sql::select * from public.course_completion_fact limit 1;][in here]]
+
+** does it work in source blocks
+#+begin_src sql :engine postgresql :dbconnection db1-prod
+  select * from public.auth_fact limit 1;
+#+end_src
+
+#+RESULTS:
+|---|
+
+** completion within it works wonderfully
+
+** the problem is =C-c C-c= doesn't run utilizing sqls
+
+** so if you don't have that appropriate connection information setup in the header-arguments directly, in the heading, or for the file it won't work
+
+** apparently you should be able to use a header arg called dbconnection but I don't see it working
+https://lists.gnu.org/archive/html/emacs-orgmode/2019-03/msg00277.html
+
+#+begin_src sql :engine postgresql :dbconnection db1-prod
+  select * from public.auth_fact limit 1;
+#+end_src
+
+#+RESULTS:
+|---|
+
+  #+begin_src sql :engine postgresql :dbconnection mydb
+    select foo, bar, baz from mytable
+  #+end_src
+
+  #+RESULTS:
+  |---|
+
+** omg... add this to weird emacs bugs... if you have a =-= in db connection name it silently fails... **WTF**
+
+** https://anbasile.github.io/programming/2016/12/02/org-babel-is-cool/
+
+** but why does the edit-src buffer open automatically
+
+https://github.com/syl20bnr/spacemacs/issues/13465
+*** does disabling org-src-tab-acts-natively fix it?
+#+begin_src emacs-lisp
+(setq org-src-tab-acts-natively nil)
+#+end_src
+
+#+RESULTS:
+: t
+*** yes, that fixes it
+*** two bugs
+**** org-src-tab-acts-natively opens source buffer in sql mode
+**** it doesn't even display the edit buffer :/
+
+* fixing connection issues with lsp postgres/sqls
+** After logging and opening an org file with the source block that was working I get
+
+#+begin_example
+LSP :: Connected to [sqls:16794/starting].
+LSP :: no database connection
+LSP :: sqls:16794 initialized successfully
+LSP :: default addr for network  unknown
+#+end_example
+** I asked for help on [[https://discord.com/channels/789885435026604033/789891051644911627/825977827663937546][lsp-mode's discord]] and got linked https://dev.to/viglioni/emacs-as-sql-client-with-lsp-143l
+*** the following macro is provided
+#+begin_src emacs-lisp
+;;;###autoload
+(defmacro any-nil? (&rest args)
+  `(not (and ,@args)))
+
+;;;###autoload
+(defmacro throw-if (condition &optional error-description)
+  "if condition is true, thrown an error"
+  `(if ,condition (error (or ,error-description ""))))
+
+;; Variables related to sql configs
+(setq lsp-sqls-connections nil)
+(setq sql-connection-alist nil)
+
+;;;###autoload
+(defun format-postgres-sqls (host port user password db)
+  (format "host=%s port=%s user=%s password=%s dbname=%s"
+          host port user password db))
+
+;;;###autoload
+(defun format-mysql-sqls (host port user password db)
+  (format "%s:%s@tcp(%s:%s)/%s" user password host port db))
+
+;;;###autoload
+(defun format-postgres-uri (host port user password db)
+  (format "postgresql://%s:%s@%s:%s/%s" user password host port db))
+
+
+;;;###autoload
+(defun add-to-sqls-connections (db-type data-src-name)
+  (add-to-list 'lsp-sqls-connections
+               (list (cons 'driver db-type)
+                     (cons 'dataSourceName data-src-name))))
+
+;;;###autoload
+(defmacro add-to-sql-conection-alist (db-type name host port user password db)
+  `(add-to-list 'sql-connection-alist
+                (list (quote ,name)
+                     (list 'sql-product (quote ,db-type))
+                     (list 'sql-user ,user)
+                     (list 'sql-server ,host)
+                     (list 'sql-port ,port)
+                     (list 'sql-password ,password)
+                     (list 'sql-database ,db))))
+
+;;;###autoload
+(defmacro sql-add-postgres-db (name &rest db-info)
+  "Adds a mysql database to emacs and lsp
+   This macro expects a name to the database and a p-list of parameters
+   :port, :user, :password, :database, :host
+   The only optional is :port, its default value is 5432
+   e.g.:
+   (sql-add-postgres-db
+        my-db-name ;; notice that there are no quotes here
+        :port 1234
+        :user \"username\"
+        :host \"my-host\"
+        :database \"my-db\"
+        :password \"mypassword\")"
+  `(let ((port (or ,(plist-get db-info :port) 5432))
+         (user ,(plist-get db-info :user))
+         (password ,(plist-get db-info :password))
+         (host ,(plist-get db-info :host))
+         (db ,(plist-get db-info :database)))
+     (throw-if (any-nil? user password host db (quote ,name)) "there are info missing!")
+     (let ((full-uri (format-postgres-uri host port user password db))
+           (data-src-name (format-postgres-uri host port user password db)))
+       (add-to-sqls-connections "postgresql" data-src-name)
+       (add-to-sql-conection-alist 'postgres ,name host port user password full-uri))))
+
+;;;###autoload
+(defmacro sql-add-mysql-db (name &rest db-info)
+  "Adds a mysql database to emacs and lsp
+   This macro expects a name to the database and a p-list of parameters
+   :port, :user, :password, :database, :host
+   The only optional is :port, its default value is 3306
+   e.g.:
+   (sql-add-mysql-db
+        my-db-name ;; notice that there are no quotes here
+        :port 1234
+        :user \"username\"
+        :host \"my-host\"
+        :database \"my-db\"
+        :password \"mypassword\")"
+  `(let ((port (or ,(plist-get db-info :port) 3306))
+         (user ,(plist-get db-info :user))
+         (password ,(plist-get db-info :password))
+         (host ,(plist-get db-info :host))
+         (db ,(plist-get db-info :database)))
+     (throw-if (any-nil? user password host db (quote ,name)) "there are info missing!")
+     (add-to-sqls-connections "mysql" (format-mysql-sqls host port user password db))
+     (add-to-sql-conection-alist 'mysql ,name host port user password db)))
+#+end_src
+
+#+RESULTS:
+: sql-add-mysql-db
+*** then allows this syntax
+#+begin_src emacs-lisp
+(sql-add-mysql-db
+ your-db-name
+ :port 1234
+ :user "username"
+ :host "dbhost"
+ :database "dbname"
+ :password "mysql")
+
+(sql-add-postgress-db
+ your-db-name
+ :port 1234
+ :user "username"
+ :host "dbhost"
+ :database "dbname"
+ :password "mysql")
+#+end_src
+*** lol just noticed the postgres connection has password =mysql= from copy/paste :D
+*** Funnily enough... the sql.el integration as of 2021-03-29 only works if you quote the name like
+
+#+begin_src emacs-lisp
+(sql-add-postgress-db
+ "your-db-name" ;; docstring recommends not quoting here, but that doesn't work for me using sql.el/C-c C-c
+ :port 1234
+ :user "username"
+ :host "dbhost"
+ :database "dbname"
+ :password "mysql")
+ #+end_src
+
+*** which the docstring for that function explicitly says not to do
+* packaging a go program not in nixpkgs
+
+** sqls
+
+  sqls = prev.buildGoModule rec {
+    pname = "sqls";
+    version = "0.3.4";
+
+    src = prev.fetchFromGitHub {
+      owner = "lighttiger2505";
+      repo = "sqls";
+      rev = "5b32042675aade5f05df995ae5c7a53da6faa14c";
+      sha256 = "13837v27avdp2nls3vyy7ml12nj7rxragchwf92adn10ffp4aj6c";
+    };
+
+    vendorSha256 = "sha256-q5EwGVfFZUUWY3UTZcdicdDiyxqBrAj1TAQf0O/eNuc=";
+
+  };
+
+** deps
+
+[
+  {
+    goPackagePath = "github.com/sourcegraph/jsonrpc2";
+    fetch = {
+      type = "git";
+      url = "https://github.com/sourcegraph/jsonrpc2";
+      rev = "366fbb52075002042e4537caed004f27fa463174";
+      sha256 = "055xxqszxi1199ymk1d8qldhfi16rhmvdiq7ns512hzngzw5006x";
+    };
+  }
+  {
+    goPackagePath = "golang.org/x/crypto/ssh";
+    fetch = {
+      type = "git";
+      url = "https://go.googlesource.com/crypto";
+      rev = "0c34fe9e7dc2486962ef9867e3edb3503537209f";
+      sha256 = "021szs1czc0xg4chpays7i05dvkax9s8mns314ab01r887kchqxq";
+    };
+  }
+  {
+    goPackagePath = "gopkg.in/yaml.v2";
+    fetch = {
+      type = "git";
+      url = "https://gopkg.in/yaml.v2";
+      rev = "a83829b6f1293c91addabc89d0571c246397bbf4";
+      sha256 = "1m4dsmk90sbi17571h6pld44zxz7jc4lrnl4f27dpd1l8g5xvjhh";
+    };
+  }
+  {
+    goPackagePath = "golang.org/x/xerrors";
+    fetch = {
+      type = "git";
+      url = "https://go.googlesource.com/xerrors";
+      rev = "a985d3407aa7";
+      sha256 = "00wzr5w8aadipgc3rkk8f11i41znskfj9ix5nhhaxyg7isrslgcj";
+    };
+  }
+
+]
