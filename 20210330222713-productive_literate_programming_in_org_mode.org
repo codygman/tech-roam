@@ -33,7 +33,9 @@ At least, you did in pre-emacs 27... but if you're on 27 or newer you'll need to
 
 * You use yasnippet with tab-complete and never wish for anything else, DONE
 
+
 * Well.. not really... there are still things that could be nicer in practice
+
 
 * Things I argue are more important than snippets
 
@@ -47,9 +49,20 @@ At least, you did in pre-emacs 27... but if you're on 27 or newer you'll need to
 
 **** see if something is true or false
 
+
 *** this means: Most [[file:20210325121403-literate_debugging.org][literate debugging]] is executing the last code snippet
 
-*** For code snippets that don't change, perhaps you should have named your code snippet (or better; had it given an automatic name for you to reference)
 
-*** For code snippets that are almost the same but a little different, it'd be nice to have [[file:20210330223845-org_mode_babel_source_block_history.org][org-mode babel source block history]]
+*** There are two ways I know to address this in order of preference/ease
+
+**** Using named references in source blocks
+
+***** In fact one could take this a step further and have [[file:20210331174852-automatically_named_babel_source_blocks_using_yasnippet.org][automatically named babel source blocks using yasnippet]] 
+
+**** Using code block history
+
+***** For code snippets that don't change, perhaps you should have named your code snippet (or better; had it given an automatic name for you to reference)
+
+
+***** For code snippets that are almost the same but a little different, it'd be nice to have [[file:20210330223845-org_mode_babel_source_block_history.org][org-mode babel source block history]]
 

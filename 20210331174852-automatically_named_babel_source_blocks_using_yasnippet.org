@@ -1,0 +1,35 @@
+#+title: automatically named babel source blocks using yasnippet
+
+* Oh my gosh this was easy, lol. Now I guess I have automatically named blocks
+
+#+begin_example
+#+title: automatically named babel source blocks using yasnippet
+
+Yasnippet allows for arbitrary elisp like:
+
+#+begin_example
+# -*- mode: snippet -*-
+# name: hhh
+# key: hhh
+# --
+${N:`(message "hi I'm snippet")`}
+#+end_example
+
+#+name: 7f28407f-e60d-4d21-9add-0464a3f0fb2c
+
+#+begin_src sql
+
+#+end_sr
+
+c# key: sql
+# name: sql
+# --
+#+name: `(shell-command-to-string "uuidgen")`
+#+begin_src sql
+$1
+#+end_src
+$0
+#+end_example
+* TODO todo prepend source block type in front of name
+* TODO research shorter formats than uuid that are reasonably unique
+
