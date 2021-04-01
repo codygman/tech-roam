@@ -6,6 +6,8 @@
 
 *** [[file:20210325152238-haskell_arguments_mtl_vs_effects_systems.org][haskell arguments: mtl vs effects systems]]
 
+*** [[file:20210401080003-type_conversions_in_haskell.org][type conversions in Haskell]]
+
 ** small stuff
 
 *** [[file:20210325151912-haskell_arguments_when_vs_unless.org][haskell arguments: when vs unless]]

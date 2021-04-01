@@ -1,0 +1,68 @@
+#+title: type conversions in Haskell
+
+If you have lots of newtypes... how do you convert to/from them?
+
+I recall a good property of these things to make sure they are always coherent (unsurprising) is injectivity per:
+
+#+begin_quote
+@taylorfausak
+I have a library for this. The guiding principle I chose was that the conversion function must be injective.
+
+– Class: https://hackage.haskell.org/package/inj-1.0/docs/Inj.html
+
+– Instances: https://hackage.haskell.org/package/inj-ba
+#+end_quote
+- https://twitter.com/int_index/status/1327267263221805056
+
+From the inj library:
+
+#+begin_quote
+An injection is a function that never maps distinct elements of the domain to the same element of the codomain. For example, (\x -> x + 1) is an injection, but (\x -> min x 0) is not.
+#+end_quote
+
+[[https://hackage.haskell.org/package/num-non-negative-0.1/docs/Numeric-NonNegative.html][One library]] uses inj at time of writing but just to define an instance and so there aren't usage examples.
+
+The above iirc are more mathematical approaches which seem nice, but one cannot argue with how effective Rust's From/Into traits have been in practice.
+
+However, be warned it could be that:
+
+#+begin_quote
+and somewhat more philosophically, I tend to feel like if I’m wrapping and unwrapping my newtypes a lot like that, I’m usually either working at the wrong level of abstraction, or missing an opportunity to abstract functionality around the newtype.
+#+end_quote
+- https://twitter.com/rob_rix/status/1327310468449492992
+
+* xToY and yToX functions
+
+For String -> Maybe Int you may have
+
+textToInt = stringToInt . textToString
+
+* TODO witch
+
+* TODO coercible
+
+* TODO inj/inj-ba
+
+* resources
+
+** libraries
+
+*** https://hackage.haskell.org/package/witch
+
+*** https://hackage.haskell.org/package/convert
+
+*** https://hackage.haskell.org/package/convertible
+
+*** https://hackage.haskell.org/package/conversion
+
+** other
+
+*** https://twitter.com/taylorfausak/status/1327260662108741633
+
+*** https://old.reddit.com/r/haskell/comments/ei1e8d/why_doesnt_base_have_a_frominto_type_class/
+
+*** https://old.reddit.com/r/haskell/comments/4xss1d/using_lenses_to_convert_between_units_of_measure/
+
+*** https://old.reddit.com/r/haskell/comments/3uvyed/acceptable_use_cases_of_coerce/
+
+*** https://hackage.haskell.org/package/newtype

@@ -56,3 +56,7 @@ Git finished
 #+end_example
 
 *** ~NOTE~ I think this only happens on merge commits
+
+* After rebuilding with [[file:20210324202244-devos.org][DevOS]] sometimes networking gets messed up in docker
+
+All of my calls to the internet inside of it fail
