@@ -59,6 +59,13 @@ This has some tricky pieces, let me just paste in what I did so far that also ha
 #+begin_src sql :engine postgresql :dbhost localhost :dbport 15432 :dbuser readonly :dbpassword hunter2 :database dbcon1_prod
 \dt
 #+end_src
+** direct (but if you're using the default database in my config)
+#+begin_src sql :engine postgresql :dbhost localhost :dbuser postgres
+\dt;
+#+end_src
+
+#+RESULTS:
+|---|
 
 ** obsfucating details
 *** the best I could find is using properties to set them on a per buffer basis
@@ -66,6 +73,7 @@ This has some tricky pieces, let me just paste in what I did so far that also ha
 *** something else that could improve on this
 **** https://emacs.stackexchange.com/a/28683
 **** https://www.gnu.org/software/emacs/manual/html_node/auth/Help-for-developers.html
+
 
 * experiment with lsp integration in org blocks
 ** set conn info

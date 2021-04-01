@@ -1,6 +1,7 @@
 #+title: shorter alternatives to uuids
 
 * TODO a nix expression
+** writeScriptBin approach
 
 asked for help in https://logs.nix.samueldr.com/nixos/2021-04-01#4806466
 
@@ -14,8 +15,100 @@ asked for help in https://logs.nix.samueldr.com/nixos/2021-04-01#4806466
   print (shortuuid.uuid())
     '';
 #+end_src
+** derivation approach
+*** resources 
+**** https://www.sam.today/blog/creating-a-super-simple-derivation-learning-nix-pt-3/ 
+*** script that imports nixpkgs
+#+begin_src nix :tangle /tmp/tryme23434234.nix
+  with import <nixpkgs> {};
+
+  let
+    # The ${...} is for string interpolation
+    # The '' quotes are used for multi-line strings
+    shortuuid = pkgs.writeScriptBin "shortuuid" ''
+  #!${pkgs.python3.interpreter}
+  import shortuuid
+  print (shortuuid.uuid())
+    '';
+  in
+  stdenv.mkDerivation rec {
+    name = "test-environment";
+
+    buildInputs = [ shortuuid pkgs.python3Packages.shortuuid ];
+  }
+#+end_src
+
+**** try it
+#+name: e4cb2d9c-f667-4fdc-a1ca-3c04a567af0d
+#+begin_src sh
+nix-shell /tmp/tryme23434234.nix --run shortuuid
+#+end_src
+
+#+RESULTS: e4cb2d9c-f667-4fdc-a1ca-3c04a567af0d
+: 48nHFHExkY8XHd26v2v2av
 
 
+*** TODO (not working) derivation that takes pkgs as input
+#+begin_src nix :tangle /tmp/tryme555523434234.nix
+  {pkgs,stdenv}:
+
+    let
+      # The ${...} is for string interpolation
+      # The '' quotes are used for multi-line strings
+      shortuuid = pkgs.writeScriptBin "shortuuid" ''
+    #!${pkgs.python3.interpreter}
+    import shortuuid
+    print (shortuuid.uuid())
+      '';
+    in
+    stdenv.mkDerivation rec {
+      name = "test-environment";
+
+      buildInputs = [ shortuuid pkgs.python3Packages.shortuuid ];
+    }
+#+end_src
+
+#+begin_src nix :tangle /tmp/tryme555523434234run.nix
+with import <nixpkgs> {}; callPackage ./tmp/tryme555523434234.nix
+#+end_src
+
+**** try it
+#+name: 48b78bf6-c7d2-436a-b987-6636bc01744a
+#+begin_src sh
+nix-shell /tmp/tryme555523434234run.nix  --run shortuuid
+#+end_src
+
+#+RESULTS: 48b78bf6-c7d2-436a-b987-6636bc01744a
+
+*** TODO overlay (like for [[file:20210324202244-devos.org][DevOS]])
+**** current error
+#+begin_example
+warning: Git tree '/home/cody/devos' is dirty
+error: builder for '/nix/store/8vmyanpjq1566bgrgxbari4y4395yq2a-test-environment.drv' failed with exit code 1;
+       last 2 log lines:
+       > unpacking sources
+       > variable $src or $srcs should point to the source
+       For full logs, run 'nix log /nix/store/8vmyanpjq1566bgrgxbari4y4395yq2a-test-environment.drv'.
+error: 1 dependencies of derivation '/nix/store/nnfnx4hyxl2wfnz0q3vh0q00ld246c95-system-path.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/pa4g117vfpj79w4gh0llbma0yjp1pdx0-nixos-system-razer-21.05.20210222.c7d0dbe.drv' failed to build
+#+end_example
+**** overlay
+#+begin_src nix
+final: prev: {
+  shortuuid = let
+    shortuuidScript = prev.writeScriptBin "shortuuid" ''
+  #!${prev.python3.interpreter}
+  import shortuuid
+  print (shortuuid.uuid())
+    '';
+  in
+    prev.stdenv.mkDerivation rec {
+      name = "test-environment";
+
+      buildInputs = [ shortuuidScript prev.python3Packages.shortuuid ];
+    };
+}
+#+end_src
 * resources
 
 ** https://pypi.org/project/shortuuid/
@@ -38,4 +131,5 @@ just like in [[file:20210331203117-creating_a_script_from_your_nix_config.org][c
 
 ** https://neilmadden.blog/2018/08/30/moving-away-from-uuids/
 ** https://dev.to/yeo_alexandra/creating-user-facing-short-unique-ids-what-are-the-options-8mn
+
 ** https://www.npmjs.com/package/short-uuid
