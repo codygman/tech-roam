@@ -60,3 +60,88 @@ Git finished
 * After rebuilding with [[file:20210324202244-devos.org][DevOS]] sometimes networking gets messed up in docker
 
 All of my calls to the internet inside of it fail
+
+* kitty seems to reliably steal focus from exwm
+
+** xelb-debug buffer (I think this is the relevant piece)
+#+begin_example
+[67:43:12] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Help*> selected-window=#<window 602 on *Help*>
+[67:43:12] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Help*> selected-window=#<window 602 on *Help*>
+[67:43:12] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Help*> selected-window=#<window 602 on *Help*>
+[67:43:12] exwm-input--on-buffer-list-update:	current-buffer=#<buffer kitty: bash<3>> selected-window=#<window 602 on kitty: bash<3>>
+[67:43:12] exwm-layout--refresh:	frame=#<frame kitty: bash<3> 0x19fc680>
+[67:43:12] exwm-layout--refresh-workspace:	Refresh workspace #<frame kitty: bash<3> 0x19fc680>
+[67:43:12] exwm-layout--show:	Show #x3c0000e in #<window 602 on kitty: bash<3>>
+[67:43:12] exwm--set-geometry:	Setting #x3c0000e to 1920x500+0+517
+[67:43:12] exwm-layout--set-state:	id=#x3c0000e
+[67:43:12] exwm-layout--set-client-list-stacking:	
+[67:43:12] exwm-layout--refresh:	frame=#<frame kitty: bash<3> 0x19fc680>
+[67:43:12] exwm-layout--refresh-workspace:	Refresh workspace #<frame kitty: bash<3> 0x19fc680>
+[67:43:12] exwm-layout--show:	Show #x3c0000e in #<window 602 on kitty: bash<3>>
+[67:43:12] exwm--set-geometry:	Setting #x3c0000e to 1920x500+0+517
+[67:43:12] exwm-layout--set-state:	id=#x3c0000e
+[67:43:12] exwm-layout--set-client-list-stacking:	
+[67:43:12] exwm-input--update-focus:	focus-window=#<window 602 on kitty: bash<3>> focus-buffer=kitty: bash<3>
+[67:43:12] exwm-input--update-focus:	Set focus on #x3c0000e
+[67:43:12] exwm-input--on-echo-area-dirty:	
+[67:43:12] exwm-manage--on-MapNotify:	id=#x3c0000e
+[67:43:12] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[67:43:12] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[67:43:12] exwm-input--on-PropertyNotify:	
+[67:43:12] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[67:43:12] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[67:43:12] exwm-input--on-PropertyNotify:	
+[67:43:12] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[67:43:12] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[67:43:12] exwm-input--on-PropertyNotify:	
+[67:43:12] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[67:43:12] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[67:43:12] exwm-input--on-PropertyNotify:	
+[67:43:12] exwm-input--set-focus:	#xe0001c (corrected) => #x3c0000e
+[67:43:12] exwm-input--update-timestamp:	
+[67:43:12] exwm--on-PropertyNotify:	atom=_TIME(516)
+[67:43:12] exwm-input--on-PropertyNotify:	
+[67:43:12] exwm-input--set-active-window:	
+[67:43:13] exwm-input--on-KeyPress:	major-mode=exwm-mode buffer=kitty: bash<3>
+[67:43:13] exwm-input--on-KeyPress-char-mode:	(98 . 3)
+[67:43:13] exwm-input--mimic-read-event:	
+[67:43:13] exwm-input--cache-event:	8388706
+[67:43:14] exwm-input--on-buffer-list-update:	current-buffer=#<buffer  *Minibuf-1*> selected-window=#<window 4 on  *Minibuf-1*>
+[67:43:14] exwm-input--on-minibuffer-setup:	
+[67:43:14] exwm-layout--on-minibuffer-setup:	
+[67:43:14] exwm-input--on-buffer-list-update:	current-buffer=#<buffer kitty: bash<3>> selected-window=#<window 602 on kitty: bash<3>>
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--hide:	Hide #x3c0000e
+[67:43:14] exwm-layout--set-state:	id=#x3c0000e
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-input--update-focus:	focus-window=#<window 602 on *Help*> focus-buffer=*Help*
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-input--on-echo-area-dirty:	
+[67:43:14] exwm-input--on-echo-area-dirty:	
+[67:43:14] exwm--on-PropertyNotify:	atom=WM_STATE(401)
+[67:43:14] exwm--on-PropertyNotify:	Unhandled: WM_STATE(401)
+[67:43:14] exwm-input--on-PropertyNotify:	
+[67:43:14] exwm--on-PropertyNotify:	atom=_NET_WM_STATE(366)
+[67:43:14] exwm--on-PropertyNotify:	Unhandled: _NET_WM_STATE(366)
+[67:43:14] exwm-input--on-PropertyNotify:	
+[67:43:14] exwm-input--on-buffer-list-update:	current-buffer=#<buffer *Help*> selected-window=#<window 602 on *Help*>
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+[67:43:14] exwm-layout--refresh:	frame=#<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--refresh-workspace:	Refresh workspace #<frame  *Minibuf-1* 0x19fc680>
+[67:43:14] exwm-layout--set-client-list-stacking:	
+#+end_example
+

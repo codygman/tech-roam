@@ -3,6 +3,9 @@
 
 Used in [[file:20210323180637-nixos.org][#nixos]] to provide reproducible software.
 
-* Learning it can be kinda hard, here are some resources:
-https://github.com/tazjin/nix-1p
+* Learning it can be kinda hard, here are some resources
+
+** https://github.com/tazjin/nix-1p
+
+** 
 
