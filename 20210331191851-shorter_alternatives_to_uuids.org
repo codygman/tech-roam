@@ -1,6 +1,9 @@
 #+title: shorter alternatives to uuids
 
 * TODO a nix expression
+
+asked for help in https://logs.nix.samueldr.com/nixos/2021-04-01#4806466
+
 #+begin_src nix
   # TODO test this
   let
@@ -11,6 +14,7 @@
   print (shortuuid.uuid())
     '';
 #+end_src
+
 
 * resources
 
