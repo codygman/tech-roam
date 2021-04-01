@@ -12,6 +12,8 @@ $1
 #+end_src
 $0
 #+end_example
+
 * TODO todo prepend source block type in front of name
-* TODO research shorter formats than uuid that are reasonably unique
+
+* TODO research shorter formats than uuid that are reasonably unique ([[file:20210331191851-shorter_alternatives_to_uuids.org][shorter alternatives to uuids]])
 

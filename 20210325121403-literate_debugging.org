@@ -5,3 +5,42 @@ Debugging with literate tools to take rich notes along the way.
 A challenge is it adds some overhead, so you have to make very ergonomic tooling to overcome that overhead.
 
 It's very nice to look back at and can significantly speed up similar tasks however.
+
+* TODO a simple example
+
+#+name: 6b188f9b-951c-4b37-92a4-a93f1927489f
+#+begin_src sh
+  exec 2>&1
+  if [ -f "/tmp/somerandomfile" ]; then
+      echo "$FILE exists."
+  else 
+      echo "$FILE does not exist."
+  fi
+  :
+#+end_src
+
+#+RESULTS: 6b188f9b-951c-4b37-92a4-a93f1927489f
+: does not exist.
+
+#+name: 8e9d5abe-062a-4631-9367-be16b7a8f352
+#+begin_src sh 
+touch /tmp/somerandomfile
+#+end_src
+
+#+RESULTS: 8e9d5abe-062a-4631-9367-be16b7a8f352
+
+#+call: 6b188f9b-951c-4b37-92a4-a93f1927489f()
+
+#+RESULTS:
+: exists.
+
+
+
+* TODO an example using noweb
+
+* TODO realistic examples
+
+** description 
+
+It'd be cool to showcase this by picking some random repo from [[https://github.com/explore][Github explore]] and debug an issue they have. Even better (maybe?) if it's a language I either haven't used or haven't used in a while.
+

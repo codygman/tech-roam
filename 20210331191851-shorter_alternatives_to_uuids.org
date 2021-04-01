@@ -1,0 +1,37 @@
+#+title: shorter alternatives to uuids
+
+* TODO a nix expression
+#+begin_src nix
+  # TODO test this
+  let
+    # TODO how/where would I say that python3Packages.shortuuid is a build input?
+    shortuuid = pkgs.writeScriptBin "shortuuid" ''
+  #!${pkgs.python3.interpreter}
+  import shortuuid
+  print (shortuuid.uuid())
+    '';
+#+end_src
+
+* resources
+
+** https://pypi.org/project/shortuuid/
+
+Let's try this one:
+
+#+name: 07a1b882-21c1-4efc-9957-cec521574c41
+#+begin_src sh :results verbatim
+nix-shell -p python3Packages.shortuuid --run 'python3 -c "import shortuuid; print (shortuuid.uuid());"'
+#+end_src
+
+#+RESULTS: 07a1b882-21c1-4efc-9957-cec521574c41
+: enjM2G6v68HK6wkXn4WHqD
+
+Hm... that's not it's name?
+
+No... it's only a library I'd have to make a shell script 
+just like in [[file:20210331203117-creating_a_script_from_your_nix_config.org][creating a script from your nix config]].
+
+
+** https://neilmadden.blog/2018/08/30/moving-away-from-uuids/
+** https://dev.to/yeo_alexandra/creating-user-facing-short-unique-ids-what-are-the-options-8mn
+** https://www.npmjs.com/package/short-uuid

@@ -1,0 +1,22 @@
+#+title: creating a script from your nix config
+
+Many of these use the [[file:20210331203747-exec_command.org][exec command]] to replace the shell script process with the executable process.
+
+* Shell script
+
+#+begin_src nix
+  # TODO test this
+  let
+    say-hi-then-ls = pkgs.writeShellScriptBin "say-hi-then-ls" ''
+      echo "hi";
+      exec -a "$0" ls "$@"
+    '';
+#+end_src
+
+* TODO how do you add a buildinput?
+
+* resources
+
+** https://nixos.wiki/wiki/Nix_Cookbook
+
+** https://www.reddit.com/r/NixOS/comments/i8ouzo/best_way_to_package_scripts/
