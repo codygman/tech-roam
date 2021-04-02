@@ -1,0 +1,339 @@
+#+title: literate programming in org-mode with haskell
+
+* enabling
+
+* Haskell's org-babel support is rough 
+
+* It would be great to have better support for dependencies
+
+** allowing for something like this for cabal projects
+#+begin_src haskell :deps-from ~/code/my-cool-cabal-based-haskell-project
+  functionFromMyProj
+#+end_src
+
+** or my preference [[file:20210401185355-nix_powered_org_babel_blocks.org][nix powered org babel blocks]]
+
+
+* here are some problems
+
+** first problem, simple lists with mixed types don't work
+*** if we get some output in the form of a list with mixed types in bash and call it =list-from-bash=
+
+#+name: list-from-bash
+#+begin_src sh
+echo "1 some-text"
+echo "2 some-text"
+echo "3 some-text"
+#+end_src
+
+#+RESULTS: list-from-bash
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
+
+*** these don't work in =sh -> haskell=
+
+#+name: failing-haskell-example
+#+begin_src haskell :var list=list-from-bash
+print list
+#+end_src
+
+#+RESULTS:
+| 1 |
+| 2 |
+| 3 |
+
+| 1 |
+| 2 |
+| 3 |
+
+Then if you look in the =*haskell*= ghci buffer that runs this code it becomes apparent why:
+
+#+begin_example
+Prelude> let list = [[1, "some-text"], [2, "some-text"], [3, "some-text"]]
+print list
+"org-babel-haskell-eoe"
+
+<interactive>:23:14: error:
+    • No instance for (Num [Char]) arising from the literal ‘1’
+    • In the expression: 1
+      In the expression: [1, "some-text"]
+      In the expression:
+        [[1, "some-text"], [2, "some-text"], [3, "some-text"]]
+Prelude> [[1],[2],[3]]
+Prelude> "org-babel-haskell-eoe"
+#+end_example
+
+*** how it should work: =sh -> elisp=
+
+#+begin_src emacs-lisp :var list=list-from-bash :results list
+  (mapcar
+   (lambda (x) (format "%s: %s" (car x) (cadr x)))
+   list)
+#+end_src
+
+#+RESULTS:
+- 1: some-text
+- 2: some-text
+- 3: some-text
+
+** solution: use lists of tuples instead of lists of lists 
+
+*** solution (still hacky, breaks tuples of tuples maybe?)
+
+**** make generate tuples of tuples
+
+#+begin_src emacs-lisp
+(defun org-babel-haskell-var-to-haskell (var)
+  "Convert an elisp value VAR into a haskell variable.
+The elisp VAR is converted to a string of haskell source code
+specifying a variable of the same value."
+  (if (listp var)
+      (concat "(" (mapconcat #'org-babel-haskell-var-to-haskell var ", ") ")")
+    (format "%S" var)))
+#+end_src
+
+
+**** make variable assignments of tuples of tuples replace outermost with braces
+
+#+RESULTS:
+: org-babel-haskell-var-to-haskell
+
+#+begin_src emacs-lisp
+(defun replace-outer-parens-with-braces-if-nested (str)
+ (replace-regexp-in-string "))$" ")]" (replace-regexp-in-string "^((" "[(" str)) 
+)
+#+end_src
+
+#+RESULTS:
+: replace-outer-parens-with-braces-if-nested
+
+
+#+begin_src emacs-lisp
+  (defun org-babel-variable-assignments:haskell (params)
+    "Return list of haskell statements assigning the block's variables."
+    (mapcar (lambda (pair)
+              (format "let %s = %s"
+                      (car pair)
+                      (replace-outer-parens-with-braces-if-nested (org-babel-haskell-var-to-haskell (cdr pair)))))
+            (org-babel--get-vars params)))
+#+end_src
+
+#+RESULTS:
+: org-babel-variable-assignments:haskell
+
+
+**** test it again
+
+
+#+begin_src haskell :var list=list-from-bash
+map (\(n,s) -> show n <> ":" <> s) list
+#+end_src
+
+#+RESULTS:
+| 1:some-text | 2:some-text | 3:some-text |
+
+
+**** done!
+
+*** work
+
+**** I think the piece responsible for this is [[file:/nix/store/6my833s031f57s0wnksdxhasx4ga88z4-emacs-packages-deps/share/emacs/site-lisp/elpa/org-20210315/ob-haskell.el::defun org-babel-interpret-haskell (body params][org-babel-interpret-haskell]] 
+
+**** this can be verified by calling trace-function on it like so
+#+begin_src emacs-lisp
+(trace-function-foreground 'org-babel-interpret-haskell)
+#+end_src
+
+**** then it's results look like
+#+begin_example
+(org-babel-interpret-haskell "print list" ((:var list (1 "some-text") (2 "some-text") (3 "some-text")) (:colname-names) (:rowname-names) (:result-params "replace") (:result-type . value) (:results . "replace") (:exports . "code") (:session . "none") (:cache . "no") (:noweb . "no") (:hlines . "no") (:tangle . "no") (:padlines . "no")))
+#+end_example
+
+**** we can call that directly actually
+
+#+begin_src emacs-lisp :results verbatim
+(org-babel-interpret-haskell "print list" '((:var list (1 "some-text") (2 "some-text") (3 "some-text")) (:colname-names) (:rowname-names) (:result-params "replace") (:result-type . value) (:results . "replace") (:exports . "code") (:session . "none") (:cache . "no") (:noweb . "no") (:hlines . "no") (:tangle . "no") (:padlines . "no")))
+#+end_src
+
+#+RESULTS:
+: ((1) (2) (3))
+
+**** we'd like the results to be
+#+begin_example
+: ((1) (2) (3))
+#+end_example
+
+**** Ah, this is all coming back to me
+
+**** this logic is in [[file:/nix/store/6my833s031f57s0wnksdxhasx4ga88z4-emacs-packages-deps/share/emacs/site-lisp/elpa/org-20210315/ob-haskell.el::defun org-babel-haskell-var-to-haskell (var][org-babel-haskell-var-to-haskell]]
+#+name: test-org-babel-haskell-var-to-haskell
+#+begin_src emacs-lisp
+(org-babel-haskell-var-to-haskell '((1 "some-text") (2 "some-text") (3 "some-text")))
+#+end_src
+
+#+RESULTS:
+: [[1, "some-text"], [2, "some-text"], [3, "some-text"]]
+
+**** it's very naieve as you can see and just makes lists of lists
+
+**** let's make it smarter and friendlier to haskell using tuples
+
+***** try 1
+
+#+begin_src emacs-lisp
+(defun org-babel-haskell-var-to-haskell (var)
+  "Convert an elisp value VAR into a haskell variable.
+The elisp VAR is converted to a string of haskell source code
+specifying a variable of the same value."
+  (if (listp var)
+      (concat "(" (mapconcat #'org-babel-haskell-var-to-haskell var ", ") ")")
+    (format "%S" var)))
+#+end_src
+
+#+RESULTS:
+: org-babel-haskell-var-to-haskell
+
+#+call: test-org-babel-haskell-var-to-haskell()
+
+#+RESULTS:
+: ((1, "some-text"), (2, "some-text"), (3, "some-text"))
+
+Now let's try with our haskell example again
+
+#+call: failing-haskell-example()
+
+#+RESULTS:
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
+
+Well... lookie there... that was pretty simple.
+
+I know there is a limitation of this as well but can't remember.
+
+Actually I think the limitation is that everything is now a string and Haskell isn't so friendly to that. So you either need to call fromString on all of these values or some type of general conversion to get them into types.
+
+One way of doing this would be something I need to add to [[file:20210329205123-cool_project_idea.org][cool project idea]]: [[file:20210401231517-integrating_frames_and_type_detection_with_org_babel_s_haskell_integration.org][integrating frames and type detection with org babel's haskell integration]]
+
+
+**** +there it is, we made lists from shell blocks work with haskell blocks+
+
+The full original example:
+
+
+#+name: list-from-bash
+#+begin_src sh
+echo "1 some-text"
+echo "2 some-text"
+echo "3 some-text"
+#+end_src
+
+#+RESULTS: list-from-bash
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
+
+#+begin_src haskell :var list=list-from-bash
+print list
+#+end_src
+
+#+RESULTS:
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
+
+#+begin_src haskell :var list=list-from-bash
+map (\(n,s) -> show n <> ":" <> s) list
+#+end_src
+
+#+RESULTS:
+: <interactive>:72:36-39: error:
+:     • Couldn't match expected type ‘[(a0, [Char])]’
+:                   with actual type ‘((a10, [Char]), (a20, [Char]), (a30, [Char]))’
+:     • In the second argument of ‘map’, namely ‘list’
+:       In the expression: map (\ (n, s) -> show n <> ":" <> s) list
+:       In an equation for ‘it’:
+:           it = map (\ (n, s) -> show n <> ":" <> s) list
+
+
+**** We need the outer items to be a list!
+
+***** try 2, make it happen the hacky way
+
+Set back the org-babel-haskell-var-to-haskell function to only make tuples of tuples:
+
+#+begin_src emacs-lisp
+  (defun org-babel-haskell-var-to-haskell (var)
+  "Convert an elisp value VAR into a haskell variable.
+The elisp VAR is converted to a string of haskell source code
+specifying a variable of the same value."
+  (if (listp var)
+      (concat "(" (mapconcat #'org-babel-haskell-var-to-haskell var ", ") ")")
+    (format "%S" var)))
+#+end_src
+
+#+RESULTS:
+: org-babel-haskell-var-to-haskell
+
+then we can do the hacky thing and replace the outer-most parens with braces... voila! a list of tuples!
+
+#+begin_src emacs-lisp
+(defun replace-outer-parens-with-braces (str)
+ (replace-regexp-in-string ")$" "]" (replace-regexp-in-string "^(" "[" str)) 
+)
+#+end_src
+
+#+begin_src emacs-lisp
+(replace-outer-parens-with-braces "((1,\"two\"))")
+#+end_src
+
+#+RESULTS:
+: [(1,"two")]
+
+
+#+begin_src emacs-lisp
+  (defun org-babel-variable-assignments:haskell (params)
+    "Return list of haskell statements assigning the block's variables."
+    (mapcar (lambda (pair)
+              (format "let %s = %s"
+                      (car pair)
+                      (replace-outer-parens-with-braces (org-babel-haskell-var-to-haskell (cdr pair)))))
+            (org-babel--get-vars params)))
+#+end_src
+
+
+#+call: test-org-babel-haskell-var-to-haskell()
+
+#+RESULTS:
+: ((1, "some-text"), (2, "some-text"), (3, "some-text"))
+
+
+Now let's try with our haskell example again
+
+#+call: failing-haskell-example()
+
+#+RESULTS:
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
+
+We can't see a difference here... but if we look in the =*haskell*= buffer we see:
+
+#+begin_example
+"org-babel-haskell-eoe"
+Prelude> [(1,"some-text"),(2,"some-text"),(3,"some-text")]
+Prelude> "org-babel-haskell-eoe"
+#+end_example
+
+And if we try our original test:
+
+#+begin_src haskell :var list=list-from-bash
+map (\(n,s) -> show n <> ":" <> s) list
+#+end_src
+
+#+RESULTS:
+| 1:some-text | 2:some-text | 3:some-text |
+
+We are now feature pair with elisp for this case.
+

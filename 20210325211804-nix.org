@@ -5,7 +5,7 @@ Used in [[file:20210323180637-nixos.org][#nixos]] to provide reproducible softwa
 
 * Learning it can be kinda hard, here are some resources
 
-** https://github.com/tazjin/nix-1p
+** https://scrive.github.io/nix-workshop/
 
-** 
+** https://github.com/tazjin/nix-1p
 
