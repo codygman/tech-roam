@@ -3,3 +3,6 @@
 * resources
 ** https://www.reddit.com/r/haskell/comments/lw4kmg/using_nix_for_haskell_development_in_emacs_with/
 ** [[file:20210324195558-haskell_nix.org][haskell.nix]]
+** https://www.reddit.com/r/haskell/comments/lj9f84/nixkell_get_your_haskell_projects_up_and_running/
+** https://www.reddit.com/r/haskell/comments/lj9f84/nixkell_get_your_haskell_projects_up_and_running/
+** https://discourse.nixos.org/t/nix-haskell-development-2020/6170
