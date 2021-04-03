@@ -1,0 +1,5 @@
+#+title: Why is git so popular
+
+Is it just or primarily because of [[file:20210403121225-github.org][Github]]?
+
+Is it just because git was so much faster than alternatives at the time, provided a bad but simple enough UI, then [[file:20210403121225-github.org][Github]] propelled it past the [[file:20210403122626-threshold_of_immortality.org][threshold of immortality]].

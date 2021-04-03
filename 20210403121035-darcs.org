@@ -1,0 +1,5 @@
+#+title: darcs
+
+Did they fix their limiting performance issue? I think they did. Did that matter in practice a ton? I heard mixed reviews. I should look at it again.
+
+How does it compare to pijul though? Why choose darcs over pijul?

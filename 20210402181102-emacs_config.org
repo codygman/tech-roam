@@ -1,0 +1,23 @@
+#+title: emacs config
+
+* Overriding third party functions in your emacs config
+
+** I once had success (dumb luck) with simply redefinining the fnction in my config 
+
+** that doesn't seem to work for my newest case
+
+** So it seems elisp advice might be the way to go
+
+** Yep, looks like this will work
+
+#+name: efuE7aiEqoeyvfSvWf3b7q
+#+begin_src emacs-lisp
+(advice-add 'name-of-func-to-override :override
+            (lambda () (message "does this instead now")))
+#+end_src
+
+
+** resources
+
+*** https://stackoverflow.com/questions/38511253/override-a-single-function-in-an-emacs-library
+

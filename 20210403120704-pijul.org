@@ -1,0 +1,11 @@
+#+title: pijul
+
+* Could pijul ever supplant [[file:20210325213010-git.org][git]]?
+
+** wouldn't this be tantamount to supplanting [[file:20210403121225-github.org][Github]] the company?
+
+*** [[file:20210403121246-why_is_git_so_popular.org][Why is git so popular]]? 
+
+*** Even if the industry all of a sudden believed [[file:20210403120704-pijul.org][pijul]] was superior to [[file:20210325213010-git.org][git]], I'm sure [[file:20210403121225-github.org][Github]] wouldn't just take the L and switch to pijul.
+
+**** [[file:20210403121429-is_pijul_better_than_git.org][Is pijul better than git]]? 

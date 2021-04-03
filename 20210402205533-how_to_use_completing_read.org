@@ -1,0 +1,83 @@
+#+title: how to use completing-read
+
+* trivial example
+
+#+name: RCBJYvrBwPUEB92kezB6FM
+#+begin_src emacs-lisp
+(completing-read "favorite number" '("1" "2" "3"))
+#+end_src
+
+#+RESULTS: RCBJYvrBwPUEB92kezB6FM
+: 3
+
+* TODO Example that takes string as input
+
+usethisinput
+
+** TODO I can use thing-at-point 
+
+*** like this 
+#+name: 5UTuw7ooqAoe4yZHkUJ7Jd
+#+begin_src emacs-lisp
+(thing-at-point 'line t)
+#+end_src
+
+#+RESULTS: 5UTuw7ooqAoe4yZHkUJ7Jd
+: #+begin_src emacs-lisp
+
+
+*** then from a result block like above it returns
+#+name: G4hXURH7q6Uvf2mqzUTvDH
+#+begin_example
+"#+RESULTS: 5UTuw7ooqAoe4yZHkUJ7Jd
+"
+#+end_example
+
+
+*** We could get that name and use it in
+#+name: 9ZqiRjxFWVaTXJPMWGq25o
+#+begin_src emacs-lisp
+(goto-char (org-babel-find-named-result "5UTuw7ooqAoe4yZHkUJ7Jd"))
+;; (call-interactively '(org-babel-goto-named-result "5UTuw7ooqAoe4yZHkUJ7Jd")
+#+end_src
+
+#+RESULTS: 9ZqiRjxFWVaTXJPMWGq25o
+: 409
+
+
+*** the real question is how do you get the result blocks contents? using org element I think
+**** this gets the result pice... but what about contents?
+#+name: eb2XpkWBN2JXD8T8PBSTNy
+#+begin_src emacs-lisp
+  (save-excursion
+  (progn (goto-char (org-babel-find-named-result "5UTuw7ooqAoe4yZHkUJ7Jd")) (org-element-at-point)))
+#+end_src
+
+#+RESULTS: eb2XpkWBN2JXD8T8PBSTNy
+| fixed-width | (:begin 409 :end 470 :value #+begin_src emacs-lisp :post-blank 3 :post-affiliated 443 :results (5UTuw7ooqAoe4yZHkUJ7Jd) :parent nil) |
+**** about contents, https://emacs.stackexchange.com/questions/29131/get-contents-of-a-named-source-block
+
+*** oh I can get the property value
+#+begin_src emacs-lisp
+(princ (save-excursion
+  (progn (goto-char (org-babel-find-named-result "5UTuw7ooqAoe4yZHkUJ7Jd")) (org-element-at-point))))
+#+end_src
+
+#+RESULTS:
+| fixed-width | (:begin 409 :end 470 :value #+begin_src emacs-lisp :post-blank 3 :post-affiliated 443 :results (5UTuw7ooqAoe4yZHkUJ7Jd) :parent nil) |
+
+**** more on contents
+***** https://orgmode.org/worg/dev/org-element-api.html
+***** https://stackoverflow.com/questions/17208842/how-to-parse-org-mode-by-org-element-elegantly
+***** http://ergoemacs.org/emacs/elisp_parse_org_mode.html
+**** okay I think I can use the =:contents-begin= it returns
+#+name: CKN9cVfpnp5yLAoLZvriXo
+#+begin_src emacs-lisp
+(princ (save-excursion
+  (progn (goto-char (org-babel-find-named-result "5UTuw7ooqAoe4yZHkUJ7Jd")) (org-element-at-point))))
+#+end_src
+
+#+RESULTS: CKN9cVfpnp5yLAoLZvriXo
+| fixed-width | (:begin 409 :end 470 :value #+begin_src emacs-lisp :post-blank 3 :post-affiliated 443 :results (5UTuw7ooqAoe4yZHkUJ7Jd) :parent nil) |
+**** I don't see it in above but it's there in a results block
+

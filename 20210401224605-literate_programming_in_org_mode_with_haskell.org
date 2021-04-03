@@ -38,14 +38,11 @@ echo "3 some-text"
 print list
 #+end_src
 
-#+RESULTS:
-| 1 |
-| 2 |
-| 3 |
+#+RESULTS: failing-haskell-example
+| 1 | some-text |
+| 2 | some-text |
+| 3 | some-text |
 
-| 1 |
-| 2 |
-| 3 |
 
 Then if you look in the =*haskell*= ghci buffer that runs this code it becomes apparent why:
 
@@ -336,4 +333,172 @@ map (\(n,s) -> show n <> ":" <> s) list
 | 1:some-text | 2:some-text | 3:some-text |
 
 We are now feature pair with elisp for this case.
+
+
+** multi-line doesn't work by default
+
+*** this code that should be perfectly fine 
+
+#+begin_src haskell
+data User = User { id :: Int, name :: String }
+
+greetUser :: User -> IO ()
+greetUser u = putStrLn (name u)
+
+printUser :: User -> IO ()
+printUser = print
+#+end_src
+
+*** gives error
+#+begin_example
+Prelude> "org-babel-haskell-eoe"
+Prelude> data User = User { id :: Int, name :: String }
+
+greetUser :: User -> IO ()
+greetUser u = putStrLn (name u)
+
+printUser :: User -> IO ()
+printUser = print
+"org-babel-haskell-eoe"
+Prelude> Prelude> 
+<interactive>:7:1-9: error:
+    Variable not in scope: greetUser :: User -> IO ()
+Prelude> Prelude> Prelude> 
+<interactive>:10:1-9: error:
+    Variable not in scope: printUser :: User -> IO ()
+Prelude> Prelude> "org-babel-haskell-eoe"
+#+end_example
+
+
+*** you can workaround with
+
+** vars are strings in babel... always... Haskell doesn't like that
+
+*** [[*(blocked by stringly typed vars in babel) Though compatibility could also be kept if we used vars like][(blocked by stringly typed vars in babel) Though compatibility could also be kept if we used vars like]]
+
+* Taking ob-haskell to the next level
+
+** explanation
+
+*** You have the following
+  :PROPERTIES:
+  :header-args: :session user-example-next-level
+  :END:
+
+#+name: 55Uuz5hb24zxrNzgp3Yi5b
+#+begin_src haskell
+:{
+data User = User { id :: Int, name :: String } deriving Show
+
+greetUser :: User -> IO ()
+greetUser u = putStrLn $ "hello " ++ name u ++ "!"
+
+printUser :: User -> IO ()
+printUser = print
+:}
+#+end_src
+
+#+RESULTS: 55Uuz5hb24zxrNzgp3Yi5b
+
+
+*** Let's say you create a =User= like so
+
+#+name: 3p6nNjy4a8RoNyxq8o4eKT
+#+begin_src haskell
+User 0 "Hercules"
+#+end_src
+
+#+RESULTS: 3p6nNjy4a8RoNyxq8o4eKT
+: User {id = 0, name = "Hercules"}
+
+
+*** What if that result block was special? 
+
+*** special as in the sense of context-sensitive actions available?
+
+*** What if you landed on that context-sensitive result by default after executing?
+
+*** You then do =SPC c a= and are presented with a selectrum list like
+
+#+begin_example
+greetUser :: User -> IO
+printUser :: User -> IO
+#+end_example
+
+
+*** Upon selecting, say =greetUser= it creates a newline under result and creates this code block
+
+#+begin_src haskell :noweb yes
+greetUser (<<3p6nNjy4a8RoNyxq8o4eKT>>)
+#+end_src
+
+#+RESULTS:
+: hello Hercules!
+
+
+*** ~NOTE~: the parens are necessary otherwise invalid haskell is created
+
+#+begin_example
+Prelude> "org-babel-haskell-eoe"
+Prelude> greetUser User 0 "Hercules"
+"org-babel-haskell-eoe"
+
+<interactive>:37:1-27: error:
+    • Couldn't match expected type ‘t0 -> [Char] -> t’
+                  with actual type ‘IO ()’
+    • The function ‘greetUser’ is applied to three arguments,
+      but its type ‘User -> IO ()’ has only one
+      In the expression: greetUser User 0 "Hercules"
+      In an equation for ‘it’: it = greetUser User 0 "Hercules"
+    • Relevant bindings include it :: t (bound at <interactive>:37:1)
+
+<interactive>:37:11-14: error:
+    • Couldn't match expected type ‘User’
+                  with actual type ‘Int -> String -> User’
+    • Probable cause: ‘User’ is applied to too few arguments
+      In the first argument of ‘greetUser’, namely ‘User’
+      In the expression: greetUser User 0 "Hercules"
+      In an equation for ‘it’: it = greetUser User 0 "Hercules"
+#+end_example
+
+
+*** Or... if you want to keep better compatibility with lsp-org and haskell-language-server you'd pull out the noweb value directly like
+
+#+begin_src haskell
+greetUser (User {id = 0, name = "Hercules"})
+#+end_src
+
+#+RESULTS:
+: hello Hercules!
+
+
+*** (blocked by stringly typed vars in babel) Though compatibility could also be kept if we used vars like
+
+#+begin_src haskell :var oNyxq=3p6nNjy4a8RoNyxq8o4eKT
+greetUser (oNyxq)
+#+end_src
+
+#+RESULTS:
+: <interactive>:60:12-16: error:
+:     • Couldn't match expected type ‘User’ with actual type ‘[Char]’
+:     • In the first argument of ‘greetUser’, namely ‘(oNyxq)’
+:       In the expression: greetUser (oNyxq)
+:       In an equation for ‘it’: it = greetUser (oNyxq)
+
+
+*** After unblocking above, I think it provides the most synergy (heh)
+
+*** But, for the time being that means [[*Or... if you want to keep better compatibility with lsp-org and haskell-language-server you'd pull out the noweb value directly like][direct inlining]] would be best
+
+** TODO make completion function that uses entire result of source block as input
+
+*** it might also be nice if this works within source blocks too
+
+*** I think this will mostly be [[file:20210402205533-how_to_use_completing_read.org][how to use completing-read]]
+
+** TODO optional? figure out how to make button for org babel haskell results
+
+*** TODO [[file:20210402202533-making_custom_buttons_in_hyperbole.org][making custom buttons in hyperbole]]
+
+*** TODO make a custom button for org babel results
 
