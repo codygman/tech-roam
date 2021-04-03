@@ -1,0 +1,56 @@
+#+title: cognitive load in programming
+
+* A few types of cognitive load
+
+- intrinsic cognitive load
+the difficulty of learning the task itself
+
+- germane cognitive load
+effort spent formulating new lower-level representations of sub-parts of the task. Part of the recipe might be spent explaining how to make icing in great detail. Over time, however, an experienced baker will learn exactly how to make icing, and so that part of the overall cake-making task will be reduced to simply "make the icing".
+
+- extrinsic cognitive load
+additional effort imposed by the manner in which the learning takes place. In the cake example, imagine if all of the units are given in pounds and ounces but you are accustomed onto to working in grams and kilograms. Extrinsic load would be the time spend converting between imperial and metric at every step of the way.
+
+* put simply
+  
+  Simply speaking, intrinsic and germane load are considered "good" and extrinsic "bad". Too much germane load makes learning a new task initially harder and slower (while the learner picks up the underlying concepts), but this work is valuable because the next time you come to do the same task, it'll be easier. Intrinsic load is just the effort required to perform the task - but this should reduce over time as new lower-level knowledge and experience are formed. Extrinsic load is like friction, slowing you down and filling up your working memory with non-essential, wasted effort.
+
+* resources
+
+** https://www.dabapps.com/blog/cognitive-load-programming/
+
+*** Starts with 2 code snippets, one that has implementation concerns and another that uses an abstraction and doesn't
+    
+    We basically write code at work like the first. The benefit is essentially picking things up quicker.
+    
+    The second example, someone must understand specific concepts before they understand what's going on.
+    
+    Basically, when execution flow is spelled out clearly it's easy even for novices to know where to put things.
+    
+*** It looks like they are arguing that abstraction creates more cognitive load, which is the opposite of my current line of thought.
+    
+** [[https://news.ycombinator.com/item?id=13813774][Writing good code: how to reduce the cognitive load of your code (chrismm.com)]] (amazing hn post on cognitive load in programming!)
+   
+*** high level notes
+    
+    #+begin_quote 
+   "If you don't have time to get it right the first time, how on earth will you have time to do it again?"
+    #+end_quote
+    
+- optimize for "comprehension time" over "read time". Just because something uses a more complex abstraction doesn't mean the simpler alternative that's easier to read the first tmie is better
+
+  
+    
+*** A [[https://news.ycombinator.com/item?id=13815189][comment by agentultra]] "boring code... exhausting"
+
+
+** misc
+ https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjuv_yFy93rAhUEEawKHYQaAtsQFjAEegQIARAB&url=https%3A%2F%2Fwww.quora.com%2FHow-can-programmers-deal-with-the-cognitive-load-of-programming&usg=AOvVaw0scveyB4mlZfwDiBBOb6tj  
+ 
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjuv_yFy93rAhUEEawKHYQaAtsQFjADegQICRAB&url=https%3A%2F%2Fafcapel.com%2Farticles%2F2019%2F01%2F18%2Fcognitive-load-in-programming.html&usg=AOvVaw2KUOs5PODdmjgARohC7iUD
+
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjuv_yFy93rAhUEEawKHYQaAtsQFjAFegQIBhAB&url=https%3A%2F%2Ffiles.eric.ed.gov%2Ffulltext%2FED477013.pdf&usg=AOvVaw0JmwbUGQmTUm6WmdtKj8Kf
+
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjuv_yFy93rAhUEEawKHYQaAtsQFjAQegQIBRAB&url=http%3A%2F%2Fteotti.com%2Fcognitive-overload-in-software-development%2F&usg=AOvVaw2HTbtTUP2CvKN61vaHKi4c
+
+[[https://news.ycombinator.com/item?id=11992684][Sipmle ways fo reducing the cognitive load in code]]

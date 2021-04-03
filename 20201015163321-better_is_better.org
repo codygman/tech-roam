@@ -1,0 +1,3 @@
+#+title: better is better
+
+the opposite of [[file:20201010135045-worse_is_better.org][Worse is better]]. Also called MIT Style.

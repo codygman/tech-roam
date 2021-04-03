@@ -1,0 +1,7 @@
+#+title: Is simple Haskell like worse is better
+
+Is Simple Haskell like [[file:20201010135045-worse_is_better.org][Worse is better]]?
+
+[[https://functionalprogramming.slack.com/archives/C0433UN0M/p1602543146147500][slack chat link in funcitonalprogramming slack]]
+
+https://funprog.zulipchat.com/#narrow/stream/201385-Haskell/topic/Simple.20Haskell.20.3D.3D.20Worse.20is.20better.3F

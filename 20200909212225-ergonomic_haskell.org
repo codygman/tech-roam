@@ -1,0 +1,15 @@
+#+title: Ergonomic Haskell
+
+My blog post series about more Ergonomic Haskell.
+
+It contrasts with Simple Haskell or Boring Haskell by not being afraid to use reasonable tools at it's disposal to reduce cognitive burden, specifically code density. See cognitive load in programming
+
+Frequently simple or boring Haskell require boilerplate and the attitude is "eh, it's not a big deal just write the boilerplate".
+
+All of that extra stuff matters though... you have to figure out it's not important.
+
+The extreme of these idea is present languages like [[file:20200909212542-j_programming_language.org][J Programming Language]] whose critics describe it as "line noise".
+
+I think [[file:20200909212618-haskell_lenses.org][Haskell lenses]] could be the sweet spot between line noise and concision that achieve the ultimate sweet spot for information density... well code density here.
+
+There is some scientific grounding to this as well. As the one thing we know about empirically in software development ([[file:20200909212852-empirical_software_development.org][empirical software development]]).

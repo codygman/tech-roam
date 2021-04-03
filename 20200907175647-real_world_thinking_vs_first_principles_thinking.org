@@ -1,0 +1,10 @@
+#+title: Real-world thinking vs first-principles thinking
+
+
+* also see
+  
+  
+** [[file:20201010135045-worse_is_better.org][Worse is better]]
+   :PROPERTIES:
+   :ID:       7d91bfa9-84dc-48b2-a41f-085c7c4585a8
+   :END:
