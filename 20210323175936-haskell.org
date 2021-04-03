@@ -11,3 +11,16 @@
 ** small stuff
 
 *** [[file:20210325151912-haskell_arguments_when_vs_unless.org][haskell arguments: when vs unless]]
+
+* Barriers to Haskell adoption
+
+** hard-to-understand stack traces 
+#+begin_example
+One reason is that lazy evaluation creates hard-to-understand stack traces.
+#+end_example
+
+https://www.quora.com/Why-is-Haskell-not-used-in-the-software-industry-even-though-it-is-a-popular-functional-programming-language
+
+*** TODO I think this is only partially true now using withStackTrace
+
+That doesn't cover your dependencies though
