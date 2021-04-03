@@ -9,3 +9,15 @@
 *** Even if the industry all of a sudden believed [[file:20210403120704-pijul.org][pijul]] was superior to [[file:20210325213010-git.org][git]], I'm sure [[file:20210403121225-github.org][Github]] wouldn't just take the L and switch to pijul.
 
 **** [[file:20210403121429-is_pijul_better_than_git.org][Is pijul better than git]]? 
+
+* Why isn't pijul more popular?
+
+** Is it because it's a patch based [[file:20210403120639-version_control_system.org][version control system]]?
+
+** Is it because, allegedly, the maintainer has issues with open source?
+
+#+begin_quote
+<maerwald> pijul is unpopular, because the maintainer has had
+		      issues with open source ;)  [12:31]
+#+end_quote
+
