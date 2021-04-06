@@ -1,0 +1,13 @@
+#+title: figure out how to tangle org files faster
+
+* Try worgle (c program)
+
+I'm stuck because I don't know [[file:20210404231915-how_to_compile_c_programs_with_dependencies_in_nixos.org][how to compile c programs with dependencies in nixos]]... ahh one way is just to install =nameoflib.dev= like =slqlite.dev=.
+
+This didn't seem to do anything for my config sadly and there wasn't even error output :/
+
+* resources
+
+** https://old.reddit.com/r/orgmode/comments/9kp8pq/a_faster_way_to_tangle_orgmode_a_command_line/
+
+** https://github.com/paulbatchelor/worgle

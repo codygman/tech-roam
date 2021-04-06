@@ -1,0 +1,5 @@
+#+title: literate configuration in org-mode
+
+It's very nice, but can somteims be slow.
+
+So I should [[file:20210404231100-figure_out_how_to_tangle_org_files_faster.org][figure out how to tangle org files faster]].
