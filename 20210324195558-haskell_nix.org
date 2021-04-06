@@ -1,2 +1,4 @@
 #+title: haskell.nix
 
+The best tool currently for [[file:20210401190027-haskell_development_with_nix.org][haskell development with nix]]
+

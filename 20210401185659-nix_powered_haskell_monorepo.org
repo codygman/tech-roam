@@ -1,0 +1,9 @@
+#+title: nix powered haskell monorepo
+
+A [[file:20210325211804-nix.org][nix]] powered [[file:20210323175936-haskell.org][Haskell]] [[file:20210401185807-monorepo.org][monorepo]].
+
+Is that string of words not the [[file:20210401185839-platonic_ideal.org][platonic ideal]]? :)
+
+* resources
+
+https://github.com/fghibellini/nix-haskell-monorepo/tree/master/developer-ergonomy

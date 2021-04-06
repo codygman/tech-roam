@@ -1,3 +1,10 @@
 #+title: git
 
+* useful howtos
 [[file:20210325213024-merge_conflicts_in_git.org][merge conflicts in git]]
+
+* things git makes annoying
+
+** [[https://twitter.com/codygman/status/1378392639637184516][cherry pick with multiple changes requires the "correct order"]] 
+
+*** Something like [[file:20210403120704-pijul.org][pijul]] (or [[file:20210403121035-darcs.org][darcs]]) probably makes this easier but at time of writing I can't fully conceptualize the patch based workflow 

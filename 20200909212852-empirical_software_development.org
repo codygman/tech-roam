@@ -1,0 +1,27 @@
+#+title: empirical software development
+
+What do we empirically know?
+
+"LoC correlates positively with bug count" - TODO cite
+
+#+begin_quote
+In the end, this work does beg the question: To camelCase or under_score? The accumulated evidence, leads to the conclusion that camel case is the better choice,especially for beginning programmers" - http://www.cs.kent.edu/~jmaletic/papers/EMSE12.pdf
+#+end_quote
+
+
+* resources I haven't looked at yet
+  
+  https://en.wikipedia.org/wiki/Experimental_software_engineering#Future_of_empirical_software_engineering_research
+  https://www.monperrus.net/martin/introduction-to-empirical-software-engineering.pdf
+  
+  https://www.americanscientist.org/article/empirical-software-engineering
+  
+  https://www.sciencedirect.com/science/article/pii/B9780934613125500422
+  
+  https://www.vidarholen.net/~vidar/An_Empirical_Investigation_into_Programming_Language_Syntax.pdf
+  
+  https://news.ycombinator.com/item?id=13819142
+  http://www.ptidej.net/courses/inf6306/fall10/slides/course8/Storey06-TheoriesMethodsToolsProgramComprehension.pdf
+  http://www.cs.kent.edu/~jmaletic/papers/EMSE12.pdf
+  https://link.springer.com/journal/10664
+  https://scholar.google.com/citations?view_op=view_citation&hl=de&user=2WeXBokAAAAJ&citation_for_view=2WeXBokAAAAJ:k_IJM867U9cC

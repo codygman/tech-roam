@@ -26,4 +26,23 @@ What is nixpkgs master?
 #+RESULTS:
 : discord  discord-0.0.14
 
+
 ** [[file:20210326184713-nvidia_graphics_in_nixos.org][nvidia graphics in NixOS]]
+
+** I want to replace uuidgen with shortuuid but there are no binaries
+
+You can make a wrapper script :)
+
+#+begin_src nix
+{ stdenv, pkgs, lib }:
+
+let pythonEnv = pkgs.python3.withPackages ( ps: [ ps.shortuuid ]);
+in
+pkgs.writeScriptBin "shortuuid" ''
+#!${pythonEnv.interpreter}
+import shortuuid
+print (shortuuid.uuid())
+''
+#+end_src
+
+

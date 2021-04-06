@@ -1,0 +1,148 @@
+#+title: simplest derivations in nixpkgs
+
+* simplest derivations
+
+#+name: b5057805-2c9f-4476-a535-c9729230743f
+#+begin_src sh :dir ~/nixpkgs
+grep -ir -l stdenv.mkDerivation * | xargs wc -l | sort  | head
+#+end_src
+
+#+RESULTS: b5057805-2c9f-4476-a535-c9729230743f
+|  7 | pkgs/build-support/make-symlinks/default.nix                           |
+|  8 | pkgs/build-support/mono-dll-fixer/default.nix                          |
+|  8 | pkgs/tools/text/mecab/nodic.nix                                        |
+|  9 | pkgs/desktops/gnome-2/platform/libart_lgpl/default.nix                 |
+| 10 | pkgs/applications/graphics/autotrace/autofig.nix                       |
+| 10 | pkgs/desktops/gnome-2/platform/gnome-mime-data/default.nix             |
+| 10 | pkgs/os-specific/windows/mingw-w64/pthreads.nix                        |
+| 11 | nixos/modules/installer/tools/nixos-option/default.nix                 |
+| 11 | pkgs/development/compilers/meta-environment/meta-build-env/default.nix |
+| 11 | pkgs/development/compilers/rust/rust-src.nix                           |
+
+
+#+name: 9a308f84-f10c-4122-ba5f-4498b4fdaec9
+#+begin_src haskell :var fileList=b5057805-2c9f-4476-a535-c9729230743f :results list
+  let fp = "~/nixpkgs/" in fmap (\(n,s) -> show n <> ": " <> fp <> s) fileList
+#+end_src
+
+#+RESULTS: 9a308f84-f10c-4122-ba5f-4498b4fdaec9
+- 7: ~/nixpkgs/pkgs/build-support/make-symlinks/default.nix
+- 8: ~/nixpkgs/pkgs/build-support/mono-dll-fixer/default.nix
+- 8: ~/nixpkgs/pkgs/tools/text/mecab/nodic.nix
+- 9: ~/nixpkgs/pkgs/desktops/gnome-2/platform/libart_lgpl/default.nix
+- 10: ~/nixpkgs/pkgs/applications/graphics/autotrace/autofig.nix
+- 10: ~/nixpkgs/pkgs/desktops/gnome-2/platform/gnome-mime-data/default.nix
+- 10: ~/nixpkgs/pkgs/os-specific/windows/mingw-w64/pthreads.nix
+- 11: ~/nixpkgs/nixos/modules/installer/tools/nixos-option/default.nix
+- 11: ~/nixpkgs/pkgs/development/compilers/meta-environment/meta-build-env/default.nix
+- 11: ~/nixpkgs/pkgs/development/compilers/rust/rust-src.nix
+
+* simplest derivations that use writeScript too
+
+#+name: file-list-with-write-script-bin
+#+begin_src sh :dir ~/nixpkgs
+grep -ir -l writeScriptBin * | grep -v tests
+#+end_src
+
+#+RESULTS: 24c1359b-f555-4c79-b3ee-45cfa17a0613
+| doc/builders/trivial-builders.xml                   |
+| nixos/modules/misc/documentation.nix                |
+| nixos/modules/virtualisation/vagrant-guest.nix      |
+| nixos/modules/services/misc/geoip-updater.nix       |
+| nixos/modules/services/misc/ssm-agent.nix           |
+| nixos/modules/services/editors/emacs.nix            |
+| nixos/modules/services/monitoring/riemann-dash.nix  |
+| nixos/modules/services/monitoring/riemann-tools.nix |
+| nixos/modules/services/monitoring/riemann.nix       |
+| nixos/modules/services/databases/postgresql.xml     |
+
+
+#+name: list-with-fullpaths
+#+begin_src haskell :var list=file-list-with-write-script-bin
+mapM_ putStrLn $ fmap ("~/nixpkgs/" ++) list
+#+end_src
+
+#+RESULTS: list-with-fullpaths
+#+begin_example
+~/nixpkgs/doc/builders/trivial-builders.xml
+~/nixpkgs/nixos/modules/misc/documentation.nix
+~/nixpkgs/nixos/modules/virtualisation/vagrant-guest.nix
+~/nixpkgs/nixos/modules/services/misc/geoip-updater.nix
+~/nixpkgs/nixos/modules/services/misc/ssm-agent.nix
+~/nixpkgs/nixos/modules/services/editors/emacs.nix
+~/nixpkgs/nixos/modules/services/monitoring/riemann-dash.nix
+~/nixpkgs/nixos/modules/services/monitoring/riemann-tools.nix
+~/nixpkgs/nixos/modules/services/monitoring/riemann.nix
+~/nixpkgs/nixos/modules/services/databases/postgresql.xml
+~/nixpkgs/nixos/modules/services/cluster/kubernetes/pki.nix
+~/nixpkgs/nixos/modules/services/web-apps/nextcloud.nix
+~/nixpkgs/nixos/modules/services/networking/i2pd.nix
+~/nixpkgs/nixos/modules/services/networking/firewall.nix
+~/nixpkgs/nixos/modules/services/networking/flashpolicyd.nix
+~/nixpkgs/nixos/modules/system/boot/luksroot.nix
+~/nixpkgs/nixos/modules/system/boot/stage-1.nix
+~/nixpkgs/pkgs/misc/vim-plugins/vim-utils.nix
+~/nixpkgs/pkgs/tools/backup/store-backup/default.nix
+~/nixpkgs/pkgs/tools/misc/execline/default.nix
+~/nixpkgs/pkgs/tools/misc/xdummy/default.nix
+~/nixpkgs/pkgs/tools/X11/primus/default.nix
+~/nixpkgs/pkgs/build-support/docker/examples.nix
+~/nixpkgs/pkgs/build-support/writers/default.nix
+~/nixpkgs/pkgs/build-support/remove-references-to/default.nix
+~/nixpkgs/pkgs/build-support/trivial-builders.nix
+~/nixpkgs/pkgs/build-support/setup-systemd-units.nix
+~/nixpkgs/pkgs/games/openttd/default.nix
+~/nixpkgs/pkgs/games/dwarf-fortress/dfhack/default.nix
+~/nixpkgs/pkgs/os-specific/darwin/stubs/default.nix
+~/nixpkgs/pkgs/os-specific/linux/firmware/facetimehd-firmware/default.nix
+~/nixpkgs/pkgs/applications/networking/irc/weechat/wrapper.nix
+~/nixpkgs/pkgs/servers/xmpp/ejabberd/default.nix
+~/nixpkgs/pkgs/development/tools/rust/bindgen/default.nix
+~/nixpkgs/pkgs/development/tools/misc/ctags/wrapped.nix
+~/nixpkgs/pkgs/development/tools/haskell/ihaskell/wrapper.nix
+~/nixpkgs/pkgs/development/tools/phantomjs2/default.nix
+~/nixpkgs/pkgs/development/libraries/qt-5/modules/qtwebengine.nix
+~/nixpkgs/pkgs/development/libraries/unicorn-emu/default.nix
+~/nixpkgs/pkgs/development/compilers/open-watcom-bin/default.nix
+~/nixpkgs/pkgs/development/compilers/elm/packages/lib.nix
+~/nixpkgs/pkgs/development/compilers/elm/default.nix
+~/nixpkgs/pkgs/development/compilers/graalvm/default.nix
+~/nixpkgs/pkgs/development/ocaml-modules/nocrypto/default.nix
+~/nixpkgs/pkgs/data/sgml+xml/stylesheets/xslt/docbook-xsl/default.nix
+#+end_example
+
+#+name: 41a41b6d-7c31-45db-a408-b19385774887
+#+begin_src sh :var list=list-with-fullpaths() :results verbatim
+ grep x $list
+#+end_src
+
+#+RESULTS: 41a41b6d-7c31-45db-a408-b19385774887
+
+
+#+name: 07f4d8ea-5849-48a9-8c3e-059d542ab773
+#+begin_src sh
+grep cfg /home/cody/nixpkgs/nixos/modules/services/monitoring/riemann.nix 
+#+end_src
+
+#+RESULTS: 07f4d8ea-5849-48a9-8c3e-059d542ab773
+
+
+
+
+#+name: 8b61dca5-94fe-46d0-b974-20922f8d2fab
+#+begin_src sh :var list=list-with-fullpaths
+grep -ir -l stdenv.mkDerivation ~/nixpkgs/doc/builders/trivial-builders.xml ~/nixpkgs/nixos/modules/misc/documentation.nix ~/nixpkgs/nixos/modules/virtualisation/vagrant-guest.nix ~/nixpkgs/nixos/modules/services/misc/geoip-updater.nix ~/nixpkgs/nixos/modules/services/misc/ssm-agent.nix ~/nixpkgs/nixos/modules/services/editors/emacs.nix ~/nixpkgs/nixos/modules/services/monitoring/riemann-dash.nix ~/nixpkgs/nixos/modules/services/monitoring/riemann-tools.nix ~/nixpkgs/nixos/modules/services/monitoring/riemann.nix ~/nixpkgs/nixos/modules/services/databases/postgresql.xml ~/nixpkgs/nixos/modules/services/cluster/kubernetes/pki.nix ~/nixpkgs/nixos/modules/services/web-apps/nextcloud.nix ~/nixpkgs/nixos/modules/services/networking/i2pd.nix ~/nixpkgs/nixos/modules/services/networking/firewall.nix ~/nixpkgs/nixos/modules/services/networking/flashpolicyd.nix ~/nixpkgs/nixos/modules/system/boot/luksroot.nix ~/nixpkgs/nixos/modules/system/boot/stage-1.nix ~/nixpkgs/pkgs/misc/vim-plugins/vim-utils.nix ~/nixpkgs/pkgs/tools/backup/store-backup/default.nix ~/nixpkgs/pkgs/tools/misc/execline/default.nix ~/nixpkgs/pkgs/tools/misc/xdummy/default.nix ~/nixpkgs/pkgs/tools/X11/primus/default.nix ~/nixpkgs/pkgs/build-support/docker/examples.nix ~/nixpkgs/pkgs/build-support/writers/default.nix ~/nixpkgs/pkgs/build-support/remove-references-to/default.nix ~/nixpkgs/pkgs/build-support/trivial-builders.nix ~/nixpkgs/pkgs/build-support/setup-systemd-units.nix ~/nixpkgs/pkgs/games/openttd/default.nix ~/nixpkgs/pkgs/games/dwarf-fortress/dfhack/default.nix ~/nixpkgs/pkgs/os-specific/darwin/stubs/default.nix ~/nixpkgs/pkgs/os-specific/linux/firmware/facetimehd-firmware/default.nix ~/nixpkgs/pkgs/applications/networking/irc/weechat/wrapper.nix ~/nixpkgs/pkgs/servers/xmpp/ejabberd/default.nix ~/nixpkgs/pkgs/development/tools/rust/bindgen/default.nix ~/nixpkgs/pkgs/development/tools/misc/ctags/wrapped.nix ~/nixpkgs/pkgs/development/tools/haskell/ihaskell/wrapper.nix ~/nixpkgs/pkgs/development/tools/phantomjs2/default.nix ~/nixpkgs/pkgs/development/libraries/qt-5/modules/qtwebengine.nix ~/nixpkgs/pkgs/development/libraries/unicorn-emu/default.nix ~/nixpkgs/pkgs/development/compilers/open-watcom-bin/default.nix ~/nixpkgs/pkgs/development/compilers/elm/packages/lib.nix ~/nixpkgs/pkgs/development/compilers/elm/default.nix ~/nixpkgs/pkgs/development/compilers/graalvm/default.nix ~/nixpkgs/pkgs/development/ocaml-modules/nocrypto/default.nix ~/nixpkgs/pkgs/data/sgml+xml/stylesheets/xslt/docbook-xsl/default.nix |  xargs wc -l | sort  | head
+#+end_src
+
+#+RESULTS: 8b61dca5-94fe-46d0-b974-20922f8d2fab
+|  34 | /home/cody/nixpkgs/pkgs/development/libraries/unicorn-emu/default.nix              |
+|  65 | /home/cody/nixpkgs/pkgs/os-specific/linux/firmware/facetimehd-firmware/default.nix |
+|  67 | /home/cody/nixpkgs/pkgs/development/ocaml-modules/nocrypto/default.nix             |
+|  85 | /home/cody/nixpkgs/nixos/modules/services/networking/flashpolicyd.nix              |
+|  86 | /home/cody/nixpkgs/pkgs/data/sgml+xml/stylesheets/xslt/docbook-xsl/default.nix     |
+|  90 | /home/cody/nixpkgs/doc/builders/trivial-builders.xml                               |
+|  94 | /home/cody/nixpkgs/pkgs/games/openttd/default.nix                                  |
+| 111 | /home/cody/nixpkgs/pkgs/tools/backup/store-backup/default.nix                      |
+| 118 | /home/cody/nixpkgs/pkgs/development/tools/phantomjs2/default.nix                   |
+| 121 | /home/cody/nixpkgs/pkgs/servers/xmpp/ejabberd/default.nix                          |
+

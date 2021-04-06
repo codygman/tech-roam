@@ -1,0 +1,9 @@
+#+title: threshold of immortality
+
+In [[https://www.youtube.com/watch?v=re96UgMk6GQ][Escape from the ivory tower: the Haskell journey]], [[file:20210403122647-simon_peyton_jones.org][Simon Peyton Jones]] mentioned this phrase while saying:
+
+#+begin_quote
+The languages we've all heard of suffer from a regrettable absence of death ... Cause they've passed the threshold of immortality ...
+#+end_quote
+
+https://youtu.be/re96UgMk6GQ?t=767

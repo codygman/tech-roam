@@ -1,0 +1,3 @@
+#+title: Is pijul better than git
+
+I can't wait to explore and write this...

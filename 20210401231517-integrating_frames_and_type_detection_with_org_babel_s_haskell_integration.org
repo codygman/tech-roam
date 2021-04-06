@@ -1,0 +1,22 @@
+#+title: integrating frames and type detection with org babel's haskell integration
+
+Man this would be cool.
+
+Basically look at how frames autodetects types in a csv:
+
+https://acowley.github.io/Frames/
+
+Now look at the examples in [[file:20210401224605-literate_programming_in_org_mode_with_haskell.org][literate programming in org-mode with haskell]], namely [[file:20210401224605-literate_programming_in_org_mode_with_haskell.org::*there it is, we made lists from shell blocks work with haskell blocks][there it is, we made lists from shell blocks work with haskell blocks]]
+
+Know that they are all strin... wait no they're not:
+
+#+begin_src haskell
+Prelude> "org-babel-haskell-eoe"
+Prelude> let list = ((1, "some-text"), (2, "some-text"), (3, "some-text"))
+print list
+"org-babel-haskell-eoe"
+#+end_src
+
+Anywho... there are string like things that frames could infer the type of... I think. Maybe I'm misremembering ;)
+
+We'll see one day.

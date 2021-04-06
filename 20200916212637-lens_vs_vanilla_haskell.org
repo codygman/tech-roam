@@ -1,0 +1,317 @@
+#+title: Lens vs Vanilla Haskell
+
+#+PROPERTY: header-args:haskell :session lensVsVanilla :results silent
+
+This document assumes a globally installed lens. In nix that means:
+
+#+begin_src nix
+  packages = with pkgs; [
+    # ...
+    (haskellPackages.ghcWithPackages (pkgs: [pkgs.lens]))
+    # ...
+  ];
+#+end_src
+
+* Setup
+  
+** imports & extensions
+  
+#+begin_src haskell :results silent
+import Control.Lens
+#+end_src
+
+#+begin_src haskell :results silent
+import Control.Lens.TH
+#+end_src
+
+#+begin_src haskell :results silent
+import GHC.Generics
+#+end_src
+
+#+begin_src haskell :results silent
+:set -XTemplateHaskell
+#+end_src
+
+#+begin_src haskell :results silent
+:set -XDuplicateRecordFields
+#+end_src
+
+#+begin_src haskell :results silent
+:set -XDeriveGeneric
+#+end_src
+
+#+begin_src haskell :results silent
+:set -XOverloadedLabels
+#+end_src
+
+#+begin_src haskell :results silent
+:set -XFlexibleContexts
+#+end_src
+
+#+begin_src haskell :results silent
+import Data.Generics.Labels ()
+#+end_src
+
+
+#+begin_src haskell :results silent
+import Control.Applicative
+#+end_src
+
+
+** data types & data
+
+#+begin_src haskell :results silent
+:{
+data VideoGame = VideoGame { name :: String, age :: Int} deriving (Show, Generic)
+data Person = Person { name :: String, age :: Int, favoriteGames :: [VideoGame] } deriving (Show, Generic)
+:}
+#+end_src
+
+#+begin_src haskell :results silent
+:{
+newtype Indirection1 = Indirection1 Int deriving (Show, Generic)
+data Indirection2 = Indirection2 { id2Int :: Int } deriving (Show, Generic)
+data Indirection = Indirection { indirection1 :: Maybe Indirection1, indirection2 :: Maybe Indirection2 } deriving (Show, Generic)
+:}
+#+end_src
+
+
+** sanity check
+
+#+begin_src haskell :results silent
+cody = Person "Cody" 29 [VideoGame "Battlefield BFBC2" 10]
+shelly = Person "Shelly" 29 [VideoGame "Paper Mario" 15]
+joe = Person "Joe" 30 [VideoGame "Dota" 8]
+people = [cody,shelly,joe]
+print people
+#+end_src
+
+
+* Simple
+
+** field access level 1(basically the same)
+   
+#+begin_src haskell :results silent
+cody ^. #name
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+_name cody
+#+end_src
+
+
+** field setting level 1 (lens wins slightly)
+   
+#+begin_src haskell :results silent
+cody & #name .~ "notcody"
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+cody { name =  "notcody" }
+#+end_src
+
+
+** field access level 2 (lens wins)
+   
+#+begin_src haskell :results silent
+cody ^? #favoriteGames . ix 0 . #age
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+fmap age . listToMaybe . favoriteGames $ cody 
+#+end_src
+
+
+** field setting level 2 (lens wins big)
+   
+#+begin_src haskell :results silent
+cody & #favoriteGames . ix 0 . #age .~ 11
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+-- This isn't even safe... lol
+let codyFavGames = favoriteGames cody
+ in cody { favoriteGames = (head favoriteGames) { age = 11 }
+#+end_src
+
+
+* Medium 
+  
+** increment all values of nested list (lens wins big)
+
+#+begin_src haskell :results silent
+cody & #favoriteGames . traverse . #age %~ (+1)
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+-- This isn't even safe... lol
+let codyFavGames = favoriteGames cody
+ in cody { favoriteGames = fmap ((+1) . age) codyFavGames}
+#+end_src
+
+
+** sum of all values in a record fields list (tie?)
+
+#+begin_src haskell :results silent
+sumOf (#favoriteGames . traverse . #age) cody
+#+end_src
+
+#+begin_src haskell :results silent :eval no
+sum $ fmap (favoriteGames . age) cody
+#+end_src
+
+I'm biased and vanilla is shorter here, but I think lens wins because of readability
+
+
+** traversal to same underlying type through maybe/newtype wrapper
+   
+*** lens
+**** data
+#+begin_src haskell :results silent
+  :{
+    let indirectionBothJust = Indirection (Just (Indirection1 0)) (Just (Indirection2 1))
+        indirection1Just = Indirection (Just (Indirection1 0)) Nothing
+        indirection2Just = Indirection Nothing (Just (Indirection2 1))
+        indirectionNothings = Indirection Nothing Nothing
+ :}
+#+end_src
+
+**** traversal
+#+begin_src haskell :results silent
+  :{
+  indirectionToInt :: Traversal' Indirection Int
+  indirectionToInt = #indirection1 . _Just . #_Indirection1 `failing` #indirection2 . _Just . #id2Int
+  :}
+#+end_src
+**** usage
+#+begin_src haskell
+indirection1Just ^? indirectionToInt
+#+end_src
+
+#+begin_src haskell
+indirection2Just ^? indirectionToInt
+#+end_src
+
+#+begin_src haskell
+indirectionNothings ^? indirectionToInt
+#+end_src
+ 
+*** vanilla
+**** alternative to traversal
+#+begin_src haskell :results silent
+  :{
+  indirectionToInt_ :: Indirection -> Maybe Int
+  indirectionToInt_ i =  (fmap (\(Indirection1 a) -> a) . indirection1 $ i) <|> (fmap id2Int . indirection2 $ i)
+  :}
+#+end_src
+**** usage
+     
+#+begin_src haskell
+indirectionToInt_ indirection1Just
+#+end_src
+
+#+begin_src haskell
+indirectionToInt_ indirection2Just
+#+end_src
+
+#+begin_src haskell
+indirectionToInt_ indirectionNothings
+#+end_src
+     
+
+* Complex
+  
+Can get ideas from [[https://www.youtube.com/watch?v=QZy4Yml3LTY&t=6s][John Wiegley: Putting Lenses to Work]]
+
+
+** allOf
+   
+#+begin_src haskell :results silent
+allOf (traverse._2) even [(1,10), (2,12)]
+#+end_src
+
+#+begin_src haskell :results silent
+all even . fmap snd $ [(1,10), (2,12)]
+#+end_src
+
+~NOTE~: in the lens case we still have the entire structure in tact (I think?)
+
+** TODO partsOf 
+
+*** odd indices   
+    
+#+begin_src haskell
+[2,4,1,5,3,6] & partsOf (traversed.indices odd) %~ reverse
+#+end_src
+
+#+RESULTS:
+| 2 | 6 | 1 | 5 | 3 | 4 |
+
+#+begin_src haskell
+-- TODO it's pretty easy to get to the point of filtering the pieces you need to change, but then how do you merge them back?
+filter (odd . fst) . zip [0..] $ [2,4,1,5,3,6]
+#+end_src
+
+#+RESULTS:
+| 1 | 4 |
+| 3 | 5 |
+| 5 | 6 |
+
+
+*** multiple (this would be hard to write an alternative to)
+    
+#+begin_src haskell
+"00:00:00" & partsOf (itraversed.indices (>= 3). filtered (== '0')) .~ "1234"
+#+end_src
+
+#+RESULTS:
+: 00:12:34
+
+
+** TODO cosmosOf
+
+** TODO deep
+
+   
+* Virtual Fields (or lenses as smart constructors)
+  
+  - Virtual fields let you effectively create an alias to/from 
+  
+  - Record access is fragile to refactoring changes
+
+  - You can smartly clamp values inside of lenses (though they aren't lawful)
+  
+
+  
+  
+* Realistic Examples
+
+** Queries Case study 
+
+*** data
+
+*** lens
+
+*** vanilla Haskell
+
+* optics by example
+
+** 3.6 Virtual Fields 
+   
+#+begin_src haskell :results silent
+data Temperature = Temperature { location :: String, celsius :: Float } deriving (Show, Generic)
+#+end_src
+
+#+begin_src haskell
+Temperature "New York" 30 ^. #location
+#+end_src
+
+#+RESULTS:
+: New York
+
+* resources
+  
+- https://www.reddit.com/r/haskell/comments/23uzpg/lens_is_unidiomatic_haskell/ch0v5iw/?utm_source=reddit&utm_medium=web2x&context=3
+  comment by glguy that has a good breakdown on lens
+  
+- https://www.reddit.com/r/haskell/comments/9ded97/is_learning_how_to_use_the_lens_library_worth_it/

@@ -18,3 +18,5 @@ Doesn't assq do something like that? I was thinking of assoc. I did this:
 * debugging broken elisp packages
 
 See [[file:20210325213600-github_issue_gh_notify_github_api_error.org::*Then I had the idea of seeing if edebug would work, so did this][Then I had the idea of seeing if edebug would work, so did this]]
+
+*  also see [[file:20210402181102-emacs_config.org][emacs config]]

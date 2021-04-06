@@ -1,0 +1,37 @@
+#+title: pijul
+
+* Could pijul ever supplant [[file:20210325213010-git.org][git]]?
+
+** wouldn't this be tantamount to supplanting [[file:20210403121225-github.org][Github]] the company?
+
+*** [[file:20210403121246-why_is_git_so_popular.org][Why is git so popular]]? 
+
+*** Even if the industry all of a sudden believed [[file:20210403120704-pijul.org][pijul]] was superior to [[file:20210325213010-git.org][git]], I'm sure [[file:20210403121225-github.org][Github]] wouldn't just take the L and switch to pijul.
+
+**** [[file:20210403121429-is_pijul_better_than_git.org][Is pijul better than git]]? 
+
+** I think it would require having some sort of integration with [[file:20210325213010-git.org][git]]
+
+Pasted directly from twitter:
+
+#+begin_quote
+C'mon pijul you can do it... Beat git! Actually to gain mind share I think offering something that lets one use both git and pijul concurrently would be necessary.
+
+Imagine saying "git cherry pick" is annoying, let's use "pijul git cherry pick" that doesn't have this ordering restriction. No idea if this is feasible, maybe @pijul_org
+ can say ;)
+#+end_quote
+
+
+https://twitter.com/codygman/status/1378392639637184516
+
+* Why isn't pijul more popular?
+
+** Is it because it's a patch based [[file:20210403120639-version_control_system.org][version control system]]?
+
+** Is it because, allegedly, the maintainer has issues with open source?
+
+#+begin_quote
+<maerwald> pijul is unpopular, because the maintainer has had
+		      issues with open source ;)  [12:31]
+#+end_quote
+

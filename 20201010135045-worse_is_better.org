@@ -1,0 +1,16 @@
+#+title: Worse is better
+
+https://en.wikipedia.org/wiki/Worse_is_better
+
+Also known as "New Jersey style".
+
+[[https://www.jwz.org/doc/worse-is-better.html][The Rise of ``Worse is Better'']]
+
+* Related
+
+** [[file:20201010135959-go_programming_language.org][Go programming language]]
+
+** [[file:20201012175301-is_simple_haskell_like_worse_is_better.org][Is simple Haskell like worse is better]]?
+   :PROPERTIES:
+   :ID:       f0867803-19a9-4d7c-bd76-dec768b3f08a
+   :END:

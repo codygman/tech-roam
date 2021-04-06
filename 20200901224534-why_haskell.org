@@ -1,0 +1,3 @@
+#+title: Why Haskell
+
+https://github.com/github/semantic/blob/master/docs/why-haskell.md
