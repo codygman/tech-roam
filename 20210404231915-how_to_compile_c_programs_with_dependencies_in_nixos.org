@@ -1,0 +1,10 @@
+#+title: how to compile c programs with dependencies in nixos
+
+* resources
+
+** TODO https://www.youtube.com/watch?v=zEsT4fw1pL0
+
+** https://blog.galowicz.de/2019/04/17/tutorial_nix_cpp_setup/
+
+** https://medium.com/@james_32022/using-nix-to-fetch-c-libraries-6847230bbbcd
+
