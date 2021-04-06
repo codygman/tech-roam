@@ -1,5 +1,11 @@
 #+title: System Crafters
+
 super cool understandable and in-depth emacs vids:
 
 
 https://www.youtube.com/channel/UCAiiOTio8Yu69c3XnR7nQBQ
+
+
+* watched
+
+** [[https://www.youtube.com/watch?v=1XgdQ1CaqaI][System Crafters Live! - Dotfile Detective: tecosaur • Emacs News • Q&A]]
