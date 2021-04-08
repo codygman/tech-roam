@@ -1,0 +1,10 @@
+#+title: org roam making suspicious expensive find call bug
+
+Fhttps://github.com/org-roam/org-roam/issues/1459
+
+
+
+Originally from [[file:20210323182504-daily_issues_experienced_using_exwm.org][daily issues experienced using exwm]] and notes in [[file:20210326112105-daily_issues_using_codygman_devos.org::*My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call][My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call]]
+
+* [[file:daily/2021-04-08.org][2021-04-08]] I had this issue again
+

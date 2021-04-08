@@ -1,0 +1,3 @@
+#+title: how to make syncthing sync faster
+
+Basically... I don't know how to make my local network allow direct connections and the upnp isn't working. I've tried this before but couldn't get everything lined up :/

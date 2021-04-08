@@ -1,0 +1,24 @@
+#+title: org-babel source block dependencies
+
+ex.
+
+##+name: ZGvWEQQfkWTrKjZsp3rtoD
+#+begin_src haskell :tangle foo.hs
+main = putStrLn
+#+end_src
+
+#+name: Cfkoc8bXnShypFPRryAJgw
+#+begin_src sh :tangle-dep ZGvWEQQfkWTrKjZsp3rtoD
+ghc -O foo.hs
+#+end_src
+
+
+The syntax used in the block being:
+
+#+name: EQeR9x7oCNsg47NQrb9iqt
+#+begin_example
+#+begin_src sh :tangle-dep ZGvWEQQfkWTrKjZsp3rtoD
+#+end_example
+
+
+I needed this [[file:20210408181742-building_python_applications_with_nix.org::*I need the \[\[https://github.com/jessstringham/org-mode-diff\]\[org-mode-diff\]\] library to try and do \[\[file:20210408174657-structural_diffing_for_org_mode_conflicts.org\]\[structural diffing for org mode conflicts\]\], let's try to package it][here]]

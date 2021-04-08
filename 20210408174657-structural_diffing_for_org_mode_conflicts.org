@@ -1,0 +1,32 @@
+#+title: structural diffing for org mode conflicts
+
+I need this to more easily resolve diffs that arise because I can't figure out [[file:20210408181912-how_to_make_syncthing_sync_faster.org][how to make syncthing sync faster]].
+
+* Oh wow, I think this is my entire project idea maybe
+
+https://github.com/jessstringham/org-mode-diff
+
+I'm trying to build this and staring the page [[file:20210408181742-building_python_applications_with_nix.org][building python applications with nix]] with it as an example
+ 
+* The basic idea is a conflict usually happens for me for two reasons
+
+** they both follow this pattern
+*** I did something to my org files with orzly on my phone
+
+*** I did something on my laptop before the modified org file(s) synced
+
+** The common things changed in order of occurence are
+
+*** existence
+
+**** ex: I created a new heading on phone, then on pc before previous synced to pc
+
+**** ex: I deleted a new heading on phone, then on pc before previous synced to pc
+
+*** change one or more heading titles
+
+*** changed order
+
+* These aren't structural diffing, but interesting nonetheless
+https://github.com/ibizaman/emacs-conflict
+

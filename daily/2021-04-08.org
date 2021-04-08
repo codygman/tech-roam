@@ -1,0 +1,4 @@
+#+title: 2021-04-08
+
+* Had the [[file:../20210408182557-org_roam_making_suspicious_expensive_find_call_bug.org][org roam making suspicious expensive find call bug]] again and it interrupted my [[file:../20210408181742-building_python_applications_with_nix.org][building python applications with nix]] adventure
+

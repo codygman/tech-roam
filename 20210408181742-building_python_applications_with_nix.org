@@ -1,0 +1,205 @@
+#+title: building python applications with nix
+
+
+* I need the [[https://github.com/jessstringham/org-mode-diff][org-mode-diff]] library to try and do [[file:20210408174657-structural_diffing_for_org_mode_conflicts.org][structural diffing for org mode conflicts]], let's try to package it
+
+** First attempt
+#+begin_src nix :tangle org-mode-diff.nix
+with import <nixpkgs> {};
+
+pkgs.pythonPackages.buildPythonPackage rec {
+  pname = "org-mode-diff";
+  version = "1.0.61";
+
+  src = pkgs.fetchFromGitHub {
+    owner = "jessstringham";
+    repo = "org-mode-diff";
+    rev = "052ffbf4d28e99d78639ca36cac3380ff583fe96";
+    sha256 = "IgpZZNmy5PtMQP1g9d0sNwWO/P3q2t53Z4BrylduiI8=";
+  };
+
+  propagatedBuildInputs = [];
+
+  # doCheck = false;
+
+  # meta = with stdenv.lib; {
+  meta = {
+    homepage = https://github.com/jessstringham/org-mode-diff;
+    description = "";
+    maintainers = [  ];
+  };
+}
+#+end_src
+
+** Output (No module named org_mode_diff.diff)
+
+#+name: Ru7PwLeBWZveaFKoTDdZEM
+#+begin_src sh :results verbatim :prologue "exec 2>&1" :epilogue ":"
+nix-build org-mode-diff.nix
+#+end_src
+
+#+RESULTS: Ru7PwLeBWZveaFKoTDdZEM
+#+begin_example
+this derivation will be built:
+  /nix/store/nfd7nj1c06vl7c7h52a1rr3z3w3znnk3-python2.7-org-mode-diff-1.0.61.drv
+building '/nix/store/nfd7nj1c06vl7c7h52a1rr3z3w3znnk3-python2.7-org-mode-diff-1.0.61.drv'...
+Sourcing python-remove-tests-dir-hook
+Sourcing python-catch-conflicts-hook.sh
+Sourcing python-remove-bin-bytecode-hook.sh
+Sourcing setuptools-build-hook
+Using setuptoolsBuildPhase
+Using setuptoolsShellHook
+Sourcing pip-install-hook
+Using pipInstallPhase
+Sourcing python-imports-check-hook.sh
+Using pythonImportsCheckPhase
+Sourcing setuptools-check-hook
+Using setuptoolsCheckPhase
+unpacking sources
+unpacking source archive /nix/store/2m3aa0l7r3kh0rlw3bkpps6nifa9rgxi-source
+source root is source
+setting SOURCE_DATE_EPOCH to timestamp 1617923030 of file source/tests/test_parser.py
+patching sources
+configuring
+no configure script, doing nothing
+building
+Executing setuptoolsBuildPhase
+running bdist_wheel
+running build
+running build_scripts
+creating build
+creating build/scripts-2.7
+copying and adjusting scripts/org-mode-diff -> build/scripts-2.7
+changing mode of build/scripts-2.7/org-mode-diff from 644 to 755
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_egg_info
+running egg_info
+creating org_mode_diff.egg-info
+writing org_mode_diff.egg-info/PKG-INFO
+writing top-level names to org_mode_diff.egg-info/top_level.txt
+writing dependency_links to org_mode_diff.egg-info/dependency_links.txt
+writing manifest file 'org_mode_diff.egg-info/SOURCES.txt'
+reading manifest file 'org_mode_diff.egg-info/SOURCES.txt'
+writing manifest file 'org_mode_diff.egg-info/SOURCES.txt'
+Copying org_mode_diff.egg-info to build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0-py2.7.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0.data
+creating build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0.data/scripts
+copying build/scripts-2.7/org-mode-diff -> build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0.data/scripts
+changing mode of build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0.data/scripts/org-mode-diff to 755
+creating build/bdist.linux-x86_64/wheel/org_mode_diff-0.0.0.dist-info/WHEEL
+creating 'dist/org_mode_diff-0.0.0-py2-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'org_mode_diff-0.0.0.data/scripts/org-mode-diff'
+adding 'org_mode_diff-0.0.0.dist-info/METADATA'
+adding 'org_mode_diff-0.0.0.dist-info/WHEEL'
+adding 'org_mode_diff-0.0.0.dist-info/top_level.txt'
+adding 'org_mode_diff-0.0.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Finished executing setuptoolsBuildPhase
+installing
+Executing pipInstallPhase
+/build/source/dist /build/source
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support pip 21.0 will remove support for this functionality.
+Processing ./org_mode_diff-0.0.0-py2-none-any.whl
+Installing collected packages: org-mode-diff
+Successfully installed org-mode-diff-0.0.0
+/build/source
+Finished executing pipInstallPhase
+post-installation fixup
+shrinking RPATHs of ELF executables and libraries in /nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61
+strip is /nix/store/9f8y44vmjnwdjvzlff0gm3f3g6ycyyqy-binutils-2.35.1/bin/strip
+stripping (with command strip and flags -S) in /nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61/lib  /nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61/bin 
+patching script interpreter paths in /nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61
+checking for references to /build/ in /nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61...
+Rewriting #!/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18/bin/python2.7 to #!/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18
+wrapping `/nix/store/zq9pw2dkhsq33bimzfs04nji5jbj869h-python2.7-org-mode-diff-1.0.61/bin/org-mode-diff'...
+Executing pythonRemoveTestsDir
+Finished executing pythonRemoveTestsDir
+running install tests
+no Makefile or custom installCheckPhase, doing nothing
+pythonCatchConflictsPhase
+pythonRemoveBinBytecodePhase
+pythonImportsCheckPhase
+Executing pythonImportsCheckPhase
+setuptoolsCheckPhase
+Executing setuptoolsCheckPhase
+running test
+WARNING: Testing via this command is deprecated and will be removed in a future version. Users looking for a generic test entry point independent of test runner are encouraged to use tox.
+running egg_info
+writing org_mode_diff.egg-info/PKG-INFO
+writing top-level names to org_mode_diff.egg-info/top_level.txt
+writing dependency_links to org_mode_diff.egg-info/dependency_links.txt
+reading manifest file 'org_mode_diff.egg-info/SOURCES.txt'
+writing manifest file 'org_mode_diff.egg-info/SOURCES.txt'
+running build_ext
+tests.test_parser (unittest.loader.ModuleImportFailure) ... ERROR
+tests.test_diff (unittest.loader.ModuleImportFailure) ... ERROR
+
+======================================================================
+ERROR: tests.test_parser (unittest.loader.ModuleImportFailure)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_parser
+Traceback (most recent call last):
+  File "/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18/lib/python2.7/unittest/loader.py", line 254, in _find_tests
+    module = self._get_module_from_name(name)
+  File "/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18/lib/python2.7/unittest/loader.py", line 232, in _get_module_from_name
+    __import__(name)
+  File "/build/source/tests/test_parser.py", line 3, in <module>
+    from org_mode_diff import parser
+ImportError: No module named org_mode_diff
+
+
+======================================================================
+ERROR: tests.test_diff (unittest.loader.ModuleImportFailure)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.test_diff
+Traceback (most recent call last):
+  File "/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18/lib/python2.7/unittest/loader.py", line 254, in _find_tests
+    module = self._get_module_from_name(name)
+  File "/nix/store/zfn3g4fl6sfx0fp2mg26ncmwa9v03chi-python-2.7.18/lib/python2.7/unittest/loader.py", line 232, in _get_module_from_name
+    __import__(name)
+  File "/build/source/tests/test_diff.py", line 3, in <module>
+    from org_mode_diff.diff import org_items_are_similar
+ImportError: No module named org_mode_diff.diff
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (errors=2)
+Test failed: <unittest.runner.TextTestResult run=2 errors=2 failures=0>
+error: Test failed: <unittest.runner.TextTestResult run=2 errors=2 failures=0>
+error: builder for '/nix/store/nfd7nj1c06vl7c7h52a1rr3z3w3znnk3-python2.7-org-mode-diff-1.0.61.drv' failed with exit code 1;
+       last 10 log lines:
+       >     from org_mode_diff.diff import org_items_are_similar
+       > ImportError: No module named org_mode_diff.diff
+       >
+       >
+       > ----------------------------------------------------------------------
+       > Ran 2 tests in 0.000s
+       >
+       > FAILED (errors=2)
+       > Test failed: <unittest.runner.TextTestResult run=2 errors=2 failures=0>
+       > error: Test failed: <unittest.runner.TextTestResult run=2 errors=2 failures=0>
+       For full logs, run 'nix log /nix/store/nfd7nj1c06vl7c7h52a1rr3z3w3znnk3-python2.7-org-mode-diff-1.0.61.drv'.
+#+end_example
+
+
+** Hm, looks like the library part has to be manually specified?
+
+** How do you do that?
+
+*** We are following 
+[[https://nixos.org/manual/nixpkgs/stable/#python-library-packages-in-nixpkgs][15.19.1.2.1. Python library packages in Nixpkgs]]
+
+*** so shouldn't that already include the library?
+
+*** maybe this python package is in a different format
+
+*** I'm not sure how to tell
+
+* resources
+
+** https://nixos.org/manual/nixpkgs/stable/#python 
+

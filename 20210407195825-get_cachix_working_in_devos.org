@@ -1,0 +1,3 @@
+#+title: get cachix working in devos
+
+I'm honestly waiting on the [[file:20210407195904-devos_1_0_release.org][devos 1.0 release]] to avoid having to update much manually and [[file:20210407195924-ease_my_maintenance_burden.org][ease my maintenance burden]].

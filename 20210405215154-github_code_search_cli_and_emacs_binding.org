@@ -1,0 +1,25 @@
+#+title: github code search cli and emacs binding
+
+I find myself finding [[file:20210407195411-github_code_search.org][github code search]] a lot lot.
+
+It'd be nice to 1) do this from the cli and then 2) even nicer to do it from within an emacs binding library using a [[file:20210323173650-consult.org][consult]]-based interface.
+
+Sadly I'm currently stuck because I can't [[file:20210407195825-get_cachix_working_in_devos.org][get cachix working in devos]] and don't want to compile GHC on my laptop using the [[file:20210324223928-nix_flakes.org][nix flakes]] version of [[file:20210324195558-haskell_nix.org][haskell.nix]].
+
+
+base:
+
+https://github.com/phadej/github/blob/master/samples/Search/SearchCode.hs
+
+
+Though, if you want this functionality more than a cool project you might want to search first since someone has almost certainly done this.
+
+However if you want advanced features like:
+
+- dedupe search results
+- filter out emacs source code forks for `language:elisp`
+
+and things like that... you might roll your own
+
+
+* A good test search of this would be

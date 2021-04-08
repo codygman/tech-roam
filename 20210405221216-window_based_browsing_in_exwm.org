@@ -1,0 +1,13 @@
+#+title: window based browsing in exwm
+
+Why? Why not use tabs?
+
+So everything can be managed just like an emacs buffer.
+
+I'm not all too sure this is best, but when I stick to it there are times I frequently see an advantage.
+
+It does feel like more cognitive overhead, but I have many many years of browsing with tabs and getting used to that workflow.
+
+Plus, the theory is if I use a [[file:20210405221404-common_interface_for_all_context_switching.org][common interface for all context switching]]
+
+This is the primary reason I'd want to do something as crazy as [[file:20210405221708-configure_firefox_to_use_new_windows_for_everything.org][configure firefox to use new windows for everything]]

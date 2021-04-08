@@ -1,0 +1,9 @@
+#+title: configure firefox to use new windows for everything
+
+It's actually really hard to do, lol.
+
+* resources
+
+** https://superuser.com/a/1295278
+
+** https://www.reddit.com/r/firefox/comments/8ny9fh/trying_to_totally_disable_tabs_in_firefox/

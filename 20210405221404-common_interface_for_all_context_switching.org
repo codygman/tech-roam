@@ -1,0 +1,14 @@
+#+title: common interface for all context switching
+
+A [[file:20210322221637-narrowing_framework.org][narrowing framework]] preferably that uses what I find to be an intuitive orderless fuzzy find.
+
+The same interface for switching editor buffers and applications.
+
+The idea is that the cognitive overhead will be amoritized and the precise variant will become quicker.
+
+Right now I use buffer switching primarily, but I'm wondering about an alt-tab equivalent in emacs since I either:
+
+1) don't find buffer switching quick enough
+2) the order of buffers don't make sense to me
+
+If 2, note that your selectrum/consult/prescient settings could affect the stability of this.
