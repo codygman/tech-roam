@@ -2,7 +2,7 @@
 
 Performance issues could be found easily with the pie-in-the-sky [[file:20210326112259-monitoring_exwm_with_prometheus.org][monitoring exwm with prometheus]]
 
-* My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call
+* My window manager froze because of org-roam/with-editor/automatically kill gpg buffers making an expensive find call [[file:20210408182557-org_roam_making_suspicious_expensive_find_call_bug.org][org roam making suspicious expensive find call bug]]
 *** time 1: Uhh... things just froze what?
 #+begin_example
 Debugger entered--entering a function:

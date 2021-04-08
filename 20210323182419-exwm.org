@@ -6,4 +6,5 @@ It seems a large part of it is built on [[file:20210325162335-xelb.org][XELB]], 
 
 * [[file:20210323182504-daily_issues_experienced_using_exwm.org][daily issues experienced using exwm]]
 * Sometimes you might get annoyed with exwm, so you'll want to know [[file:20210325161953-techniques_for_debugging_exwm.org][techniques for debugging exwm]]
+* [[file:20210405221216-window_based_browsing_in_exwm.org][window based browsing in exwm]]
 * For ideas, see [[file:20210325162205-cool_exwm_configurations.org][cool exwm configurations]].

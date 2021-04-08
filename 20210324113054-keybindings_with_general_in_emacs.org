@@ -3,18 +3,42 @@
 * Under evil
 
 ** Questions
+
 *** Is this the correct way to use =my-leader-def= throughout =:general= sections in use-package?
+
+**** here's what I currently do
+
+***** first I use general-auto-unbind-keys and general-evil-setup
 #+begin_src emacs-lisp
-  (use-package evil
-    :general
-    (my-leader-def
-      :keymaps 'override
-      :non-normal-prefix "s"
-      ;; TODO this one doesn't belong here really
-      "l" 'evil-window-right
-      )
+  (use-package general
+    ;; ...
+    :config
+    (general-evil-setup t)
+    (general-auto-unbind-keys)
+    ;; ...
     )
 #+end_src
+
+***** then I create a definer
+#+begin_src emacs-lisp
+(general-create-definer my-leader-def
+      :prefix "C")
+#+end_src
+
+
+***** then I use it through my config like
+#+begin_src emacs-lisp
+(my-leader-def
+      :states '(normal visual emacs motion)
+      :prefix "SPC"
+      :keymaps 'override
+      :non-normal-prefix "M-SPC"
+      "u"   '(universal-argument :which-key "Universal Argument")
+      "tf" '(toggle-frame-fullscreen :which-key "Toggle Fullscreen"))
+#+end_src
+
+
+**** if I look at instructions [[https://github.com/noctuid/general.el#general-keyword][here]]
 
 ** correctly overriding keybindings that other use-package modes add
 

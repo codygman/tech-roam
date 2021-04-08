@@ -7,3 +7,7 @@
 Like, a blog post exploring the solutions and pitting them against one another
 
 * [[file:20210401185355-nix_powered_org_babel_blocks.org][nix powered org babel blocks]]
+
+* [[file:20210405215154-github_code_search_cli_and_emacs_binding.org][github code search cli and emacs binding]]
+
+* [[file:20210408174657-structural_diffing_for_org_mode_conflicts.org][structural diffing for org mode conflicts]]

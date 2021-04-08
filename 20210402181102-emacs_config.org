@@ -21,3 +21,5 @@
 
 *** https://stackoverflow.com/questions/38511253/override-a-single-function-in-an-emacs-library
 
+* [[file:20210324113054-keybindings_with_general_in_emacs.org][keybindings with general in emacs]]
+

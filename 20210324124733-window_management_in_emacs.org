@@ -1,3 +1,128 @@
 #+title: window management in emacs
 
-https://old.reddit.com/r/emacs/comments/7au3hj/how_do_you_manage_your_emacs_windows_and_stay_sane/
+* play with display-buffer-in-new-tab 
+
+Actually... what should the alist format of display-buffer-in-new-tab look like?
+
+Let's use [[file:20210407195411-github_code_search.org][github code search]] to find out:
+
+
+#+name: Mu3ZkCFxYq39278LUhTVm5
+#+begin_src emacs-lisp
+(let ((display-buffer-in-new-tab "*mynewbuf*" '(
+#+end_src
+
+Lol tons of duplicates, need to finish that [[file:20210405215154-github_code_search_cli_and_emacs_binding.org][github code search cli and emacs binding]] project.
+
+
+* One library for this is [[https://depp.brause.cc/shackle/][shackle]]
+
+It has a simple syntax:
+
+#+begin_quote
+ - :align and 'above, 'below, 'left, 'right, or t or a function:
+
+Align a new window at the respective side of the current frame or with the default alignment (customizable with shackle-default-alignment) by splitting the root window. If a function is specified, it is called with zero arguments and must return any of the above alignments.
+#+end_quote
+
+
+
+* resources
+
+** https://old.reddit.com/r/emacs/comments/7au3hj/how_do_you_manage_your_emacs_windows_and_stay_sane/
+
+** http://juanjose.garciaripoll.com/blog/arranging-emacs-windows/index.html
+
+*** good examples of using display-buffer-alist 
+
+#+name: 8QrnVMrrb2KHcT7Qs4zah2
+#+begin_src emacs-lisp
+(setq
+ ;; Kill a frame when quitting its only window
+ frame-auto-hide-function 'delete-frame
+ ;; Maximum number of side-windows to create on (left top right bottom)
+ window-sides-slots '(0 1 1 1)
+ ;; Default rules
+ display-buffer-alist
+ `(;; Display *Help* buffer at the bottom-most slot
+   ("*\\(Help\\|trace-\\|Backtrace\\|RefTeX.*\\)"
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-in-side-window)
+	(side . right)
+	(slot . 0)
+	(window-width . 0.33)
+	(reusable-frames . visible))
+   ("^\\*info"
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-pop-up-frame)
+	(pop-up-frame-parameters
+	  (width . 80)
+	  (left . 1.0)
+	  (fullscreen . fullheight)))
+   ;; Open new edited messages in a right-hand frame
+   ;; For this to close the frame, add
+   ;; (add-hook 'wl-draft-kill-pre-hook 'quit-window)
+   ("\\(\\*draft\\*\\|Draft/\\)"
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-pop-up-frame)
+	(pop-up-frame-parameters
+	  (width . 80)
+	  (left . 1.0)
+	  (fullscreen . fullheight)))
+   ;; TeX output buffers to bottom, with 10 lines
+   (,(jjgr-rx-mode-name "^\\(TeX Output\\|TeX\\)")
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-in-side-window)
+	(side . bottom)
+	(slot . 0)
+	(window-height . 10)
+	(reusable-frames . visible))
+   ;; Display *BBDB* buffer on the bottom frame
+   ("*BBDB"
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-in-side-window)
+	(side . bottom)
+	(slot . 0)
+	(window-height . 10)
+	(reusable-frames . visible))
+   ;; Split shells at the bottom
+   ("^\\*[e]shell"
+	(display-buffer-reuse-window display-buffer-in-previous-window display-buffer-below-selected)
+	(window-min-height . 20)
+	(reusable-frames . visible)
+	)
+   )
+ )
+#+end_src
+
+** https://stackoverflow.com/questions/18346785/how-to-intercept-a-file-before-it-opens-and-decide-which-frame
+
+** https://old.reddit.com/r/emacs/comments/cpdr6m/any_additional_docstutorials_on_displaybuffer_and/  :great:example:
+
+*** I'm going to try the examples from [[file:20210407214102-emacs_q.org][emacs -Q]] 
+
+**** set back to nil
+#+name: 3YY29w9hNh2Aue2YG9mNyZ
+#+begin_src emacs-lisp
+(setq display-buffer-alist nil)
+#+end_src
+
+**** make shell always display in same window
+#+name: BhPaGDdWxUyBUkCtkfnXVc
+#+begin_src emacs-lisp
+(setq display-buffer-alist '(("\\*shell" (display-buffer-same-window))))
+#+end_src
+**** reuse "existing shell buffers" first, then display same window
+#+name: fzzCFyb8oUqGTsNabzUwyx
+#+begin_src emacs-lisp
+(setq display-buffer-alist '(("\\*shell" (display-buffer-reuse-window display-buffer-same-window))))
+#+end_src
+**** display help buffer to right, limit to 80 chars
+
+#+name: RNfUbg2d4Dhwd4e5UMW3Wc
+#+begin_src emacs-lisp
+(setq display-buffer-alist '(("\\*shell" 
+                  (display-buffer-reuse-window display-buffer-same-window))
+                 ("\\*help" 
+                  (display-buffer-reuse-window display-buffer-in-side-window)
+                  (side . right)
+                  (window-width . 80))))
+#+end_src
+
+** https://old.reddit.com/r/emacs/comments/cpdr6m/any_additional_docstutorials_on_displaybuffer_and/#bottom-comments
+
