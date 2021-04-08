@@ -1,5 +1,9 @@
 #+title: haskell development with nix
 
+* random questions
+
+** [[file:20210406160504-is_nix_faster_to_bootstrap_ghc_than_stack.org][Is nix faster to bootstrap ghc than stack?]]
+
 * resources
 ** https://www.reddit.com/r/haskell/comments/lw4kmg/using_nix_for_haskell_development_in_emacs_with/
 ** [[file:20210324195558-haskell_nix.org][haskell.nix]]
