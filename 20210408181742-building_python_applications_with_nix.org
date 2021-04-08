@@ -199,6 +199,8 @@ error: builder for '/nix/store/nfd7nj1c06vl7c7h52a1rr3z3w3znnk3-python2.7-org-mo
 
 *** I'm not sure how to tell
 
+** I'm not sure, I'll [[https://logs.nix.samueldr.com/nixos/2021-04-08#4831438][ask on irc]]
+
 * resources
 
 ** https://nixos.org/manual/nixpkgs/stable/#python 
