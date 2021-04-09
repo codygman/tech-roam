@@ -24,3 +24,4 @@ https://www.quora.com/Why-is-Haskell-not-used-in-the-software-industry-even-thou
 *** TODO I think this is only partially true now using withStackTrace
 
 That doesn't cover your dependencies though
+

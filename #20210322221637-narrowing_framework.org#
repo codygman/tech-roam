@@ -1,0 +1,17 @@
+#+title: narrowing framework
+
+What emacsers call the thing that lets you narrow a list like:
+
+- foo
+- bar
+- baz
+- qux
+
+To:
+
+- bar
+- baz
+
+By typing =ba=.
+
+Also sometimes referred to as fuzzy search.

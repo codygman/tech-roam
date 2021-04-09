@@ -1,0 +1,101 @@
+#+title: Conflating database models with domain models
+
+~WARNING:~ This is very much a WIP
+
+
+* An example using a simple User model in Haskell
+
+** Note: I'll use psuedo-code and assume accessors don't clash
+
+*** except I'll use =type_= cuz it messes up my syntax highlighting and that annoys me
+
+** The typical: Use your database model in your domain logic
+
+*** Here's v1
+
+**** user database model
+
+#+begin_src haskell
+data User = User { id :: Int, name :: String, type_ :: String}
+#+end_src
+
+
+**** file database model
+
+#+begin_src haskell
+  data File = File { id :: Int
+                   , name
+                   , content :: String
+                   , owner :: Int -- user id
+                   , hasPermission :: [Int] -- user ids
+                   }
+#+end_src
+
+
+**** function to show user files
+
+#+begin_src haskell
+  showFile :: User -> File
+  showFile user = do
+    let file = getFile (id user)
+  putStrLn $ contents file
+#+end_src
+
+
+*** New business requirement: Government customers need special text in showFile
+
+**** Here's the easiest change
+
+#+begin_src haskell
+  showFile :: User -> File
+  showFile user = do
+    let file = getFile (id user)
+    case type_ user of
+      "Government" -> do
+           putStrLn $ "Government presents: \n" <> contents file
+      _ -> putStrLn $ contents file
+#+end_src
+
+**** Cool, so what's the problem?
+
+**** Nice and simple right? Well... for now anyway
+
+*** Urgent new business requiremenet: Government customers need special notes on their users
+
+** Using domain models
+
+*** v1
+
+**** domain model (it's first on purpose)
+
+#+begin_src haskell
+data User = User {id :: Int, name :: String, type_ :: String }
+#+end_src
+
+**** database user
+
+#+begin_src haskell
+data DBUser = DBUser {id :: Int, name :: String, type_ :: String }
+#+end_src
+
+*** New business requirement: Government customers need special text in showFile
+
+**** Now we can change the domain model 
+
+#+begin_src haskell
+getDbUser :: MagicalPrism -> DBUser
+data User = User DBUser | GovernmentUser DBUser
+#+end_src
+
+**** then implment showFile like so
+
+#+begin_src haskell
+  showFile :: User -> File
+  showFile user = do
+    let file = getFile (getDbUser (id user))
+    case user of
+      GovernmentUser -> do
+           putStrLn $ "Government presents: \n" <> contents (dbFile file)
+      _ -> putStrLn $ contents (dbFile file)
+#+end_src
+

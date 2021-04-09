@@ -1,6 +1,6 @@
 #+title: org roam making suspicious expensive find call bug
 
-Fhttps://github.com/org-roam/org-roam/issues/1459
+https://github.com/org-roam/org-roam/issues/1459
 
 
 
