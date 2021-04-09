@@ -99,3 +99,65 @@ data User = User DBUser | GovernmentUser DBUser
       _ -> putStrLn $ contents (dbFile file)
 #+end_src
 
+
+* Did conflating database models and domain models come from Django, Rails, and MVC?
+
+** https://avdi.codes/fowler-on-rails/
+
+#+begin_quote
+The model/record conflation: Seeing “models” as strictly DB-backed resources.
+#+end_quote
+
+#+begin_quote
+A simple Domain Model looks very much like the database design with mostly one domain object for each database table. A rich Domain Model can look different from the database design, with inheritance, strategies, and other [Gang of Four] patterns, and complex webs of interconnected objects. A rich Domain Model is better for more complex logic, but is harder to map to the database. A simple Domain Model can use Active Record, whereas a rich Domain Model requires Data Mapper.
+#+end_quote
+
+
+* resources
+
+** https://stackoverflow.com/questions/56615438/are-domain-models-different-from-the-database-models :reallyGood:
+
+*** didn't know this about [[file:20210408223021-domain_driven_development.org][domain driven development]] 
+
+#+begin_quote
+ff we follow DDD and devide your Entities into Aggregates properly, you should not need to do joins between them as they should not be loaded or changes in the same transation.
+#+end_quote
+
+*** people just persist stuff and make it work, they don't model
+
+#+begin_quote
+When I started to write applications that use the holly Database it was really weird to me how people don't think and don't know about their domains, just persist stuff and make them work and all they talk about is technology.
+#+end_quote
+
+*** ORM ... typically much less restrictive... encapsulation out window
+
+#+begin_quote
+ORM classes are typically a lot less restrictive than domain classes. What one typically finds is that when going down the road of using a domain model as your ORM model, or vice versa, is that the domain model ends up rather anemic. 
+#+end_quote
+
+** https://www.vertabelo.com/blog/what-a-concept-is-logical-data-modeling-obsolete/?utm_source=dbweekly&utm_medium=email
+
+*** "Constraining attributes to domains" is a good place to apply type safety 
+
+** https://enterprisecraftsmanship.com/posts/ef-core-vs-nhibernate-ddd-perspective/
+
+*** what would the haskell equivalent be of a class member here 
+
+#+begin_quote
+But that would violate the separation of concerns principle. You’re introducing a concern that has nothing to do with the domain you are working on. Replace FavoriteCourseId with a proper member:
+#+end_quote
+
+Maybe a virtual accessor using a lens? Just a function?
+
+** https://enterprisecraftsmanship.com/posts/having-the-domain-model-separate-from-the-persistence-model/
+
+** https://kalele.io/modeling-aggregates-with-ddd-and-entity-framework/
+
+** https://softwareengineering.stackexchange.com/questions/396868/shifting-from-anemic-domain-model-to-rich-domain-model 
+
+** https://www.dbdebunk.com/2015/02/the-conceptual-logical-conflation-and.html
+
+** https://www.dbdebunk.com/2018/10/understanding-conceptual-vs-data_28.html
+
+** https://enterprisecraftsmanship.com/posts/always-valid-domain-model/
+

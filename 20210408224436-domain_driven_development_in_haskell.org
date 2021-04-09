@@ -1,0 +1,5 @@
+#+title: domain driven development in haskell
+
+[[file:20210408223021-domain_driven_development.org][domain driven development]], but for [[file:20210323175936-haskell.org][Haskell]] 
+
+Also see the example in [[file:20210408215445-conflating_database_models_with_domain_models.org][Conflating database models with domain models]] 

@@ -1,0 +1,93 @@
+#+title: domain driven development
+
+https://en.wikipedia.org/wiki/Domain-driven_design
+
+* vocab
+
+** Anemic domain models
+
+** rich domain models
+
+* Really good resource? [[https://drive.google.com/file/d/0B59Tysg-nEQZSXRqVjJmQjZyVXc/view][Programming as if the Domain (and Performance) Mattered]]
+** notes
+
+Oh wow... it's a criticism of functional programming (for one example) removing waterfall and using an int instead? Well that's just first few pages but this seems interesting
+
+Hah, they insult my beloved and wished for [[file:20210408231056-sufficiently_smart_compiler.org][sufficiently smart compiler]].
+** resources
+*** https://old.reddit.com/r/programming/comments/6y1sbm/programming_as_if_the_domain_and_performance/ 
+*** (haskelll rebuttal by tomjaguarpaw) https://old.reddit.com/r/programming/comments/6y1sbm/programming_as_if_the_domain_and_performance/dmkfyo0/
+*** https://old.reddit.com/r/haskell/comments/6s5uh0/programming_as_if_the_domain_mattered/
+
+* https://hackernoon.com/making-a-case-for-domain-modeling-17cf47030732 good?
+
+* resources
+
+** https://old.reddit.com/r/softwarearchitecture/comments/8j2wqj/why_do_we_need_rich_domain_models_at_all/ 
+
+#+begin_quote
+Anemic domain models are particularly prone to becoming exceedingly difficult to understand, and a system that cannot be understood cannot be changed. 
+#+end_quote
+
+** https://old.reddit.com/r/PHP/comments/1zzssg/how_we_code_orms_and_anemic_domain_models/
+
+** https://old.reddit.com/r/programming/comments/2181j5/the_anaemic_domain_model_is_no_antipattern_its_a/ (argument in favor of anemic design)
+
+#+begin_quote
+The anaemic model is easy to understand and is really fast to code when the service is simple. When things become more complex, fighting code duplication and keeping things synced up becomes too difficult for this model. At this point it is good to have very explicit commands coming into the system that are handled by a good domain model.
+#+end_quote
+
+counter:
+
+#+begin_quote
+I was never a fan of RDM. It's so much easier to work with entities when you have them dumb and simple and just provide service(s) to perform operations on them. Easier as scalability, maintainability, etc.
+#+end_quote
+
+** https://www.martinfowler.com/bliki/AnemicDomainModel.html
+
+** https://en.wikipedia.org/wiki/Anemic_domain_model
+
+** https://no-kill-switch.ghost.io/once-an-anti-pattern-anemic-domain-model/
+
+** https://news.ycombinator.com/item?id=20788503
+
+#+begin_quote
+I'm definitely guilty of using and promoting anemic models. I find that teams have a hard time deciding whether logic is service or domain or whatever and gravitate towards putting everything in one place if domain objects are allowed to be at all smart. On the other hand, people do well with the rule that logic belongs in procedural layers with clear names and some sort of maximum size/complexity.
+#+end_quote
+
+** https://stackoverflow.com/questions/6293981/concrete-examples-on-why-the-anemic-domain-model-is-considered-an-anti-pattern
+
+** https://stackoverflow.com/questions/6293981/concrete-examples-on-why-the-anemic-domain-model-is-considered-an-anti-pattern (seems good)
+
+** https://stackoverflow.com/questions/23314330/rich-vs-anemic-domain-model
+
+** https://news.ycombinator.com/item?id=10295398 (functional specific)
+
+** https://news.ycombinator.com/item?id=10296376 
+
+#+begin_quote
+The author briefly mentions the Single Responsibility Principle and then tramples all over it, suggesting you put your 'code close to your data', shoving your verbs onto your models? Good luck ever refactoring. You'll have orphaned properties and methods that people are afraid to remove because they may anger the gods. You'll have flags, flags everywhere to control how your model does its work. Give me small, swappable, testable noun-verb classes any day of the week. 
+#+end_quote
+
+** https://news.ycombinator.com/item?id=10295695
+
+against domain models:
+
+#+begin_quote
+And the rich domain model simply breaks down when you need functionality on two objects (should it be user.render(engine) or engine.render(user); either way one of your domain objects needs to know some "private internals" of another). With the anemic domain model these problems don't exist. 
+#+end_quote
+
+counter to above:
+
+#+begin_quote
+jen20 on Sept 29, 2015 [–]
+
+This is a gross misunderstanding of a rich domain model. A domain model should depend on nothing externally, except via interfaces which are a part of the domain model.
+
+The real tl;dr is that if you can't run and test your domain model without a database, UI, external services etc, it likely is not a domain model in the first place.
+
+Your misunderstanding is common when ignoring the provenance of the pattern: the place for it is "when you have complex and ever-changing business rules" (page 116 of Patterns of Enterprise Architecture). If "user.render(engine)" or "engine.render(user)" are operations in your domain model (and are, as I assume from your post, UI related operations) the domain model is being used as an architectural pattern rather than a business logic organization pattern, in which case none of the stated benefits hold because of misuse. 
+#+end_quote
+
+** https://news.ycombinator.com/item?id=26312652
+

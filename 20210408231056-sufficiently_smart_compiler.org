@@ -1,0 +1,2 @@
+#+title: sufficiently smart compiler
+
