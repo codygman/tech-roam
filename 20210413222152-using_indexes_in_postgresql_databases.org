@@ -7,7 +7,7 @@ https://pawelurbanek.com/explain-analyze-indexes
 In some cases a seq scan will be faster even if an index exists, so an explain analyze will show seq scan even if you've created an index:
 
 #+name: ixnaVcYho8MUVKkggRpn6x
-#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim :export both
+#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim :exports both
 explain analyze select * from public.customers where customer_id = 'ALFKI';
 #+end_src
 
@@ -21,7 +21,7 @@ explain analyze select * from public.customers where customer_id = 'ALFKI';
 
 It's necessary to disable the seq scan in your connection to verify it is or isn't used:
 
-#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim :export both
+#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim :exports both
 SET enable_seqscan TO off;
 explain analyze select * from public.customers where customer_id = 'ALFKI';
 #+end_src
