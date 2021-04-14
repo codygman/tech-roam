@@ -33,3 +33,5 @@ explain analyze select * from public.customers where customer_id = 'ALFKI';
 :   Index Cond: (customer_id = 'ALFKI'::bpchar)
 : Planning Time: 0.248 ms
 : Execution Time: 0.054 ms
+
+
