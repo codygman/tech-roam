@@ -1,0 +1,9 @@
+#+title: 2021-04-13
+
+I was browsing reddit and came across:
+
+https://pawelurbanek.com/explain-analyze-indexes
+
+I wished I could try out the examples on some real data. Then I realized I could because [[file:../20210329094954-universal_database_access_with_org_babel_and_lsp_mode.org][universal database access with org babel and lsp-mode]] led me to also make sure my [[file:../20210324202244-devos.org][DevOS]] [[file:../20210324223928-nix_flakes.org][nix flakes]] powered setup provisioned with postgres and autoloaded the microsoft northwind database.
+
+Here's where I did it: [[file:~/tech-roam/20210413222152-using_indexes_in_postgresql_databases.org::*verifying an index exists with explain analyze][verifying an index exists with explain analyze]]
