@@ -1,0 +1,35 @@
+#+title: using indexes in postgresql databases
+
+* verifying an index exists with explain analyze
+
+https://pawelurbanek.com/explain-analyze-indexes
+
+In some cases a seq scan will be faster even if an index exists, so an explain analyze will show seq scan even if you've created an index:
+
+#+name: ixnaVcYho8MUVKkggRpn6x
+#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim
+explain analyze select * from public.customers where customer_id = 'ALFKI';
+#+end_src
+
+#+RESULTS: ixnaVcYho8MUVKkggRpn6x
+: QUERY PLAN
+: Seq Scan on customers  (cost=0.00..3.14 rows=1 width=126) (actual time=0.008..0.015 rows=1 loops=1)
+:   Filter: (customer_id = 'ALFKI'::bpchar)
+:   Rows Removed by Filter: 90
+: Planning Time: 0.254 ms
+: Execution Time: 0.044 ms
+
+It's necessary to disable the seq scan in your connection to verify it is or isn't used:
+
+#+begin_src sql :engine postgresql :dbhost localhost :database northwind :results verbatim
+SET enable_seqscan TO off;
+explain analyze select * from public.customers where customer_id = 'ALFKI';
+#+end_src
+
+#+RESULTS:
+: SET
+: QUERY PLAN
+: Index Scan using pk_customers on customers  (cost=0.14..8.16 rows=1 width=126) (actual time=0.025..0.025 rows=1 loops=1)
+:   Index Cond: (customer_id = 'ALFKI'::bpchar)
+: Planning Time: 0.248 ms
+: Execution Time: 0.054 ms

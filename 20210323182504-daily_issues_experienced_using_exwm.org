@@ -867,12 +867,16 @@ It took 3 hours of using my laptop and creating new firefox windows/capturing th
 [05:54:21] exwm--set-geometry:	Setting #x14001ab to 960x988+0+29
 **** lot of =unhandled: WM_STATE= and =unhandled: _NET_WM_STATE= from exwm--on-PropertyNotify
 
+
 ** These related issues might help
 *** https://github.com/ch11ng/exwm/issues/732
 *** https://github.com/ch11ng/exwm/issues/759
 *** https://github.com/ch11ng/exwm/issues/688
 *** https://github.com/ch11ng/exwm/pull/737
 *** https://github.com/ch11ng/exwm/issues/670
+
+
+** AHA... this happens reproducibly in a capture buffer with a qutebrowser split to the right
 
 * If I spend too long in an [[https://github.com/agzam/exwm-edit][exwm-edit]] buffer the "connection" is lost between that text input box and exwm-edit
 

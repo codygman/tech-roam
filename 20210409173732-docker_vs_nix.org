@@ -1,0 +1,5 @@
+#+title: docker vs nix
+
+https://discourse.nixos.org/t/is-there-much-difference-between-using-nix-shell-and-docker-for-local-development/807/3
+
+https://container-solutions.com/step-towards-future-configuration-infrastructure-management-nix/
