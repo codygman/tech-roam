@@ -44,3 +44,10 @@ touch /tmp/somerandomfile
 
 It'd be cool to showcase this by picking some random repo from [[https://github.com/explore][Github explore]] and debug an issue they have. Even better (maybe?) if it's a language I either haven't used or haven't used in a while.
 
+* TODO navigation can feel tricky/overwhelming at first
+
+For instance:
+
+You are sharing an analysis' conclusions and someone says:
+
+quote

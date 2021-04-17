@@ -1,0 +1,5 @@
+#+title: org babel snippet history like command line history
+
+=C-n= and =C-p= in command line goes to the last command.
+
+Why not have all babel source blocks in scope and have those binds cycle through them in place?
