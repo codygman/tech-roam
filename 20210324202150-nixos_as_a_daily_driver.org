@@ -4,7 +4,7 @@
 
 ** "Discord updated and nixpkgs master hasn't been updated yet but I want to chat with people what do"
 
-- Go to the discord website and click download to see w[[file:20210325151912-haskell_arguments_when_vs_unless.org][haskell arguments: when vs unless]]hat version is in the download.
+- Go to the discord website and click download to see what version is in the download.
 
 It's 0.14.
 
@@ -29,6 +29,7 @@ What is nixpkgs master?
 
 ** [[file:20210326184713-nvidia_graphics_in_nixos.org][nvidia graphics in NixOS]]
 
+
 ** I want to replace uuidgen with shortuuid but there are no binaries
 
 You can make a wrapper script :)
@@ -45,4 +46,76 @@ print (shortuuid.uuid())
 ''
 #+end_src
 
+
+* issues 
+
+** I'm trying to start a [[file:20210324195558-haskell_nix.org][haskell.nix]] project but apparently 20GB of space isn't enough, how do I find out how to save space?
+
+*** let's try [[https://github.com/symphorien/nix-du][nix-du]] 
+
+❯ nix-shell -p nix-du zgrviewer graphviz
+❯ nix-du -s=500MB | tred > store.dot 
+
+*** it helps me find that I have a =result= artifact from =~/flk=, my old nix based sysstem, who is taking up 6.22GB
+
+*** let's try deleting it
+
+**** before
+
+#+name: show-disk-size
+#+begin_src sh :results verbatim
+df -h /dev/disk/by-uuid/c5c1f122-1627-4111-9060-8e600862ca4f
+#+end_src
+
+#+RESULTS: show-disk-size
+: Filesystem                Size      Used Available Use% Mounted on
+: /dev/disk/by-uuid/c5c1f122-1627-4111-9060-8e600862ca4f
+:                          80.0G     73.8G      2.1G  97% /
+
+
+**** delete
+
+#+begin_src sh
+rm -v ~/flk/result
+#+end_src
+
+#+RESULTS:
+: removed '/home/cody/flk/result'
+
+used:
+
+#+begin_src sh
+sudo nix-collect-garbage -d
+#+end_src
+
+be sure to use sudo otherwise everything isn't deleted
+
+
+**** after
+
+#+call: show-disk-size()
+
+#+RESULTS:
+: Filesystem                Size      Used Available Use% Mounted on
+: /dev/disk/by-uuid/c5c1f122-1627-4111-9060-8e600862ca4f
+:                          80.0G     66.5G      9.4G  88% /
+
+
+*** I had a couple of other things that have a combined size of less than 1GB... lets see if it only clears under 1 GB
+
+#+begin_src sh
+rm -v /home/cody/code/table-gen/result*
+#+end_src
+
+#+RESULTS: /run/current-system/sw/bin/bash: shortuuid: command not found
+| removed | '/home/cody/code/table-gen/result'   |
+| removed | '/home/cody/code/table-gen/result-2' |
+| removed | '/home/cody/code/table-gen/result-3' |
+| removed | '/home/cody/code/table-gen/result-4' |
+
+*** I'm not sure what transient stands for... but it's linked to things taking up a ton of space
+
+*** let's also delete all result symlinks in ~ then run nix garbage collect
+
+*** well, I think that's enough to install my project now... maybe
 
