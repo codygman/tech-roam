@@ -46,8 +46,71 @@ It'd be cool to showcase this by picking some random repo from [[https://github.
 
 * TODO navigation can feel tricky/overwhelming at first
 
-For instance:
+** An example
 
-You are sharing an analysis' conclusions and someone says:
+*** You are sharing an analysis' conclusion like:
 
-quote
+#+begin_quote
+All active users were deleted
+#+end_quote
+*** because
+
+#+name: CmJ8kRPtpRkjpo5EKYMZqw
+#+begin_src sql
+select * from users where legacy_active = 1;
+#+end_src
+
+*** and someone says:
+
+#+begin_quote
+No, we migrated the legacy `active_field` to active finally.
+#+end_quote
+
+*** Then you have some options
+
+**** create a new snippet and retype the query
+
+#+begin_example
+db1ProdRO<TAB>
+#+end_example
+
+**** copy/paste the entire previous block
+
+***** typically you'll be in or below that block
+
+***** meaning you would do
+#+name: jgdv9Es5yi5PEnXPZhtw2w
+#+begin_example
+?beg RET <TAB> yy C-o p
+#+end_example
+
+***** pro: no extra setup
+
+***** con: mental overhead
+
+***** might take time to find the right previous block
+
+
+**** TODO use [[file:20210417170439-org_babel_snippet_history_like_command_line_history.org][org babel snippet history like command line history]] 
+
+***** =C-p= and the old query shows up:
+
+#+begin_src sql
+select * from users where legacy_active = 1;
+#+end_src
+
+***** note that you land end of line in my currently imagined functionality
+
+***** modify it with
+
+#+name: Enj2jEysAxKSGpuZEBaPrA
+#+begin_example
+/leg RET df_ C-c C-c
+#+end_example
+
+***** and you get 
+
+#+begin_src sql
+select * from users where active = 1;
+#+end_src
+
