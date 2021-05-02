@@ -33,12 +33,32 @@ At least, you did in pre-emacs 27... but if you're on 27 or newer you'll need to
 
 * You use yasnippet with tab-complete and never wish for anything else, DONE
 
-
 * Well.. not really... there are still things that could be nicer in practice
+
+* One such thing is [[file:20210417170439-org_babel_snippet_history_like_command_line_history.org][org babel snippet history like command line history]]
+
+Frequently while doing database analysis I find myself wanting a query that's just slightly different than the last.
+
+* better navigation
+
+** by code block 
+
+=org-babel-previous-src-block= covers this, just have to bind it
+
+=,bp= and =,bn= maybe?
+
+** previous heading
+
+=org-previous-visible-heading= covers this, but does that go up a level?
+
+Yes, yes it does.
+
+In evil-collection it gets bound to =[[= which I still feel a little awkward hitting on my current moonlander keyboard default bindings using my middle and ring fingernails :S
 
 * Annoying things
 
 ** TODO =:tangle= doesn't respect =:dir=, fix it
+
 
 * Things I argue are more important than snippets
 
