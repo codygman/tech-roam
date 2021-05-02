@@ -1,0 +1,19 @@
+#+title: remote development as a default
+
+[[file:20210502164132-vscode.org][vscode]] has recently popularized remote development with their development containers, and it's quite a nice result. One problem though is it doesn't have the strengths of [[file:20210322214027-emacs.org][emacs]] as a platform (see [[file:20210323171445-using_emacs_for_everything.org][using emacs for everything]] for some examples).
+
+A solution then, is using [[file:20210502164243-rdp.org][RDP]] and an rdp client such as [[file:20210502164308-remmina.org][Remmina]] by default.
+
+A problem though with something like an [[file:20210323182419-exwm.org][exwm]] based setup with RDP is if your client itself is running exwm you may run into problems like:
+
+#+begin_quote
+When I press =C-c= should that keybinding go to the exwm host or client?
+#+end_quote
+
+A solution to this then is to even use [[file:20210502164107-remote_development_as_a_default.org][remote development as a default]] with localhost as well and having your host window manager be something unopinionated that takes up very few (if any) keybindings.
+
+Right now I'm using xfce, but it actually grabs some keybindings like =S-p= so I'll likely move to something else or figure out how to remove those bindings in xfce.
+
+Having [[file:20210502164107-remote_development_as_a_default.org][remote development as a default]] is also a good way of [[file:20210502164539-dogfooding.org][dogfooding]] your solution and making sure there aren't any holes.
+
+I recently had a session where I did this and forgot I was even using RDP and I consider that a great success : )

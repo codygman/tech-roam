@@ -34,4 +34,3 @@ explain analyze select * from public.customers where customer_id = 'ALFKI';
 : Planning Time: 0.248 ms
 : Execution Time: 0.054 ms
 
-

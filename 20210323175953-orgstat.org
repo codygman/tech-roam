@@ -1,10 +1,12 @@
 #+title: orgstat
 
 * Trying out orgstat (soft-BLOCKED because it's broken on latest nixpkgs)
+
 ** status
 Should be buildable by nixpkgs by <2021-03-26 Fri>
 
 https://github.com/volhovm/orgstat/issues/15
+
 ** Is it working in [[file:20210323180422-nixpkgs.org][nixpkgs]]?
 #+begin_src sh
 nix-shell -p haskellPackages.orgstat --run orgstat

@@ -13,3 +13,5 @@ Like, a blog post exploring the solutions and pitting them against one another
 * [[file:20210408174657-structural_diffing_for_org_mode_conflicts.org][structural diffing for org mode conflicts]]
 
 * [[file:20210408183948-org_babel_source_block_dependencies.org][org-babel source block dependencies]]
+
+* org mode time tracker and contextual assistant

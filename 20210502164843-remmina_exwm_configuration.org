@@ -1,0 +1,32 @@
+#+title: Remmina exwm configuration
+
+* Using [[file:20210502164308-remmina.org][Remmina]] and [[file:20210502164243-rdp.org][RDP]]/[[file:20210502164906-xrdp.org][xrdp]] is quite nice, however just setting my default window manager like:
+
+#+begin_src nix
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "exwm";
+  }
+#+end_src
+
+Doesn't seem to pick up my exwm session I define:
+
+#+begin_src nix
+services.xserver = {
+    enable = true;
+    xkbOptions = "ctrl:nocaps";
+    desktopManager = {
+      xfce.enable = true;
+    };
+    windowManager.session = lib.singleton {
+      name = "exwm";
+      start = ''
+        export EDITOR='emacsclient -t -a emacs'
+        $EDITOR
+      '';
+    };
+    libinput.enable = true;
+  }
+#+end_src
+
+One problem is that =ctrl:nocaps= doesn't actually take effect in the rdp host.

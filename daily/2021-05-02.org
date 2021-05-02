@@ -1,0 +1,5 @@
+#+title: 2021-05-02
+
+* [[file:../20210502164107-remote_development_as_a_default.org][remote development as a default]]
+
+* [[file:../20210502164843-remmina_exwm_configuration.org][Remmina exwm configuration]]
