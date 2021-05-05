@@ -1,0 +1,5 @@
+#+title: defacto-term to refer to something
+
+There's a term for this I think... maybe Wikipedia uses it as the antonym to "disambiguation".
+
+Anyway I had misnamed "[[file:20210408223021-domain_driven_design.org][domain driven design]]" as "domain driven development", but the former is the more widely used term. So I changed it, but in some cases it would be appropriate to add an alias. In this case it's better to modify my own language to fit others so my mental model stays closer I think.

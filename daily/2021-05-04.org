@@ -1,0 +1,7 @@
+#+title: 2021-05-04
+
+* Figuring out the [[file:../20210504230918-defacto_term_to_refer_to_something.org][defacto-term to refer to something]] is difficult!
+
+Good thing I have roam aliases!
+
+I need to merge more pages with aliases honestly!
