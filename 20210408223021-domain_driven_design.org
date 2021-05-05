@@ -1,4 +1,4 @@
-#+title: domain driven development
+#+title: domain driven design
 
 https://en.wikipedia.org/wiki/Domain-driven_design
 
@@ -7,6 +7,10 @@ https://en.wikipedia.org/wiki/Domain-driven_design
 ** Anemic domain models
 
 ** rich domain models
+
+* related
+
+** [[file:20210408224436-domain_driven_design_in_haskell.org][domain driven design in haskell]]
 
 * Really good resource? [[https://drive.google.com/file/d/0B59Tysg-nEQZSXRqVjJmQjZyVXc/view][Programming as if the Domain (and Performance) Mattered]]
 ** notes

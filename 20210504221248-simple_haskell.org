@@ -1,0 +1,17 @@
+#+title: "simple haskell"
+
+As opposed to [[file:20210504223828-fancy_haskell.org]["fancy Haskell"]], also see [[file:20210504225727-simple_haskell_vs_fancy_haskell.org][simple haskell vs fancy haskell]]
+
+I believe part of my negative reaction to [[file:20210504221248-simple_haskell.org]["simple haskell"]] is rooted in how much it gets in the way [[file:20210504220401-declarative_programming.org][declarative programming]]. I also value [[file:20210504221344-simplicity_in_the_large.org][simplicity in the large]] over [[file:20210504221350-simplicity_in_the_small.org][simplicity in the small]], but practices such as [[file:20210330213423-agile_software_development.org][agile software development]] make it hard to consider [[file:20210504221344-simplicity_in_the_large.org][simplicity in the large]] given they try to eliminate [[file:20210330213213-big_design_up_front.org][big design up front]].
+
+That results in higher adoption of [[file:20210504203454-database_driven_design.org][database driven design]] over [[file:20210408223021-domain_driven_design.org][domain driven design]] which I consider to be at least suboptimal. I'm of the opinion that [[file:20210504215235-database_driven_design_is_inferior_to_domain_driven_design_most_of_the_time.org][database driven design is inferior to domain driven design most of the time]], and since [[file:20210504221248-simple_haskell.org]["simple haskell"]] moves the needle towards the same [[file:20210504221724-brand_of_simplicity.org][brand of simplicity]] underpinning [[file:20210326115802-worse_is_better.org][worse is better]] and the aforementioned [[file:20210504203454-database_driven_design.org][database driven design]] I find myself rejecting it's tenets as well.
+
+However... I care about [[file:20210504222953-teachability_of_programming_languages.org][teachability of programming languages]] and [[file:20210504223035-reducing_unnecessary_complexity.org][reducing unnecessary complexity]] and I think that [[file:20210504221248-simple_haskell.org]["simple haskell"]] has merits in this area.
+
+This is complicated by the question of whether a programming language that is easy to learn is a virtue or not.
+
+I'll try and avoid the myraid of ethical questions surrounding that statement since this [[file:20210504223520-my_tech_roam.org][my tech-roam]] I'm making public is supposed to be narrowly technologically focused.
+
+Maybe [[file:20210504223828-fancy_haskell.org]["fancy Haskell"]] is like getting a 4 year degree and worth it even though it's harder at first.
+
+Another part of [[file:20210504221248-simple_haskell.org]["simple haskell"]] seems to be to [[file:20210504230017-prefer_monomorphic_functions_to_polymorphic_functions.org][prefer monomorphic functions to polymorphic functions]],  but I feel that's just a way to avoid [[file:20210330213213-big_design_up_front.org][big design up front]] either by choice, inertia, or lack of familiarity. [[file:20210504230214-is_complexity_determined_mostly_by_familiarity.org][is complexity determined mostly by familiarity?]]

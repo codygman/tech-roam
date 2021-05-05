@@ -1,0 +1,4 @@
+#+title: database driven design is inferior to domain driven design most of the time
+
+
+I currently have a belief that [[file:20210504203454-database_driven_design.org][database driven design]] is inferior to [[file:20210408223021-domain_driven_design.org][domain driven design]] in general. [[file:20210504215936-functional_programming.org][functional programming]]

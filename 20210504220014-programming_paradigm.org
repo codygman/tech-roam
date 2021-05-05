@@ -1,0 +1,16 @@
+#+title: programming paradigm
+
+* These are the most popular ones
+
+- [[file:20210504215936-functional_programming.org][functional programming]]
+- [[file:20210504220115-imperative_programming.org][imperative programming]]
+- [[file:20210504220401-declarative_programming.org][declarative programming]]
+- [[file:20210504220553-object_oriented_programming.org][object-oriented programming]]
+
+* Others include
+
+- [[file:20210504220423-array_programming.org][array programming]]
+- [[file:20210504220647-logic_programming.org][logic programming]]
+
+* resources
+** https://cs.lmu.edu/~ray/notes/paradigms/

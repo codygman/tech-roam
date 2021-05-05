@@ -1,0 +1,4 @@
+#+title: database driven design
+
+
+TODO add alias about what [[file:20210504203510-martin_fowler.org][Martin Fowler]] refers to as the three types inc. [[file:20210408223021-domain_driven_design.org][domain driven design]]/design

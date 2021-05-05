@@ -1,0 +1,3 @@
+#+title: prefer monomorphic functions to polymorphic functions
+
+I don't think this is the right answer, personally. But this page is here to link to it or talk about it

@@ -1,0 +1,2 @@
+#+title: declarative functional programming is a better default than imperative programming
+

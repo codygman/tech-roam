@@ -1,0 +1,13 @@
+#+title: "fancy Haskell"
+#+roam_alias: "\"fancy Haskell\""
+
+I don't like this name, but I don't have a better one and this one is known. I don't like it because "fancy" implies unneeded...
+
+
+hmm... I can't quite get the thought but some things on my mind:
+
+[[file:20210504225126-cargo_cult.org][cargo cult]]
+[[file:20210504224041-real_software_programmer.org]["real software programmer"]]
+[[file:20210504225137-ivory_tower_academic.org]["ivory tower academic"]]
+
+And the relation of those things with outright dismissing things that don't fit the mold of [[file:20210504221248-simple_haskell.org]["simple haskell"]]  or ones personal [[file:20210504221724-brand_of_simplicity.org][brand of simplicity]] rather than a good-faith attempt at [[file:20210504225336-critical_analysis.org][critical analysis]].

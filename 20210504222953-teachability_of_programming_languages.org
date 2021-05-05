@@ -1,0 +1,9 @@
+#+title: teachability of programming languages
+
+Some languages have reputations as easy to learn, like [[file:20210325162650-python.org][Python]].
+
+Others have reputations as hard to learn like [[file:20210323175936-haskell.org][Hoaskell]].
+
+How much of that is to due with familiarity of paradigm(s)?
+
+How much is due to one or the other being objectively harder or simpler?

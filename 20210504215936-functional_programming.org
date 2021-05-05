@@ -1,0 +1,7 @@
+#+title: functional programming
+
+A [[file:20210504220014-programming_paradigm.org][programming paradigm]] defined early on by [[file:20210504220922-first_class_functions.org][first-class functions]] and [[file:20210504220933-immutability.org][immutability]].
+
+More recently also focuses on [[file:20210504220739-avoiding_global_state.org][avoiding global state]], [[file:20210504221022-referential_transparency.org][referential transparency]], and [[file:20210504221037-pure_functions.org][pure functions]].
+
+I believe that [[file:20210504221130-declarative_functional_programming_is_a_better_default_than_imperative_programming.org][declarative functional programming is a better default than imperative programming]], so naturally I'm pushed towards [[file:20210323175936-haskell.org][Haskell]].

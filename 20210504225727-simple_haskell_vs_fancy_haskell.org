@@ -1,0 +1,11 @@
+#+title: simple haskell vs fancy haskell
+
+* history
+First [[file:20210504225803-michael_snoyman.org][Michael Snoyman]] posted about [[file:20210504225814-boring_haskell.org]["boring haskell"]], then some others sort of co-opted it, added bits of their own [[file:20210504221724-brand_of_simplicity.org][brand of simplicity]], and marketed it as [[file:20210504221248-simple_haskell.org]["simple haskell"]].
+
+* related
+
+** https://old.reddit.com/r/haskell/comments/ej2g06/the_simple_haskell_initiative/
+
+** https://old.reddit.com/r/haskell/comments/gok70o/simple_haskell_is_best_haskell/
+

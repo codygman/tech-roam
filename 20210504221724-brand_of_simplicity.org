@@ -1,0 +1,5 @@
+#+title: brand of simplicity
+
+I find that most arguments about simplicity aren't based in [[file:20210504221745-objective_truth.org][objective truth]], but rather treat subjective ideas as objective fact in order to allow an argument to be stronger than it actually is.
+
+For instance the [[file:20201010135959-go_programming_language.org][Go programming language]] claimed for a very long term to not have [[file:20210504222026-parametric_polymorphism.org][parametric polymorphism]] [[file:20210504222049-cuz_simplicity.org]["cuz simplicity"]]. I find that backwards given that even for very small projects the reduction in [[file:20210504222256-code_duplication.org][code duplication]]  would be worth the cost of extra complexity. Complexity which itself has already been colloquially amortized by the software programming industry having prior knowledge of [[file:20210504222026-parametric_polymorphism.org][generics]] from other languages such as [[file:20210504222749-java.org][Java]].

@@ -1,0 +1,2 @@
+#+title: parametric polymorphism
+#+roam_alias: generics

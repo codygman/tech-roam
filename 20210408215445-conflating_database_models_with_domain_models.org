@@ -2,6 +2,7 @@
 
 ~WARNING:~ This is very much a WIP
 
+* I'm currently throwing around the idea that [[file:20210504215235-database_driven_design_is_inferior_to_domain_driven_design_most_of_the_time.org][database driven design is inferior to domain driven design most of the time]] and this conflation is a supporting point.
 
 * An example using a simple User model in Haskell
 
@@ -117,7 +118,7 @@ A simple Domain Model looks very much like the database design with mostly one d
 
 ** https://stackoverflow.com/questions/56615438/are-domain-models-different-from-the-database-models :reallyGood:
 
-*** didn't know this about [[file:20210408223021-domain_driven_development.org][domain driven development]] 
+*** didn't know this about [[file:20210408223021-domain_driven_design.org][domain driven design]] 
 
 #+begin_quote
 ff we follow DDD and devide your Entities into Aggregates properly, you should not need to do joins between them as they should not be loaded or changes in the same transation.
