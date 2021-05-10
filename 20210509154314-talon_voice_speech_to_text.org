@@ -1,0 +1,29 @@
+#+title: Talon voice speech to text
+
+* Support on [[file:20200901231018-nixos.org][NixOS]]
+
+** https://old.reddit.com/r/NixOS/comments/l8yz2m/talon_voice_on_nixos/
+
+*** Apparently they have a [[file:20210325211804-nix.org][nix]] expression pinned on their [[file:20210509154530-slack.org][slack]] channel
+
+**** here's the instructions
+
+#+name: hRhBs2eGpHFfcRfvrvsFKE
+#+begin_src sh :eval no
+wget -O build.nix https://gsc.io/content-addressed/ed9fdd1a54672718192a91ac65eb4bd66cea96ed3b19b105816d2b44fae2188e.nix
+wget -O foo.nix https://gsc.io/content-addressed/a8cfb1571f6d658eb0f4f9cc3f1a51488343e55960780961e2f18abfd0376f44.nix
+mkdir sources
+wget -O sources/talon-linux.tar.xz https://talonvoice.com/dl/latest/talon-linux.tar.xz
+nix-build foo.nix
+./result/talon
+#+end_src
+
+getting an ssl error
+
+**** I ended up having to copy those addresses by hand since I couldn't convince wget with =--insecure=
+
+* emacs support
+https://github.com/jimbog/talon-scripts/blob/master/emacs.py
+
+* can be used to power [[file:20210510013235-hands_free_coding.org][hands free coding]]
+

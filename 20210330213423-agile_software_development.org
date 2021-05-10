@@ -1,7 +1,17 @@
 #+title: agile software development
 
-- [[file:20210325155846-are_points_in_agile_useful.org][are points in agile useful]]
+Seems to value getting a fix out the door soon and marking off story points above [[file:20210505080006-software_correctness.org][software correctness]].
 
+Admittedly (and annoyingly to me), this can be a more reasonable response than it sounds like.
+
+Sometimes correct may not be known to even domain experts or the intended audience, so figuring out what's correct would require learning enough about the task at hand to approach being a domain expert and transliterating it into code in order to accomplish
+
+In such cases a case can be made that you just fix it as well as you currently know how and wait for future stories to come in stating what about it's broken.
+
+That though, can sometimes feel like "why not just return random but realistic seeming output". I believe determining whether that feeling has any rationality or is irrational would require statistical analysis I'm not yet able to do.
+
+- [[file:20210325155846-are_points_in_agile_useful.org][are points in agile useful]]
+ 
 - [[file:20210325153030-planning_poker_in_agile.org][planning poker in agile]]
   
 
